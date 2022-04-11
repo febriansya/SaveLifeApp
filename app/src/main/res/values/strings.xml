@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">SaveLifeApp</string>
     <string name="splashImage">splashimage</string>
+    <string name="donor_yuk">Donor Yuk</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip">Skip</string>
+    <string name="blood_donation">Blood Donation</string>
 </resources>
