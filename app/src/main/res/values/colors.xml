@@ -9,4 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red_medium">#ED3237</color>
     <color name="blue">#71A8F7</color>
+
+
+    <color name="soft_gray">#D7D2CE</color>
+    <color name="soft_brown">#D3C0B2</color>
+    <color name="brown">#A99282</color>
+    <color name="dark_gray">#857B74</color>
 </resources>

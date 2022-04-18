@@ -15,5 +15,24 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-   <string name="lanjut">Continue</string>
+    <string name="lanjut">Continue</string>
+
+
+    <string-array name="onboarding_titles">
+        <item>Donate To Others</item>
+        <item>Find Blood Donors</item>
+        <item>Find Blood Donors</item>
+    </string-array>
+
+    <string-array name="onboarding_texxt">
+        <item>Setetes Darah Kita Berarti \n Bagi mereka</item>
+        <item>Temukan Lokasi Kegiatan Donor \n dan Calon Pendonor</item>
+        <item>Temukan Lokasi Kegiatan Donor \n dan Calon Pendonor</item>
+    </string-array>
+
+    <array name="imageOnBoarding">
+        <item>@drawable/ob1</item>
+        <item>@drawable/ob2</item>
+        <item>@drawable/ob1</item>
+    </array>
 </resources>
