@@ -20,12 +20,10 @@ class OnBoardingFragment : Fragment() {
             arguments = bundleOf(ARG_POSITION to position)
         }
     }
-
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -47,10 +45,8 @@ class OnBoardingFragment : Fragment() {
             val image = imageOnBoarding.getResourceId(position, -1)
             imageView.setImageResource(image)
             Log.e("image", "error")
-
         }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
