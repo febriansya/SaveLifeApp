@@ -33,7 +33,6 @@ class OnBoardingFragment : Fragment() {
         _binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val position = requireArguments().getInt(ARG_POSITION)
         val onBoardingTitles = requireContext().resources.getStringArray(R.array.onboarding_titles)

@@ -28,11 +28,16 @@ class MainFragmentActivity : AppCompatActivity() {
         _binding.viewPager2.adapter = pagerAdapter
         _binding.viewPager2.registerOnPageChangeCallback(onBoardingPageChangeCallback)
 
-
         _binding.btnContinue.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            if (_binding.viewPager2.currentItem == 2) {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            } else {
+                moveWithContinue()
+            }
+
         }
+        skip()
     }
 
     override fun onDestroy() {
@@ -49,13 +54,12 @@ class MainFragmentActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    private fun updateCircleMarker(binding:ActivityMainFragmentBinding,position:Int){
-        when(position){
-            0 ->{
+    private fun updateCircleMarker(binding: ActivityMainFragmentBinding, position: Int) {
+        when (position) {
+            0 -> {
                 binding.ivFirstCircle.setImageDrawable(getDrawable(R.drawable.view_slider_red))
                 binding.ivSecondCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
                 binding.ivThirdCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
-
             }
             1 -> {
                 binding.ivSecondCircle.setImageDrawable(getDrawable(R.drawable.view_slider_red))
@@ -67,12 +71,23 @@ class MainFragmentActivity : AppCompatActivity() {
                 binding.ivSecondCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
                 binding.ivFirstCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
             }
-            3 ->{
-                binding.ivThirdCircle.setImageDrawable(getDrawable(R.drawable.view_slider_red))
-                binding.ivSecondCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
-                binding.ivThirdCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
-            }
+//            3 -> {
+//                binding.ivThirdCircle.setImageDrawable(getDrawable(R.drawable.view_slider_red))
+//                binding.ivSecondCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
+//                binding.ivThirdCircle.setImageDrawable(getDrawable(R.drawable.view_slider_grey))
+//            }
         }
     }
 
+    fun moveWithContinue() {
+        _binding.viewPager2.setCurrentItem(_binding.viewPager2.currentItem + 1, true)
+    }
+
+    fun skip() {
+        val btn = _binding.tvButtonSkip
+        btn.setOnClickListener {
+            val intent = Intent(this@MainFragmentActivity, LoginActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }
