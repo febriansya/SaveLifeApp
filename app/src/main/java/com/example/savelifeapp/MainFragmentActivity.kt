@@ -1,6 +1,8 @@
 package com.example.savelifeapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
@@ -13,6 +15,9 @@ private const val NUM_PAGES = 3
 
 class MainFragmentActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityMainFragmentBinding
+    lateinit var preference: SharedPreferences
+    val pref_show_intro = "intro"
+
 
     private var onBoardingPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
@@ -24,6 +29,14 @@ class MainFragmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainFragmentBinding.inflate(layoutInflater)
         setContentView(_binding.root)
+
+        preference = getSharedPreferences("IntroSlider", Context.MODE_PRIVATE)
+
+        if (!preference.getBoolean(pref_show_intro, true)) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         val pagerAdapter = AdapterOnBoarding(this, NUM_PAGES)
         _binding.viewPager2.adapter = pagerAdapter
         _binding.viewPager2.registerOnPageChangeCallback(onBoardingPageChangeCallback)
@@ -32,10 +45,13 @@ class MainFragmentActivity : AppCompatActivity() {
             if (_binding.viewPager2.currentItem == 2) {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
+                val editor = preference.edit()
+                editor.putBoolean(pref_show_intro, false)
+                editor.apply()
             } else {
                 moveWithContinue()
             }
-
         }
         skip()
     }
@@ -89,5 +105,9 @@ class MainFragmentActivity : AppCompatActivity() {
             val intent = Intent(this@MainFragmentActivity, LoginActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    fun onTimeOnBoarding() {
+
     }
 }

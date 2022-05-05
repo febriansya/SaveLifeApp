@@ -20,6 +20,7 @@ class OnBoardingFragment : Fragment() {
             arguments = bundleOf(ARG_POSITION to position)
         }
     }
+
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,7 @@ class OnBoardingFragment : Fragment() {
         _binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val position = requireArguments().getInt(ARG_POSITION)
         val onBoardingTitles = requireContext().resources.getStringArray(R.array.onboarding_titles)
@@ -46,6 +48,7 @@ class OnBoardingFragment : Fragment() {
             Log.e("image", "error")
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
