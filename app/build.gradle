@@ -30,7 +30,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 }
@@ -51,4 +51,5 @@ dependencies {
 
 //    viewPager
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+
 }

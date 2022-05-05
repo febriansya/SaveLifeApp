@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_dark_grey.xml" value="0.1" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_login.xml" value="0.2" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_red.xml" value="0.157" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_skip.xml" value="0.1" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/round_top.xml" value="0.1965" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_grey.xml" value="0.1965" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_red.xml" value="0.1965" />
-        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_main_fragment.xml" value="0.25" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_on_boarding.xml" value="0.25" />

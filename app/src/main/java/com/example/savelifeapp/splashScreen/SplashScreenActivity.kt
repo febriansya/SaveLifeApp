@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.example.savelifeapp.MainFragmentActivity
-import com.example.savelifeapp.R
 import com.example.savelifeapp.databinding.ActivitySplashScreenBinding
 
 class SplashScreenActivity : AppCompatActivity() {
