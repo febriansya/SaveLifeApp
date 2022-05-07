@@ -17,10 +17,8 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(_binding.root)
-
         loadSplashScreen()
     }
-
     private fun loadSplashScreen() {
         Handler(Looper.myLooper()!!).postDelayed({
             val intent = Intent(this, MainFragmentActivity::class.java)

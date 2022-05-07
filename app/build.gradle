@@ -52,4 +52,8 @@ dependencies {
 //    viewPager
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
+//    circleImage
+    implementation 'com.mikhaellopez:circularimageview:4.3.0'
+
+
 }

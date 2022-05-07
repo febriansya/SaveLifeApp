@@ -38,6 +38,7 @@ class MainFragmentActivity : AppCompatActivity() {
         _binding.viewPager2.adapter = pagerAdapter
         _binding.viewPager2.registerOnPageChangeCallback(onBoardingPageChangeCallback)
 
+
         _binding.btnContinue.setOnClickListener {
             if (_binding.viewPager2.currentItem == 2) {
                 val intent = Intent(this, LoginActivity::class.java)
@@ -96,10 +97,11 @@ class MainFragmentActivity : AppCompatActivity() {
         btn.setOnClickListener {
             val intent = Intent(this@MainFragmentActivity, LoginActivity::class.java)
             startActivity(intent)
+            finish()
+            val editor = preference.edit()
+            editor.putBoolean(pref_show_intro, false)
+            editor.apply()
         }
     }
 
-    fun onTimeOnBoarding() {
-
-    }
 }
