@@ -11,14 +11,16 @@
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.158" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/icon_profile_background.xml" value="0.158" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/round_top.xml" value="0.1965" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/text_input_box_stroke.xml" value="0.144" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_grey.xml" value="0.1965" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_red.xml" value="0.1965" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_main_fragment.xml" value="0.25" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_on_boarding.xml" value="0.25" />
-        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_sign_up.xml" value="0.5" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/dropdown_item.xml" value="0.16847826086956522" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_first_page.xml" value="0.4577114427860697" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_first_screen.xml" value="0.1802536231884058" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_on_boarding.xml" value="0.18854166666666666" />
