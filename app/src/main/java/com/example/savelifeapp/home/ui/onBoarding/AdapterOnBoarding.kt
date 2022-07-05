@@ -1,4 +1,4 @@
-package com.example.savelifeapp.onBoarding
+package com.example.savelifeapp.home.ui.onBoarding
 
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package com.example.savelifeapp.onBoarding
+package com.example.savelifeapp.home.ui.onBoarding
 
 import android.os.Bundle
 import android.util.Log

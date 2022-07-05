@@ -1,4 +1,4 @@
-package com.example.savelifeapp.login
+package com.example.savelifeapp.home.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import com.example.savelifeapp.databinding.ActivityLoginBinding
 import com.example.savelifeapp.home.HomeActivity
-import com.example.savelifeapp.signUp.SignUpActivity
+import com.example.savelifeapp.home.ui.signUp.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
 

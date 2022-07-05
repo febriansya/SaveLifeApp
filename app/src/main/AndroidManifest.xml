@@ -16,13 +16,13 @@
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".signUp.SignUpActivity"
+            android:name=".home.ui.signUp.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainFragmentActivity"
+            android:name=".home.ui.onBoarding.MainFragmentActivity"
             android:exported="false" />
         <activity
-            android:name=".splashScreen.SplashScreenActivity"
+            android:name=".home.ui.splashScreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,12 +31,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".home.ui.login.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

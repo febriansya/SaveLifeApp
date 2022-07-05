@@ -1,12 +1,12 @@
-package com.example.savelifeapp.splashScreen
+package com.example.savelifeapp.home.ui.splashScreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.example.savelifeapp.MainFragmentActivity
 import com.example.savelifeapp.databinding.ActivitySplashScreenBinding
+import com.example.savelifeapp.home.ui.onBoarding.MainFragmentActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var _binding: ActivitySplashScreenBinding

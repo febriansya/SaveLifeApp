@@ -1,4 +1,4 @@
-package com.example.savelifeapp.signUp
+package com.example.savelifeapp.home.ui.signUp
 
 import android.app.Activity
 import android.content.Context

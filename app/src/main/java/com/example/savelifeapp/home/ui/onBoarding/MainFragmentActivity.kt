@@ -1,4 +1,4 @@
-package com.example.savelifeapp
+package com.example.savelifeapp.home.ui.onBoarding
 
 import android.content.Context
 import android.content.Intent
@@ -6,9 +6,10 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
+import com.example.savelifeapp.R
 import com.example.savelifeapp.databinding.ActivityMainFragmentBinding
-import com.example.savelifeapp.login.LoginActivity
-import com.example.savelifeapp.onBoarding.AdapterOnBoarding
+import com.example.savelifeapp.home.ui.login.LoginActivity
+import com.example.savelifeapp.home.ui.onBoarding.AdapterOnBoarding
 
 private const val NUM_PAGES = 3
 
@@ -103,5 +104,4 @@ class MainFragmentActivity : AppCompatActivity() {
             editor.apply()
         }
     }
-
 }
