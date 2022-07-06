@@ -25,6 +25,9 @@ class MainFragmentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        supportActionBar?.hide()
         _binding = ActivityMainFragmentBinding.inflate(layoutInflater)
         setContentView(_binding.root)
 

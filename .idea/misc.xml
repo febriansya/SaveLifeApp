@@ -4,13 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.158" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/account_selector.xml" value="0.1145" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_dark_grey.xml" value="0.1" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_login.xml" value="0.2" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_red.xml" value="0.157" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/btn_skip.xml" value="0.1" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/home_selector.xml" value="0.191" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.158" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/icon_profile_background.xml" value="0.158" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/request_selector.xml" value="0.1145" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/round_top.xml" value="0.1965" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/search_selector.xml" value="0.1145" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/text_input_box_stroke.xml" value="0.144" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_grey.xml" value="0.1965" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_red.xml" value="0.1965" />
@@ -22,8 +26,10 @@
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/dropdown_item.xml" value="0.16847826086956522" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_account.xml" value="0.19166666666666668" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_first_page.xml" value="0.4577114427860697" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_first_screen.xml" value="0.1802536231884058" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_home.xml" value="0.19166666666666668" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_notifications.xml" value="0.19166666666666668" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_on_boarding.xml" value="0.18854166666666666" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_search.xml" value="0.19166666666666668" />
