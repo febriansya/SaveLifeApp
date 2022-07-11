@@ -71,4 +71,10 @@
     <string name="request">Request</string>
     <string name="search">Search</string>
     <string name="account">account</string>
+
+    <!--    this string forViewPager-->
+    <string name="tab_text_1">Kegiatan</string>
+    <string name="tab_text_2">Bantu</string>
+
+
 </resources>

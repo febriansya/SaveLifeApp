@@ -19,6 +19,7 @@
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/text_input_box_stroke.xml" value="0.144" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_grey.xml" value="0.1965" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_red.xml" value="0.1965" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout-v31/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_home.xml" value="0.18206521739130435" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -30,13 +31,15 @@
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_account.xml" value="0.19166666666666668" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_first_page.xml" value="0.4577114427860697" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_first_screen.xml" value="0.1802536231884058" />
-        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_home.xml" value="0.19166666666666668" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_home.xml" value="0.20980615735461802" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_notifications.xml" value="0.19166666666666668" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_on_boarding.xml" value="0.18854166666666666" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_search.xml" value="0.19166666666666668" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_second_screen.xml" value="0.1734375" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_view_pager.xml" value="0.1802536231884058" />
-        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13020833333333334" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/fragment_view_pager_kegiatan.xml" value="0.19166666666666668" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_list_stok_darah.xml" value="0.5" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/mipmap-anydpi-v26/icon_profile.xml" value="0.1005" />
