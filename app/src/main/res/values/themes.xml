@@ -22,8 +22,13 @@
     <style name="Theme.SaveLifeApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.SaveLifeApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    <style name="tab_text" parent="Widget.MaterialComponents.TabLayout">
+
+    <style name="tab_text" parent="Base.TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/poppins_medium</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="CornerRadisu">
+        <item name="cornerSize">10%</item>
     </style>
 </resources>

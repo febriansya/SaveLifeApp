@@ -2,11 +2,12 @@ package com.example.savelifeapp.home.ui.home.viepager
 
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.savelifeapp.home.ui.home.viepager.bantu.ViewPagerBantuFragment
+import com.example.savelifeapp.home.ui.home.viepager.kegiatan.ViewPagerKegiatanFragment
 
 
+// constructor fm akan digunakan ketika viewpager diterpkan di fragment bukan di activity, menggunakn FragmentStateAdapter
 class SectionPagerAdapter(fm: Fragment) : FragmentStateAdapter(fm) {
 
     override fun getItemCount(): Int {
