@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.databinding.FragmentHomeBinding
+
 import com.example.savelifeapp.home.ui.home.viepager.SectionPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -21,9 +22,6 @@ class HomeFragment : Fragment() {
 
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     //    forViewpager fragment bantu dan kegiatan
@@ -42,6 +40,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        recylerview for showing stock blood
         mRecylerView = binding.RecylerViewItemStokDarah
         mRecylerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -51,12 +50,13 @@ class HomeFragment : Fragment() {
         }
         adapter = RecyclerAdapterStokDarah(dataset)
         mRecylerView.adapter = adapter
+
 //       implementation viewpager di dalam frgment di activity beda lagi
         sectionPagerAdapter = SectionPagerAdapter(this)
-        with(binding){
-            viewPager2.adapter  = sectionPagerAdapter
-            TabLayoutMediator(tabLayout,viewPager2){tab,position ->
-                when(position){
+        with(binding) {
+            viewPager2.adapter = sectionPagerAdapter
+            TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+                when (position) {
                     0 -> tab.text = "Kegiatan"
                     1 -> tab.text = "Bantu"
                 }
@@ -64,8 +64,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-//    wajib ketika menggunakan fragment
+    //    wajib ketika menggunakan fragment
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

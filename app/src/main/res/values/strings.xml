@@ -77,4 +77,45 @@
     <string name="tab_text_2">Bantu</string>
 
 
+    <!--    data sample for viewpager home kegiatan-->
+    <string-array name="nama_kegiatan">
+        <item>Selong</item>
+        <item>Sanubaya</item>
+        <item>Geres</item>
+        <item>Kertaji</item>
+        <item>Korleko</item>
+    </string-array>
+    <string-array name="lokasi_kegiatan">
+        <item>Kantor camat selong</item>
+        <item>Kantor camat sanubaya</item>
+        <item>Kantor camat geres</item>
+        <item>Kantor camat ketaji</item>
+        <item>Kantor camat Korleko</item>
+    </string-array>
+
+
+    <string-array name="tanggal_kegiatan">
+        <item>12-03-2022</item>
+        <item>23-03-2022</item>
+        <item>03-05-2022</item>
+        <item>01-04-2022</item>
+        <item>22-06-2022</item>
+    </string-array>
+
+    <string-array name="jam_kegiatan">
+        <item>10:33-14:20</item>
+        <item>12:33-15:20</item>
+        <item>09:33-16:20</item>
+        <item>10:33-14:20</item>
+        <item>10:33-14:20</item>
+    </string-array>
+
+    <integer-array name="poto_pmi">
+        <item>@drawable/profile</item>
+        <item>@drawable/profile</item>
+        <item>@drawable/profile</item>
+        <item>@drawable/profile</item>
+        <item>@drawable/profile</item>
+    </integer-array>
+
 </resources>

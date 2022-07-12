@@ -8,8 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
         android:layout_height="match_parent">
-
 
         <TextView
             android:id="@+id/welcome_name"
@@ -38,18 +38,19 @@
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <com.mikhaellopez.circularimageview.CircularImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profile"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:src="@drawable/profile"
             app:layout_constraintBottom_toBottomOf="@+id/welcome_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/welcome_name"
-            app:layout_constraintTop_toTopOf="@+id/welcome_name" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/CornerRadisu" />
 
         <TextView
             android:id="@+id/textView9"
@@ -95,9 +96,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textAlignment="textStart"
-            app:tabIndicator="@drawable/tab_indicator_custom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:tabIndicator="@drawable/tab_indicator_custom"
             app:tabIndicatorColor="@color/black"
             app:tabTextAppearance="@style/tab_text"
             app:tabTextColor="@color/black" />
@@ -105,9 +106,11 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tabLayout"
             app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
