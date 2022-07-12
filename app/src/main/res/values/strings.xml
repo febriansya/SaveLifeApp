@@ -111,11 +111,45 @@
     </string-array>
 
     <integer-array name="poto_pmi">
+        <item>@drawable/pmi_logo</item>
+        <item>@drawable/pmi_logo</item>
+        <item>@drawable/pmi_logo</item>
+        <item>@drawable/pmi_logo</item>
+        <item>@drawable/pmi_logo</item>
+    </integer-array>
+
+    <string-array name="nama_pasien">
+        <item>hendra kusuma</item>
+        <item>Bento kusuma</item>
+        <item>Kadri kusuma</item>
+        <item>Metana</item>
+        <item>Etana kudarswono</item>
+        <item>Goli magetar</item>
+    </string-array>
+    <string-array name="lokasi_pasien">
+        <item>rumah sakit praya</item>
+        <item>rumah sakit mataram</item>
+        <item>rumah sakit pejanggik</item>
+        <item>rumah sakit bodak</item>
+        <item>rumah sakit selong</item>
+        <item>rumah sakit selong</item>
+    </string-array>
+    <string-array name="gol_darah">
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>A+</item>
+        <item>A+</item>
+        <item>O+</item>
+        <item>A+</item>
+    </string-array>
+
+
+    <integer-array name="poto_pasien">
+        <item>@drawable/profile</item>
         <item>@drawable/profile</item>
         <item>@drawable/profile</item>
         <item>@drawable/profile</item>
         <item>@drawable/profile</item>
         <item>@drawable/profile</item>
     </integer-array>
-
 </resources>

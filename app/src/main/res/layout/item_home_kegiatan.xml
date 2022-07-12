@@ -34,7 +34,7 @@
 <!--                app:layout_constraintTop_toTopOf="@+id/tv_nama_tempat_item_kegiatan" />-->
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/img_kegiatan"
+                android:id="@+id/img_bantu"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="8dp"
@@ -47,7 +47,7 @@
                 tools:src="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/tv_nama_tempat_item_kegiatan"
+                android:id="@+id/tv_nama_pasien_bantu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -56,16 +56,17 @@
                 android:text="Masbagik"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/img_kegiatan"
+                app:layout_constraintStart_toEndOf="@+id/img_bantu"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_item_home_lokasi_kegiatan"
+                android:id="@+id/tv_lokasi_pasien_bantu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                app:layout_constraintStart_toStartOf="@+id/tv_nama_tempat_item_kegiatan"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nama_tempat_item_kegiatan" />
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_pasien_bantu"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_pasien_bantu" />
 
             <TextView
                 android:id="@+id/tv_jam_home_kegiatan"
@@ -78,7 +79,7 @@
                 android:textColor="@color/red_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_item_home_lokasi_kegiatan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_pasien_bantu" />
 
             <TextView
                 android:id="@+id/tv_tanggal_home_kegiatan"
@@ -87,6 +88,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
