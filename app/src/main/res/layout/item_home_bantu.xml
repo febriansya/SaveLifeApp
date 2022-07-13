@@ -9,23 +9,55 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         app:cardBackgroundColor="#364354"
         app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_gol_pasien_bantu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="A+"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_lokasi_pasien_bantu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#8D92A3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_bantu"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/img_bantu"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/CornerRadisu"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -33,35 +65,16 @@
                 android:id="@+id/tv_nama_pasien_bantu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/poppins_medium"
+                android:layout_marginStart="29dp"
 
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Yan Febriansyah"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/img_bantu"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tv_lokasi_pasien_bantu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="56dp"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/tv_gol_pasien_bantu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="350dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="31dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="A+"
-                android:textColor="@color/red_medium"
-                android:textSize="15sp" />
-        </FrameLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
