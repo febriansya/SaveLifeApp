@@ -25,7 +25,7 @@
 
     <style name="tab_text" parent="Base.TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/poppins_medium</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="tab_text123" parent="Base.TextAppearance.AppCompat">

@@ -9,13 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.Bantu
-import com.example.savelifeapp.data.Kegiatan
-import com.example.savelifeapp.home.ui.home.viepager.kegiatan.KegiatanAdapater
+
 
 class ViewPagerBantuFragment : Fragment() {
 
     private lateinit var rvBantu: RecyclerView
-    private val list = ArrayList<Bantu>()
+//    private val list = ArrayList<Bantu>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,34 +34,56 @@ class ViewPagerBantuFragment : Fragment() {
         rvBantu = view.findViewById(R.id.rv_bantu)
         rvBantu.setHasFixedSize(true)
 
-        list.addAll(listHeroes)
+        getData()
         showRecyclerList()
 
     }
 
-    private val listHeroes: ArrayList<Bantu>
-        get() {
-            val namaPasien = resources.getStringArray(R.array.nama_pasien)
-            val lokasiPasien = resources.getStringArray(R.array.lokasi_pasien)
-            val golDarah = resources.getStringArray(R.array.gol_darah)
-            val dataPhoto = resources.obtainTypedArray(R.array.poto_pasien)
+//    varriabel arraylist ini tak bisa digunakan, diganti menggunakn fungsi supaya tidak terjadinya load data berulangkali
 
-            val listHero = ArrayList<Bantu>()
-            for (i in namaPasien.indices) {
-                val hero = Bantu(
-                    namaPasien[i],
-                    lokasiPasien[i],
-                    golDarah[i],
-                    dataPhoto.getResourceId(i, -1)
-                )
-                listHero.add(hero)
-            }
-            return listHero
+    //    private val listHeroes: ArrayList<Bantu>
+//        get() {
+//            val namaPasien = resources.getStringArray(R.array.nama_pasien)
+//            val lokasiPasien = resources.getStringArray(R.array.lokasi_pasien)
+//            val golDarah = resources.getStringArray(R.array.gol_darah)
+//            val dataPhoto = resources.obtainTypedArray(R.array.poto_pasien)
+//
+//            val listHero = ArrayList<Bantu>()
+//            for (i in namaPasien.indices) {
+//                val hero = Bantu(
+//                    namaPasien[i],
+//                    lokasiPasien[i],
+//                    golDarah[i],
+//                    dataPhoto.getResourceId(i, -1)
+//                )
+//                listHero.add(hero)
+//            }
+//            return listHero
+//        }
+//
+    private fun getData(): ArrayList<Bantu> {
+        val bantu = ArrayList<Bantu>()
+
+        val namaPasien = resources.getStringArray(R.array.nama_pasien)
+        val lokasiPasien = resources.getStringArray(R.array.lokasi_pasien)
+        val golDarah = resources.getStringArray(R.array.gol_darah)
+        val dataPhoto = resources.obtainTypedArray(R.array.poto_pasien)
+
+        for (i in namaPasien.indices) {
+            val hero = Bantu(
+                namaPasien[i],
+                lokasiPasien[i],
+                golDarah[i],
+                dataPhoto.getResourceId(i, -1)
+            )
+            bantu.add(hero)
         }
+        return bantu
+    }
 
     private fun showRecyclerList() {
         rvBantu.layoutManager = LinearLayoutManager(requireContext())
-        val listHeroAdapter = BantuAdapater(list)
+        val listHeroAdapter = BantuAdapater(getData())
         rvBantu.adapter = listHeroAdapter
     }
 }

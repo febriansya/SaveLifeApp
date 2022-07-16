@@ -31,7 +31,6 @@
     <string name="address">Address</string>
     <string name="sign_upnow">Sign UpNow</string>
 
-
     <string-array name="onboarding_titles">
         <item>Donate To Others</item>
         <item>Find Blood Donors</item>
@@ -133,8 +132,8 @@
         <item>rumah sakit bodak</item>
         <item>rumah sakit selong</item>
         <item>rumah sakit selong</item>
-    </string-array>
-    <string-array name="gol_darah">
+    </string-array>    <string-array name="gol_darah">
+
         <item>AB+</item>
         <item>AB-</item>
         <item>A+</item>
@@ -152,4 +151,26 @@
         <item>@drawable/profile</item>
         <item>@drawable/profile</item>
     </integer-array>
+
+    <string-array name="stok">
+        <item>123</item>
+        <item>4</item>
+        <item>12</item>
+        <item>3</item>
+        <item>23</item>
+        <item>13</item>
+        <item>16</item>
+        <item>130</item>
+    </string-array>
+
+    <string-array name="jenis_darah">
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
 </resources>
