@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "253649434102",
+    "project_id": "savelifeapp-b011b",
+    "storage_bucket": "savelifeapp-b011b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253649434102:android:52d4f6c22ecc894e3983d7",
+        "android_client_info": {
+          "package_name": "com.example.savelifeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253649434102-b1od0r3snciss4s4uiq532b14qo76dhi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgs3bUjM7NLTaaxfklsLPTNUUHFkLUWgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253649434102-b1od0r3snciss4s4uiq532b14qo76dhi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
