@@ -10,3 +10,5 @@ data class Bantu(
     val goldarah: String,
     val profilePasien: Int,
 ) : Parcelable
+
+//test coding di linux
