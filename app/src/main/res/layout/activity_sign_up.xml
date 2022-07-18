@@ -79,7 +79,7 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/full_name"
+                android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="12dp"
@@ -254,6 +254,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sign_up"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"

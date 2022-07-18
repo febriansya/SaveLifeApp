@@ -61,7 +61,8 @@
         <entry key="app/src/main/res/drawable/btn_search.xml" value="0.1895" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.33" />
       </map>
     </option>
