@@ -1,19 +1,22 @@
 package com.example.savelifeapp.home.ui.signUp
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.savelifeapp.R
+import com.example.savelifeapp.data.UsersApp
 import com.example.savelifeapp.databinding.ActivitySignUpBinding
 import com.example.savelifeapp.home.ui.login.LoginActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 @Suppress("DEPRECATION")
@@ -23,9 +26,19 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
 
 
-//    this is fo firebase
+    //    this is fo firebase
     private lateinit var auth: FirebaseAuth
-    private lateinit var fireStore:FirebaseFirestore
+    private val userAppColection = Firebase.firestore.collection("UserApp")
+
+
+    //    datauser
+    private lateinit var nama: String
+    private lateinit var email: String
+    private lateinit var password: String
+    private lateinit var golDarah: String
+    private lateinit var phone: String
+    private lateinit var address: String
+    private lateinit var data: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,12 +49,8 @@ class SignUpActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, bloodType)
         binding.autoCompleteText.setAdapter(arrayAdapter)
 
-
 //        inisialisasi firebase
         auth = FirebaseAuth.getInstance()
-        fireStore = FirebaseFirestore.getInstance()
-
-
 
         binding.icBack.setOnClickListener {
             onBackPressed()
@@ -68,31 +77,49 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.signUp?.setOnClickListener {
-            val nama = binding.edtName.text.toString()
-            val email = binding.edtEmail.text.toString()
-            val password = binding.edtPassword.text.toString()
-            val golDarah = binding.autoCompleteText.text.toString()
-            val phone = binding.edtPhone.text.toString()
-            val address = binding.edtAddress.text.toString()
-            val data = binding.textdate?.text.toString()
+
+            nama = binding.edtName.text.toString()
+            email = binding.edtEmail.text.toString()
+            password = binding.edtPassword.text.toString()
+            golDarah = binding.autoCompleteText.text.toString()
+            phone = binding.edtPhone.text.toString()
+            address = binding.edtAddress.text.toString()
+            data = binding.textdate?.text.toString()
 
             if (nama.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && golDarah.isNotEmpty() && phone.isNotEmpty()
                 && address.isNotEmpty() && data.isNotEmpty()
             ) {
+
+
+//                init harus menggunakn
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
+                        val usersAp = UsersApp(
+                            auth.uid.toString(),
+                            nama,
+                            email,
+                            password,
+                            golDarah,
+                            phone,
+                            address,
+                            data
+                        )
+
+//                      firestore add data users with id auth  -> id auth dan id firestore jadi sama
+                        userAppColection.document(auth.uid.toString()).set(usersAp)
+
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
                     }
-
                 }
             } else {
-                Toast.makeText(this, "Empty Fields Are Not Allowed !!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Empty Fields Are Not Allowed !!", Toast.LENGTH_LONG).show()
             }
         }
     }
+
 
     private fun openGalleryImage() {
         val intent = Intent(Intent.ACTION_PICK)

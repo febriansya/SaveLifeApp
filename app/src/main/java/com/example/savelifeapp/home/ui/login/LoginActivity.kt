@@ -31,9 +31,13 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         fireStore = FirebaseFirestore.getInstance()
 
+        if(auth.currentUser != null){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.hidePassword.setOnClickListener {
-            if (showPassword == false) {
+            if (!showPassword) {
                 binding.edtPassword.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
                 showPassword = true
@@ -74,8 +78,13 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if(auth.currentUser != null){
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, HomeActivity::class.java)
+//            startActivity(intent)
         }
+    }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        finishAffinity()
     }
 }

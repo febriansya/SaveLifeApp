@@ -7,6 +7,7 @@
     tools:context=".home.ui.onBoarding.MainFragmentActivity">
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -51,7 +52,6 @@
         android:id="@+id/btn_continue"
         android:layout_width="245dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/btn_red"
         android:clickable="true"
         android:focusable="true"
@@ -62,7 +62,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
 
     <TextView
         android:id="@+id/tv_button_skip"
