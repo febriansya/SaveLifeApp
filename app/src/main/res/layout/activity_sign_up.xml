@@ -43,22 +43,21 @@
             app:layout_constraintTop_toTopOf="@+id/textView6"
             app:srcCompat="@drawable/ic_back" />
 
-
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/img_profile"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="26dp"
-            android:src="@drawable/ic_profile"
-            app:civ_border_color="@color/red_medium"
-            app:civ_border_width="6dp"
-            app:civ_shadow="true"
-            app:civ_shadow_color="#8D92A3"
-            app:civ_shadow_radius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="26dp"
+                    android:src="@drawable/ic_profile"
+                    app:civ_border_color="@color/red_medium"
+                    app:civ_border_width="6dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_color="#8D92A3"
+                    app:civ_shadow_radius="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -166,8 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:inputType="none"
-                    android:text="@string/a" />
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -237,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
                     android:fontFamily="@font/poppins"
-                    android:text="12-3-51"
+                    android:text=" 0 - 0 - 0"
                     android:textAlignment="center" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -272,5 +270,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>

@@ -1,14 +1,19 @@
 package com.example.savelifeapp.home.ui.account
 
+import android.app.Activity.RESULT_OK
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.savelifeapp.R
 import com.example.savelifeapp.databinding.FragmentAccountBinding
@@ -16,12 +21,24 @@ import com.example.savelifeapp.databinding.FragmentHomeBinding
 import com.example.savelifeapp.home.ui.home.HomeViewModel
 import com.example.savelifeapp.home.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import org.w3c.dom.Text
+import java.io.ByteArrayOutputStream
 
 class AccountFragment : Fragment() {
+
+    private val userAppColection = Firebase.firestore.collection("UserApp")
+    companion object {
+        const val REQUEST_CAMERA = 100
+    }
+
+    private lateinit var imageUri: Uri
 
     //    this is fo firebase
     private lateinit var auth: FirebaseAuth
@@ -45,7 +62,58 @@ class AccountFragment : Fragment() {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         val root: View = binding.root
         //        inisialisasi firebase
+//        getNameWithAuth()
+        return root
+    }
+
+    private fun intentCamera() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
+            activity?.packageManager?.let {
+                intent.resolveActivity(it).also {
+                    startActivityForResult(intent, REQUEST_CAMERA)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK) {
+            val imgBitmap = data?.extras?.get("data") as Bitmap
+            uploadImage(imgBitmap)
+        }
+    }
+
+    private fun uploadImage(imgBitmap: Bitmap) {
+        val baos = ByteArrayOutputStream()
+        val ref = FirebaseStorage.getInstance().reference.child("img/${auth.currentUser?.uid}")
+        imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val image = baos.toByteArray()
+        ref.putBytes(image)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    ref.downloadUrl.addOnCompleteListener {
+                        it.result?.let {
+                            imageUri = it
+                            binding.imgProfile.setImageBitmap(imgBitmap)
+                        }
+                    }
+                }
+            }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+
+//        tes disini
+        val user = auth.currentUser
 
         binding.logout.setOnClickListener {
             auth.signOut()
@@ -63,8 +131,10 @@ class AccountFragment : Fragment() {
                 if (document.exists()) {
                     val email = document.getString("email")
                     val nama = document.getString("nama")
+                    val poto = document.getString("image")
+                    Picasso.get().load(poto).into(binding.imgProfile)
                     binding.name.text = nama
-                    Log.d("tes","$nama")
+                    Log.d("tes", "$nama")
                 } else {
                     Log.d(TAG, "The document doesnt exits")
                 }
@@ -75,34 +145,34 @@ class AccountFragment : Fragment() {
             }
         }
 
-
-//        getNameWithAuth()
-        return root
-    }
-
-
-    private fun getNameWithAuth() {
-        if (auth.currentUser != null) {
-            val db = FirebaseFirestore.getInstance()
-            val userRef = db.collection("UserApp")
-            val user = auth.currentUser!!.uid.toString()
-            userRef.document(user).get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val document = task.result
-                    val name = document.getString("nama")
-                    binding.name.text = name.toString()
-                }
-            }
+//        binding.imgProfile.setOnClickListener {
+//            intentCamera()
+//        }
 
 
-//           val ref=  db.collection("AppUser")
-
-
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        //masih errro belum bisa menampilkan data tetapi sudah bisa upload image di storagae
+//        if (user != null) {
+//            if (user.photoUrl != null) {
+//                Picasso.get().load(user.photoUrl).into(binding.imgProfile)
+//                val image = when {
+//                    ::imageUri.isInitialized -> imageUri
+//                    user?.photoUrl == null -> Uri.parse("https://picsum.photos/id/316/200")
+//                    else -> user.photoUrl
+//                }
+//                UserProfileChangeRequest.Builder()
+//                    .setPhotoUri(image)
+//                    .build().also {
+//                        user.updateProfile(it).addOnCompleteListener {
+//                            if (it.isSuccessful) {
+//                                Toast.makeText(activity, "profile updated", Toast.LENGTH_LONG)
+//                                    .show()
+//                            }
+//                        }
+//                    }
+//            } else {
+//                Uri.parse("https://picsum.photos/id/316/200")
+//            }
+//        }
+//    }
     }
 }
