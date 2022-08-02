@@ -94,12 +94,12 @@ class SignUpActivity : AppCompatActivity() {
             phone = binding.edtPhone.text.toString()
             address = binding.edtAddress.text.toString()
             data = binding.textdate?.text.toString()
-            image = filepath.toString()
+            image = binding.imgProfile.toString()
+//            image = filepath.toString()
 
             if (nama.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && golDarah.isNotEmpty() && phone.isNotEmpty()
                 && address.isNotEmpty() && data.isNotEmpty()
             ) {
-
 //                init harus menggunakn
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -112,11 +112,10 @@ class SignUpActivity : AppCompatActivity() {
                             phone,
                             address,
                             data,
-                            image
+                            image = filepath.toString()
                         )
 //                      firestore add data users with id auth  -> id auth dan id firestore jadi sama
                         userAppColection.document(auth.uid.toString()).set(usersAp)
-
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                     } else {
@@ -149,7 +148,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun uploadImage(imgBitmap: Bitmap) {
         val baos = ByteArrayOutputStream()
-        val ref = FirebaseStorage.getInstance().reference.child("img/${auth.currentUser?.uid}")
+        val ref = FirebaseStorage.getInstance().reference.child("img").child("${UUID.randomUUID()}+.jpg")
         imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val image = baos.toByteArray()
         ref.putBytes(image)
