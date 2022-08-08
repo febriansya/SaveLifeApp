@@ -19,30 +19,35 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_pasien_bantu" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_terima"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/red_medium"
         android:fontFamily="@font/poppins_medium"
         android:text="Menjadi Pendonor"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_tolak"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2" />
+        app:layout_constraintStart_toEndOf="@+id/btn_tolak"
+        app:layout_constraintTop_toTopOf="@+id/btn_tolak" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_tolak"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/grey_dark"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/grey_dark"
         android:fontFamily="@font/poppins_medium"
         android:text="Saya Belum Bisa"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="9sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_terima"
         app:layout_constraintStart_toStartOf="@+id/tv_lokasi_pasien_bantu"
         app:layout_constraintTop_toBottomOf="@+id/img_bantu" />
 

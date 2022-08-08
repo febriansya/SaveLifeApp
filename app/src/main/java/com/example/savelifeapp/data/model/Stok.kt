@@ -1,4 +1,4 @@
-package com.example.savelifeapp.data
+package com.example.savelifeapp.data.model
 
 
 import android.os.Parcelable

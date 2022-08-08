@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="#8D92A3"
+                app:layout_constraintBottom_toTopOf="@+id/tv_alamat_bantu"
                 app:layout_constraintStart_toStartOf="@+id/tv_nama_pasien_bantu"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_pasien_bantu" />
 
@@ -59,23 +60,22 @@
                 android:id="@+id/tv_tanggal_home_kegiatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_nama_pasien_bantu"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/tv_nama_pasien_bantu" />
 
             <TextView
                 android:id="@+id/tv_alamat_bantu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="10:30-12:50"
                 android:textColor="@color/red_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/tv_nama_pasien_bantu" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ui.signUp.SignUpActivity">
+    tools:context=".ui.signUp.SignUpActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,21 +43,21 @@
             app:layout_constraintTop_toTopOf="@+id/textView6"
             app:srcCompat="@drawable/ic_back" />
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:id="@+id/img_profile"
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
-                    android:layout_marginTop="26dp"
-                    android:src="@drawable/ic_profile"
-                    app:civ_border_color="@color/red_medium"
-                    app:civ_border_width="6dp"
-                    app:civ_shadow="true"
-                    app:civ_shadow_color="#8D92A3"
-                    app:civ_shadow_radius="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/img_profile"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_profile"
+            app:civ_border_color="@color/red_medium"
+            app:civ_border_width="6dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#8D92A3"
+            app:civ_shadow_radius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"

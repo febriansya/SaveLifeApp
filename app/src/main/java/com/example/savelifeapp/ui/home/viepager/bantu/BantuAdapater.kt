@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Bantu
+import com.example.savelifeapp.data.model.Bantu
 
 
 class BantuAdapater(private val Bantu: ArrayList<Bantu>) :

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Request
+import com.example.savelifeapp.data.model.Request
 
 class MrequestAdapter(private val Request: ArrayList<Request>) :
     RecyclerView.Adapter<MrequestAdapter.ViewHolder>() {
