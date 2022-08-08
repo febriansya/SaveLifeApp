@@ -12,20 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveLifeApp">
         <activity
-            android:name=".home.HomeActivity"
+            android:name=".ui.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.ui.signUp.SignUpActivity"
+            android:name=".ui.signUp.SignUpActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.ui.onBoarding.MainFragmentActivity"
+            android:name=".ui.onBoarding.MainFragmentActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".home.ui.splashScreen.SplashScreenActivity"
+            android:name=".ui.splashScreen.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".home.ui.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <meta-data

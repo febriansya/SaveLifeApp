@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.ui.request.viewpager.mrequest.RequestPagerFragment">
+    tools:context=".ui.ui.request.viewpager.mrequest.RequestPagerFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"

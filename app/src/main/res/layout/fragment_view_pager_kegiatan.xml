@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".home.ui.home.viepager.kegiatan.ViewPagerKegiatanFragment">
+    tools:context=".ui.ui.home.viepager.kegiatan.ViewPagerKegiatanFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_kegiatan"
