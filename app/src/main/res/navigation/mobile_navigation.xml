@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.savelifeapp.home.ui.home.HomeFragment"
+        android:name="com.example.savelifeapp.ui.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_request"
-        android:name="com.example.savelifeapp.home.ui.request.RequestFragment"
+        android:name="com.example.savelifeapp.ui.ui.request.RequestFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.savelifeapp.home.ui.search.SearchFragment"
+        android:name="com.example.savelifeapp.ui.ui.search.SearchFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.example.savelifeapp.home.ui.account.AccountFragment"
+        android:name="com.example.savelifeapp.ui.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
 </navigation>
