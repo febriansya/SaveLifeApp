@@ -9,7 +9,7 @@ import android.provider.MediaStore
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.UsersApp
+import com.example.savelifeapp.data.model.UsersApp
 import com.example.savelifeapp.databinding.ActivitySignUpBinding
 import com.example.savelifeapp.ui.login.LoginActivity
 import com.google.android.material.datepicker.MaterialDatePicker

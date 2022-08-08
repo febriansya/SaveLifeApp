@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Kegiatan
+import com.example.savelifeapp.data.model.Kegiatan
 
 class KegiatanAdapater(private val listSampleKegiatan: ArrayList<Kegiatan>) :
     RecyclerView.Adapter<KegiatanAdapater.ListViewHolder>() {

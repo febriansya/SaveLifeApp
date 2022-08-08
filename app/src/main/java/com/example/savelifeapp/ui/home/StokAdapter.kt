@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Stok
+import com.example.savelifeapp.data.model.Stok
 
 class StokAdapter(private var Stok: ArrayList<Stok>) :
     RecyclerView.Adapter<StokAdapter.ViewHolder>() {

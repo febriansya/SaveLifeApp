@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Kegiatan
+import com.example.savelifeapp.data.model.Kegiatan
 import com.example.savelifeapp.databinding.FragmentViewPagerKegiatanBinding
 
 class ViewPagerKegiatanFragment : Fragment() {

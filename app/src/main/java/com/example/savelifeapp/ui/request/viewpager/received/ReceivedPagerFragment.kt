@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Received
+import com.example.savelifeapp.data.model.Received
 
 
 class ReceivedPagerFragment : Fragment() {

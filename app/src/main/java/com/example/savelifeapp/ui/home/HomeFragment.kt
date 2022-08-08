@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Stok
+import com.example.savelifeapp.data.model.Stok
 import com.example.savelifeapp.databinding.FragmentHomeBinding
 import com.example.savelifeapp.ui.home.viepager.SectionPagerAdapter
 

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.Received
+import com.example.savelifeapp.data.model.Received
 
 class ReceivedAdapter(private val Received: ArrayList<Received>) :
     RecyclerView.Adapter<ReceivedAdapter.ViewHolder>() {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ui.signUp.SignUpActivity">
+    tools:context=".ui.signUp.SignUpActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="107dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/sign_up"
             android:textColor="@color/black"

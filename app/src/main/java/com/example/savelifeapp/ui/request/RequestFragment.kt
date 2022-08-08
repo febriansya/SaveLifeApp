@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.savelifeapp.databinding.FragmentDashboardBinding
+import com.example.savelifeapp.databinding.FragmentRequestBinding
 import com.example.savelifeapp.ui.request.viewpager.SectionPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class RequestFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentRequestBinding? = null
 
      private lateinit var viewpagerAdapter: SectionPagerAdapter
 
@@ -28,7 +28,7 @@ class RequestFragment : Fragment() {
         val dashboardViewModel =
             ViewModelProvider(this).get(RequestViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentRequestBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root
@@ -48,8 +48,6 @@ class RequestFragment : Fragment() {
             }.attach()
         }
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
