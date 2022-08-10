@@ -36,4 +36,10 @@
     <style name="CornerRadisu">
         <item name="cornerSize">10%</item>
     </style>
+
+
+    <style name="ChipTextStyle">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12dp</item>
+    </style>
 </resources>

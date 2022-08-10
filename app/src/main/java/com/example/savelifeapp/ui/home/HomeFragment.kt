@@ -14,8 +14,9 @@ import com.example.savelifeapp.databinding.FragmentHomeBinding
 import com.example.savelifeapp.ui.home.viepager.SectionPagerAdapter
 
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     lateinit private var mRecylerView: RecyclerView

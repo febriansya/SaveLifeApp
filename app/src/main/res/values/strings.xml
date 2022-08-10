@@ -70,6 +70,10 @@
     <!--    this string forViewPager-->
     <string name="tab_text_1">Kegiatan</string>
     <string name="tab_text_2">Bantu</string>
+    <string name="invalid_email">invalid email</string>
+    <string name="invalid_password">password empty</string>
+    <string name="password_invalid">psasword must more than 8</string>
+    <string name="no_field">please input email and password</string>
 
 
     <!--    data sample for viewpager home kegiatan-->

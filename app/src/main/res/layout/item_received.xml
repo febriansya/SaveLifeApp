@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/red_medium"
+        android:background="@drawable/btn_red"
         android:fontFamily="@font/poppins_medium"
         android:text="Menjadi Pendonor"
         android:textAllCaps="false"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/grey_dark"
+        android:background="@drawable/btn_dark_grey"
         android:fontFamily="@font/poppins_medium"
         android:text="Saya Belum Bisa"
         android:textAllCaps="false"
@@ -76,10 +76,13 @@
 
     <TextView
         android:id="@+id/tv_alamat_bantu"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_lokasi_pasien_bantu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nama_pasien_bantu" />
+        app:layout_constraintStart_toEndOf="@+id/tv_lokasi_pasien_bantu"
+        app:layout_constraintTop_toTopOf="@+id/tv_lokasi_pasien_bantu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Kegiatan
 import com.example.savelifeapp.databinding.FragmentViewPagerKegiatanBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ViewPagerKegiatanFragment : Fragment() {
     private var _binding: FragmentViewPagerKegiatanBinding? = null
     private val binding get() = _binding!!

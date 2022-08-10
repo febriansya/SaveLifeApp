@@ -16,6 +16,7 @@ class MainFragmentActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityMainFragmentBinding
     lateinit var preference: SharedPreferences
     val pref_show_intro = "intro"
+
     private var onBoardingPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             updateCircleMarker(_binding, position)
