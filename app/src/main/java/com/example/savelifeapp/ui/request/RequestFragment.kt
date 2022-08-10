@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.savelifeapp.databinding.FragmentRequestBinding
 import com.example.savelifeapp.ui.request.viewpager.SectionPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RequestFragment : Fragment() {
 
     private var _binding: FragmentRequestBinding? = null

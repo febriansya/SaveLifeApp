@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Request
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RequestPagerFragment : Fragment() {
 
     private lateinit var rvRequest: RecyclerView
