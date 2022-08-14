@@ -2,8 +2,8 @@ package com.example.savelifeapp.di
 
 import com.example.savelifeapp.data.repository.AuthRepository
 import com.example.savelifeapp.data.repository.AuthRepositoryImplement
-import com.example.savelifeapp.data.repository.ProfileRepositoryImpl
-import com.example.savelifeapp.data.repository.ProfileRespository
+import com.example.savelifeapp.data.repository.AccountRepositoryImpl
+import com.example.savelifeapp.data.repository.AccountRespository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
@@ -20,8 +20,9 @@ object RepositoryModule {
     @Singleton
     fun provideProfileRepository(
         database: FirebaseFirestore,
-    ): ProfileRespository {
-        return ProfileRepositoryImpl(database)
+        auth:FirebaseAuth
+    ): AccountRespository {
+        return AccountRepositoryImpl(database,auth)
     }
 
     @Provides
@@ -29,7 +30,7 @@ object RepositoryModule {
     fun provideAuthRepository(
         database: FirebaseFirestore,
         auth: FirebaseAuth
-    ): AuthRepository {
-        return AuthRepositoryImplement(auth, database)
+    ): AuthRepository{
+        return AuthRepositoryImplement(auth, database,)
     }
 }
