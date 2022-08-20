@@ -61,6 +61,7 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+
         observer()
         binding.logout.setOnClickListener {
             viewmodel.logout()
@@ -84,9 +85,6 @@ class AccountFragment : Fragment() {
                     toast(it.data)
                     val intent = Intent(requireActivity(), LoginActivity::class.java)
                     startActivity(intent)
-                }
-                else -> {
-                    toast("error ")
                 }
             }
         }

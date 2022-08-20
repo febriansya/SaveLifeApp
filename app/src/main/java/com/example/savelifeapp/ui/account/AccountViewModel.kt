@@ -30,7 +30,7 @@ class AccountViewModel @Inject constructor(
 
     fun logout() {
         _logout.value = UiState.Loading
-        authRepository.logout("current") {
+        authRepository.logout() {
             _logout.value = it
         }
     }

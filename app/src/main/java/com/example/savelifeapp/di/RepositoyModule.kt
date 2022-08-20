@@ -20,17 +20,18 @@ object RepositoryModule {
     @Singleton
     fun provideProfileRepository(
         database: FirebaseFirestore,
-        auth:FirebaseAuth
+        auth: FirebaseAuth
     ): AccountRespository {
-        return AccountRepositoryImpl(database,auth)
+        return AccountRepositoryImpl(database, auth)
     }
 
     @Provides
     @Singleton
     fun provideAuthRepository(
         database: FirebaseFirestore,
-        auth: FirebaseAuth
-    ): AuthRepository{
-        return AuthRepositoryImplement(auth, database,)
+        auth: FirebaseAuth,
+    ): AuthRepository {
+        return AuthRepositoryImplement(auth, database)
     }
+
 }
