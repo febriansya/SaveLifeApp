@@ -87,4 +87,7 @@ dependencies {
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
+//    responsice design
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+
 }

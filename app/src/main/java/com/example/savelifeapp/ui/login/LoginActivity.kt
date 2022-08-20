@@ -22,8 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
-
-
     //    new method use mvvm
     val TAG: String = "SignUp"
     val viewmodel: LoginViewModel by viewModels()
@@ -62,41 +60,19 @@ class LoginActivity : AppCompatActivity() {
                     password = binding.edtPassword.text.toString()
                 )
             }
-
-//
-//            val email = binding.edtEmail.text.toString()
-//            val password = binding.edtPassword.text.toString()
-
-//            implement with no viewmodel
-//
-//            if (email.isNotEmpty() && password.isNotEmpty()){
-//                auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{
-//                    if (it.isSuccessful){
-//                        val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-//                        startActivity(intent)
-//                        finish()
-//                    }else{
-//                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }else{
-//                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-//            }
         }
 
         binding.SignUp.setOnClickListener {
             val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
-
     }
-
 
     private fun observer() {
         viewmodel.login.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    binding.Login.setText("")
+//                    binding.Login.setText("")
                     binding.progressBar.show()
                 }
                 is UiState.Failure -> {

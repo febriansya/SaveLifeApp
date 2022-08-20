@@ -1,13 +1,16 @@
 package com.example.savelifeapp.data.repository
 
 import android.content.Context
-import android.content.Intent
-import android.widget.Toast
-import com.example.savelifeapp.ui.HomeActivity
+import com.example.savelifeapp.data.model.UsersApp
+import com.example.savelifeapp.utils.FireStoreCollection
 import com.example.savelifeapp.utils.UiState
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
+
 
 class AuthRepositoryImplement(
     val auth: FirebaseAuth,
@@ -21,16 +24,73 @@ class AuthRepositoryImplement(
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     result.invoke(UiState.Success("Login successfully"))
-//                    val intent = Intent(context, HomeActivity::class.java)
-//                    context?.startActivity(intent)
                 }
             }.addOnFailureListener {
-                result.invoke(UiState.Failure("Authentication failed, pleas check email and password"))
+                result.invoke(UiState.Failure("Authentication failed, please check email and password"))
             }
     }
 
-    override fun logout(user: String, result: (UiState<String>) -> Unit) {
+    override fun updateUserInfo(
+        user: UsersApp,
+        result: (UiState<String>) -> Unit
+    ) {
+        val document = database.collection(FireStoreCollection.USER).document(user.uuid)
+        document.set(user)
+            .addOnSuccessListener {
+                result.invoke(
+                    UiState.Success("user has been add")
+                )
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
+    override fun registerUser(
+        email: String,
+        password: String,
+        user: UsersApp,
+        result: (UiState<String>) -> Unit
+    ) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    user.uuid = it.result.user?.uid ?: ""
+                    updateUserInfo(user) { state ->
+                        when (state) {
+                            is UiState.Success -> {
+                                result.invoke(UiState.Success("UserRegister Sucessfully"))
+                            }
+                            is UiState.Failure -> {
+                                result.invoke(UiState.Failure(state.error))
+                            }
+                        }
+                    }
+                } else {
+                    try {
+                        throw it.exception ?: java.lang.Exception("Invalid authenthication")
+                    } catch (e: FirebaseAuthWeakPasswordException) {
+                        result.invoke(UiState.Failure("Authentication failed, Password should be at least 6 characters"))
+                    } catch (e: FirebaseAuthInvalidCredentialsException) {
+                        result.invoke(UiState.Failure("Authentication failed, Invalid email entered"))
+                    } catch (e: FirebaseAuthUserCollisionException) {
+                        result.invoke(UiState.Failure("Authentication failed, Email already registered."))
+                    } catch (e: Exception) {
+                        result.invoke(UiState.Failure(e.message))
+                    }
+                }
+            }
+            .addOnFailureListener {
+                result.invoke(UiState.Failure(it.localizedMessage))
+            }
+    }
+
+    override fun logout(result: (UiState<String>) -> Unit) {
         auth.signOut()
-        result.invoke(UiState.Success("Logout successfully"))
+        result.invoke(UiState.Success("Logout Successfully"))
     }
 }

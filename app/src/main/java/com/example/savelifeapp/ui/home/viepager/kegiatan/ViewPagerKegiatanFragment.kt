@@ -44,9 +44,7 @@ class ViewPagerKegiatanFragment : Fragment() {
 
 
     private fun getData(): ArrayList<Kegiatan> {
-
         val bantuList = ArrayList<Kegiatan>()
-
         val dataName = resources.getStringArray(R.array.nama_kegiatan)
         val dataDescription = resources.getStringArray(R.array.lokasi_kegiatan)
         val tanggal = resources.getStringArray(R.array.tanggal_kegiatan)
@@ -67,30 +65,6 @@ class ViewPagerKegiatanFragment : Fragment() {
         }
         return bantuList
     }
-
-//
-
-//    private val listHeroes: ArrayList<Kegiatan>
-//        get() {
-//            val dataName = resources.getStringArray(R.array.nama_kegiatan)
-//            val dataDescription = resources.getStringArray(R.array.lokasi_kegiatan)
-//            val tanggal = resources.getStringArray(R.array.tanggal_kegiatan)
-//            val jam = resources.getStringArray(R.array.jam_kegiatan)
-//            val dataPhoto = resources.obtainTypedArray(R.array.poto_pmi)
-//
-//            val listHero = ArrayList<Kegiatan>()
-//            for (i in dataName.indices) {
-//                val hero = Kegiatan(
-//                    dataName[i],
-//                    dataDescription[i],
-//                    tanggal[i],
-//                    jam[i],
-//                    dataPhoto.getResourceId(i, -1)
-//                )
-//                listHero.add(hero)
-//            }
-//            return listHero
-//        }
 
     private fun showRecyclerList() {
         rvKegiatan.layoutManager = LinearLayoutManager(requireContext())

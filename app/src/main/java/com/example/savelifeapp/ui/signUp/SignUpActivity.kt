@@ -1,17 +1,25 @@
 package com.example.savelifeapp.ui.signUp
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.core.view.drawToBitmap
+import androidx.navigation.findNavController
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.UsersApp
 import com.example.savelifeapp.databinding.ActivitySignUpBinding
 import com.example.savelifeapp.ui.login.LoginActivity
+import com.example.savelifeapp.utils.UiState
+import com.example.savelifeapp.utils.isValidEmail
+import com.example.savelifeapp.utils.toast
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -27,14 +35,12 @@ class SignUpActivity : AppCompatActivity() {
 
     val REQUEST_CODE = 100
     private lateinit var binding: ActivitySignUpBinding
-
-    //    this is for storage firebase
-
-    //    this is fo firebase
     private lateinit var auth: FirebaseAuth
-
     lateinit var filepath: Uri
     private val userAppColection = Firebase.firestore.collection("UserApp")
+    val viewModels: SignUpViewModel by viewModels()
+
+    val TAG: String = "SignUp Activity"
 
 
     //    datauser
@@ -45,7 +51,6 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var phone: String
     private lateinit var address: String
     private lateinit var data: String
-
     private lateinit var image: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,33 +64,36 @@ class SignUpActivity : AppCompatActivity() {
 
 //        inisialisasi firebase
         auth = FirebaseAuth.getInstance()
-
+        observer()
         binding.icBack.setOnClickListener {
             onBackPressed()
         }
-
         val getImage = binding.imgProfile.setOnClickListener {
             openCamera()
         }
-        val choseDate = binding.choseDate?.setOnClickListener {
-            val builder = MaterialDatePicker.Builder.datePicker()
-                .also {
-                    title = "Pick Date"
-                }
-            val datePicker = builder.build()
-            datePicker.addOnPositiveButtonClickListener {
-                val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-                calendar.time = Date(it)
-                binding.textdate?.text =
-                    "${calendar.get(Calendar.DAY_OF_MONTH)}- " + "${calendar.get(Calendar.MONTH) + 1}-${
-                        calendar.get(Calendar.YEAR)
-                    }"
-            }
-            datePicker.show(supportFragmentManager, "MyTAG")
+        binding.textdate?.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                // on below line we are passing context.
+                this,
+                { view, year, monthOfYear, dayOfMonth ->
+                    // on below line we are setting
+                    // date to our edit text.
+                    val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
+                    binding.textdate!!.setText(dat)
+                },
+                year,
+                month,
+                day
+            )
+            datePickerDialog.show()
         }
-
         binding.signUp?.setOnClickListener {
-
             nama = binding.edtName.text.toString()
             email = binding.edtEmail.text.toString()
             password = binding.edtPassword.text.toString()
@@ -96,42 +104,60 @@ class SignUpActivity : AppCompatActivity() {
             image = binding.imgProfile.toString()
 //            image = filepath.toString()
 
-            if (nama.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && golDarah.isNotEmpty() && phone.isNotEmpty()
-                && address.isNotEmpty() && data.isNotEmpty()
-            ) {
-//                init harus menggunakn
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val usersAp = UsersApp(
-                            auth.uid.toString(),
-                            nama,
-                            email,
-                            password,
-                            golDarah,
-                            phone,
-                            address,
-                            data,
-                            image = filepath.toString()
-                        )
-//                      firestore add data users with id auth  -> id auth dan id firestore jadi sama
-                        userAppColection.document(auth.uid.toString()).set(usersAp)
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
-                    }
+//            implementasi viewmodel disini
+            if (validation()) {
+                viewModels.register(
+                    email = email,
+                    password = password,
+                    usersApp = getUserObj(),
+                )
+            }
+
+        }
+    }
+
+    fun observer() {
+        viewModels.register.observe(this) { state ->
+            when (state) {
+                is UiState.Loading -> {
+                    binding.signUp?.setText("")
                 }
-            } else {
-                Toast.makeText(this, "Empty Fields Are Not Allowed !!", Toast.LENGTH_LONG).show()
+                is UiState.Failure -> {
+                    toast(state.error)
+                }
+                is UiState.Success -> {
+                    toast(state.data)
+                    val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
+    }
+
+
+    fun getUserObj(): UsersApp {
+        return UsersApp(
+            uuid = "",
+            nama = binding.edtName.text.toString(),
+            email = binding.edtEmail.text.toString(),
+            password = binding.edtPassword.text.toString(),
+            golDarah = binding.autoCompleteText.text.toString(),
+            hone = binding.edtPhone.text.toString(),
+            address = binding.edtAddress.text.toString(),
+            data = binding.textdate?.text.toString(),
+            image = filepath.toString()
+        )
     }
 
     private fun openCamera() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
             applicationContext?.packageManager?.let {
                 intent.resolveActivity(it).also {
-                    startActivityForResult(intent, com.example.savelifeapp.ui.account.AccountFragment.REQUEST_CAMERA)
+                    startActivityForResult(
+                        intent,
+                        com.example.savelifeapp.ui.account.AccountFragment.REQUEST_CAMERA
+                    )
                 }
             }
         }
@@ -147,7 +173,8 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun uploadImage(imgBitmap: Bitmap) {
         val baos = ByteArrayOutputStream()
-        val ref = FirebaseStorage.getInstance().reference.child("img").child("${UUID.randomUUID()}+.jpg")
+        val ref =
+            FirebaseStorage.getInstance().reference.child("img").child("${UUID.randomUUID()}")
         imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val image = baos.toByteArray()
         ref.putBytes(image)
@@ -161,5 +188,54 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 }
             }
+    }
+
+    fun validation(): Boolean {
+        var isValid = true
+        when {
+            binding.edtAddress.text.isNullOrEmpty() && binding.edtName.text.isNullOrEmpty() &&
+                    binding.edtEmail.text.isNullOrEmpty() && binding.textdate?.text.isNullOrEmpty() && binding.autoCompleteText.text.isNullOrEmpty()
+                    && binding.edtPassword.text.isNullOrEmpty() -> {
+                toast(getString(R.string.all_fill_must_input))
+                isValid = false
+                return isValid
+            }
+            binding.edtName.text.isNullOrEmpty() -> {
+                isValid = false
+                toast(getString(R.string.enter_name))
+                return isValid
+            }
+            binding.edtEmail.text.isNullOrEmpty() -> {
+                isValid = false
+                toast(getString(R.string.enter_email))
+                return isValid
+            }
+            binding.autoCompleteText.text.isNullOrEmpty() -> {
+                isValid = false
+                toast(getString(R.string.enter_gol))
+                return isValid
+            }
+            binding.textdate?.text.isNullOrEmpty() -> {
+                isValid = false
+                toast(getString(R.string.enter_textdate))
+                return isValid
+            }
+            binding.imgProfile.drawable == null -> {
+                toast(getString(R.string.image_must))
+                isValid = false
+                return isValid
+            }
+            !binding.edtEmail.text.toString().isValidEmail() -> {
+                isValid = false
+                toast(getString(R.string.invalid_email))
+                return isValid
+            }
+            binding.edtPassword.text.toString().length < 8 -> {
+                isValid = false
+                toast(getString(R.string.password_invalid))
+                return isValid
+            }
+        }
+        return isValid
     }
 }

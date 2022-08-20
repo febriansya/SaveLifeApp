@@ -74,6 +74,14 @@
     <string name="invalid_password">password empty</string>
     <string name="password_invalid">psasword must more than 8</string>
     <string name="no_field">please input email and password</string>
+    <string name="enter_name">masukan field nama</string>
+    <string name="enter_email">input field email</string>
+    <string name="enter_address">input field addresss</string>
+    <string name="enter_gol">choose goldarah</string>
+    <string name="enter_textdate">input tanggal lahir</string>
+    <string name="enter_photo">input profile</string>
+    <string name="all_fill_must_input">Semua harus di isi</string>
+    <string name="image_must">image must not null</string>
 
 
     <!--    data sample for viewpager home kegiatan-->
