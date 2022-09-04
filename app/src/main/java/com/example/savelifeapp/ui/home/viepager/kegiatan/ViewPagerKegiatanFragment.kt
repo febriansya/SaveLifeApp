@@ -27,6 +27,8 @@ class ViewPagerKegiatanFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
 
 
+//    tesss
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
