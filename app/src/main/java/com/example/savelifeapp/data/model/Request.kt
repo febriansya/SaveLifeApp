@@ -10,3 +10,8 @@ data class Request(
     val lokasi: String? = null,
     val keterangan: String? = null
 ) : Parcelable
+
+@Parcelize
+data class jenisDarah(
+    val jenis: String
+) : Parcelable

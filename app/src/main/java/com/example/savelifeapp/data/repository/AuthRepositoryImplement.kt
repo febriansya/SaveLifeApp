@@ -22,8 +22,10 @@ class AuthRepositoryImplement(
     override fun login(email: String, password: String, result: (UiState<String>) -> Unit) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
-                if (it.isSuccessful) {
+                if (it.isSuccessful && auth.currentUser?.isEmailVerified != false) {
                     result.invoke(UiState.Success("Login successfully"))
+                } else {
+                    result.invoke(UiState.Success("email  not verifed"))
                 }
             }.addOnFailureListener {
                 result.invoke(UiState.Failure("Authentication failed, please check email and password"))
@@ -63,10 +65,20 @@ class AuthRepositoryImplement(
                     updateUserInfo(user) { state ->
                         when (state) {
                             is UiState.Success -> {
-                                result.invoke(UiState.Success("UserRegister Sucessfully"))
+                                auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        result.invoke(UiState.Success("Verifikasi email sudah dikirim"))
+                                    } else {
+                                        result.invoke(UiState.Success("gagal kirim verifikasi"))
+                                    }
+                                }
+                                result.invoke(UiState.Success("Register Successfully"))
                             }
                             is UiState.Failure -> {
                                 result.invoke(UiState.Failure(state.error))
+                            }
+                            else -> {
+
                             }
                         }
                     }
@@ -92,5 +104,19 @@ class AuthRepositoryImplement(
     override fun logout(result: (UiState<String>) -> Unit) {
         auth.signOut()
         result.invoke(UiState.Success("Logout Successfully"))
+    }
+
+    override fun forgotPassword(email: String, result: (UiState<String>) -> Unit) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    result.invoke(UiState.Success("Email has been sent"))
+                } else {
+                    result.invoke(UiState.Failure(task.exception?.message))
+                }
+            }.addOnFailureListener {
+//                if emailnya belum terdaftar
+                result.invoke(UiState.Failure("Authentication failed, check email"))
+            }
     }
 }

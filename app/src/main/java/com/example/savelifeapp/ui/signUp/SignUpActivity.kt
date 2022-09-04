@@ -17,9 +17,7 @@ import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.UsersApp
 import com.example.savelifeapp.databinding.ActivitySignUpBinding
 import com.example.savelifeapp.ui.login.LoginActivity
-import com.example.savelifeapp.utils.UiState
-import com.example.savelifeapp.utils.isValidEmail
-import com.example.savelifeapp.utils.toast
+import com.example.savelifeapp.utils.*
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -39,9 +37,7 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var filepath: Uri
     private val userAppColection = Firebase.firestore.collection("UserApp")
     val viewModels: SignUpViewModel by viewModels()
-
     val TAG: String = "SignUp Activity"
-
 
     //    datauser
     private lateinit var nama: String
@@ -68,7 +64,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.icBack.setOnClickListener {
             onBackPressed()
         }
-        val getImage = binding.imgProfile.setOnClickListener {
+        binding.imgProfile.setOnClickListener {
             openCamera()
         }
         binding.textdate?.setOnClickListener {
@@ -79,11 +75,8 @@ class SignUpActivity : AppCompatActivity() {
             val day = c.get(Calendar.DAY_OF_MONTH)
 
             val datePickerDialog = DatePickerDialog(
-                // on below line we are passing context.
                 this,
                 { view, year, monthOfYear, dayOfMonth ->
-                    // on below line we are setting
-                    // date to our edit text.
                     val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
                     binding.textdate!!.setText(dat)
                 },
@@ -103,7 +96,6 @@ class SignUpActivity : AppCompatActivity() {
             data = binding.textdate?.text.toString()
             image = binding.imgProfile.toString()
 //            image = filepath.toString()
-
 //            implementasi viewmodel disini
             if (validation()) {
                 viewModels.register(
@@ -112,7 +104,6 @@ class SignUpActivity : AppCompatActivity() {
                     usersApp = getUserObj(),
                 )
             }
-
         }
     }
 
@@ -120,13 +111,16 @@ class SignUpActivity : AppCompatActivity() {
         viewModels.register.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    binding.signUp?.setText("")
+                    binding.progressBar2?.show()
                 }
                 is UiState.Failure -> {
                     toast(state.error)
+                    binding.progressBar2?.hide()
                 }
                 is UiState.Success -> {
                     toast(state.data)
+                    binding.progressBar2?.show()
+                    auth.signOut()
                     val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -134,7 +128,6 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-
 
     fun getUserObj(): UsersApp {
         return UsersApp(

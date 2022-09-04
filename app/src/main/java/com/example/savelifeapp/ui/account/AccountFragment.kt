@@ -26,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AccountFragment : Fragment() {
 
     private var objUser: UsersApp? = null
+
     companion object {
         const val REQUEST_CAMERA = 100
     }
@@ -85,6 +86,9 @@ class AccountFragment : Fragment() {
                     toast(it.data)
                     val intent = Intent(requireActivity(), LoginActivity::class.java)
                     startActivity(intent)
+                }
+                else -> {
+
                 }
             }
         }

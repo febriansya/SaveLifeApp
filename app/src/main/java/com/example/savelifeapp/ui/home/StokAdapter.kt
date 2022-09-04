@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Stok
 
+
 class StokAdapter(private var Stok: ArrayList<Stok>) :
     RecyclerView.Adapter<StokAdapter.ViewHolder>() {
-
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val stok: TextView = itemView.findViewById(R.id.text_angka_donor)
@@ -24,9 +24,9 @@ class StokAdapter(private var Stok: ArrayList<Stok>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (stok, gol) = Stok[position]
-        holder.stok.text = stok
-        holder.jenis.text = gol
+        val stok: Stok = Stok[position]
+        holder.stok.text = stok.jumlah.toString()
+        holder.jenis.text = stok.golDarah
     }
 
     override fun getItemCount(): Int {

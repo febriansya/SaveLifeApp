@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Kegiatan
+import com.squareup.picasso.Picasso
 
 class KegiatanAdapater(private val listSampleKegiatan: ArrayList<Kegiatan>) :
     RecyclerView.Adapter<KegiatanAdapater.ListViewHolder>() {
@@ -21,18 +22,20 @@ class KegiatanAdapater(private val listSampleKegiatan: ArrayList<Kegiatan>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_home_kegiatan, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_home_kegiatan, parent, false)
         return ListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (name, lokasi, tanggal, jam, profile) = listSampleKegiatan[position]
-        holder.namaKegiatan.text = name
-        holder.jamKegiatan.text = jam
-        holder.namaLokasiKegiatan.text = lokasi
-        holder.tanggalKegiatan.text = tanggal
-        holder.imgPhoto.setImageResource(profile)
+        val data: Kegiatan = listSampleKegiatan[position]
+        holder.namaKegiatan.text = data.nameKegiatan
+        holder.jamKegiatan.text = data.jamKegiatan
+        holder.namaLokasiKegiatan.text = data.lokasiKegiatan
+        holder.tanggalKegiatan.text = data.tanggalKegiatan
+        Picasso.get().load(data.profilePmi).into(holder.imgPhoto)
     }
+
     override fun getItemCount(): Int {
         return listSampleKegiatan.size
     }

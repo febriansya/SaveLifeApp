@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Bantu
 
-
 class BantuAdapater(private val Bantu: ArrayList<Bantu>) :
     RecyclerView.Adapter<BantuAdapater.ListViewHolder>() {
 

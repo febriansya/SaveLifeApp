@@ -18,4 +18,5 @@ interface AuthRepository {
     )
 
     fun logout(result: (UiState<String>) -> Unit)
+    fun forgotPassword(email: String, result: (UiState<String>) -> Unit)
 }

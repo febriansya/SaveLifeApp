@@ -134,7 +134,7 @@
                 android:ems="10"
                 android:fontFamily="@font/poppins"
                 android:hint="@string/type_password"
-                android:inputType="textVisiblePassword"
+                android:inputType="textPassword"
                 android:padding="10dp"
                 android:textSize="14sp" />
 
@@ -160,12 +160,14 @@
                 app:boxStrokeColor="@color/mtrl_outlined_stroke_color"
                 app:boxStrokeWidth="2dp"
                 app:startIconDrawable="@drawable/ic_baseline_bloodtype_24">
+
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteText"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:inputType="none" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -287,5 +289,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_profile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
