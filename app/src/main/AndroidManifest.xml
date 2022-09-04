@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveLifeApp">
         <activity
+            android:name=".ui.request.viewpager.mrequest.createRequest.CreateRequestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.forgotPassword.ResetPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
@@ -39,6 +45,7 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -1,9 +1,8 @@
 package com.example.savelifeapp.data.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
+
 data class UsersApp(
     var uuid: String,
     val nama: String,
@@ -13,5 +12,6 @@ data class UsersApp(
     val hone: String,
     val address: String,
     val data: String,
-    val image: String? = ""
-) : Parcelable
+    val image: String? = "",
+//    val myRequest:List<CreateRequest>
+)

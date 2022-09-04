@@ -1,6 +1,7 @@
 package com.example.savelifeapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.example.savelifeapp.databinding.FragmentHomeBinding
 import com.example.savelifeapp.ui.home.viepager.SectionPagerAdapter
 
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.firestore.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,21 +23,19 @@ class HomeFragment : Fragment() {
 
     lateinit private var mRecylerView: RecyclerView
     private lateinit var sectionPagerAdapter: SectionPagerAdapter
+    private lateinit var stokArrayList: ArrayList<Stok>
+    private lateinit var stokAdapter: StokAdapter
+    private lateinit var db: FirebaseFirestore
+
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-//    private val list = ArrayList<Stok>()
-
-    //    forViewpager fragment bantu dan kegiatan
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val homeViewModel =
-//            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
@@ -46,15 +46,16 @@ class HomeFragment : Fragment() {
 
 //        recylerview for showing stock blood
         mRecylerView = view.findViewById(R.id.RecylerView_item_stok_darah)
+        mRecylerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
         mRecylerView.setHasFixedSize(true)
+        stokArrayList = arrayListOf()
 
-//        ini jangan lupa pake adall kareana data berbentuk array
+        stokAdapter = StokAdapter(stokArrayList)
+        mRecylerView.adapter = stokAdapter
 
-//        list.addAll(listStok)
-        addData()
-        showRecyclerList()
-
-//       implementation viewpager di dalam frgment di activity caranya berbeda
+        EventChangedListener()
+//       implementation viewpager di dalam frgment dan  activity caranya berbeda
         sectionPagerAdapter = SectionPagerAdapter(this)
         with(binding) {
             viewPager2.adapter = sectionPagerAdapter
@@ -67,49 +68,24 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    private val listStok: ArrayList<Stok>
-//        get() {
-//            val stok = resources.getStringArray(R.array.stok)
-//            val jenis = resources.getStringArray(R.array.jenis_darah)
-//            val listHero = ArrayList<Stok>()
-//            for (i in stok.indices) {
-//                val stok = Stok(
-//                    stok[i],
-//                    jenis[i],
-//                )
-//                listHero.add(stok)
-//            }
-//            return listHero
-//        }
-
-
-    private fun addData(): ArrayList<Stok> {
-
-        val stoks = ArrayList<Stok>()
-
-        val stok = resources.getStringArray(R.array.stok)
-        val jenis = resources.getStringArray(R.array.jenis_darah)
-
-        for (i in stok.indices) {
-            val stok = Stok(
-                stok[i],
-                jenis[i]
-            )
-            stoks.add(stok)
-        }
-        return stoks
+    private fun EventChangedListener() {
+        db = FirebaseFirestore.getInstance()
+        db.collection("Stok")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null) {
+                        Log.e("firesetore error", error.message.toString())
+                        return
+                    }
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            stokArrayList.add(dc.document.toObject(Stok::class.java))
+                        }
+                    }
+                    stokAdapter.notifyDataSetChanged()
+                }
+            })
     }
-
-    private fun showRecyclerList() {
-        mRecylerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
-        val listHeroAdapter = StokAdapter(addData())
-        mRecylerView.adapter = listHeroAdapter
-    }
-
-//    memasukan data dari string ke variabel berbentuk array
-
-
     //    wajib ketika menggunakan fragment
     override fun onDestroyView() {
         super.onDestroyView()

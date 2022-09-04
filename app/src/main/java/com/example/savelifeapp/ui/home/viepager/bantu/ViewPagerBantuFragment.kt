@@ -82,7 +82,6 @@ class ViewPagerBantuFragment : Fragment() {
         }
         return bantu
     }
-
     private fun showRecyclerList() {
         rvBantu.layoutManager = LinearLayoutManager(requireContext())
         val listHeroAdapter = BantuAdapater(getData())

@@ -59,6 +59,7 @@
         <item>O+</item>
         <item>O-</item>
     </string-array>
+
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -140,7 +141,8 @@
         <item>rumah sakit bodak</item>
         <item>rumah sakit selong</item>
         <item>rumah sakit selong</item>
-    </string-array>    <string-array name="gol_darah">
+    </string-array>
+    <string-array name="gol_darah">
 
         <item>AB+</item>
         <item>AB-</item>
