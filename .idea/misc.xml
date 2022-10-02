@@ -26,9 +26,11 @@
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/text_input_box_stroke.xml" value="0.144" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_grey.xml" value="0.1965" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/drawable/view_slider_red.xml" value="0.1965" />
-        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout-v24/activity_home.xml" value="0.1" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout-v24/activity_home.xml" value="0.2" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout-v31/activity_sign_up.xml" value="0.33" />
-        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_create_request.xml" value="0.22448979591836735" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_create_request.xml" value="0.25" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_detail_request.xml" value="0.22" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_detal_request.xml" value="0.15604959384352288" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -57,6 +59,7 @@
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_create_request.xml" value="0.33" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_home_bantu.xml" value="0.22" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_home_kegiatan.xml" value="0.40847784200385356" />
+        <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_list_calon_pendonor.xml" value="0.25" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_list_stok_darah.xml" value="0.5" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_received.xml" value="0.33" />
         <entry key="..\:/LEARNING/SaveLifeApp/app/src/main/res/layout/item_request.xml" value="0.33" />

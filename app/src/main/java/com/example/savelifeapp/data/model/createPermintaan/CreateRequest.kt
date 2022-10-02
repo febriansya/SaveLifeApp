@@ -1,10 +1,10 @@
 package com.example.savelifeapp.data.model.createPermintaan
 
 
-
 data class CreateRequest(
-    val name: String,
-    val golDarah: String,
-    val lokasi: String? = null,
-    val keterangan: String? = null
+    val name: String? = "",
+    val golDarah: String? = "",
+    val lokasi: String? = "",
+    val keterangan: String? = "",
+    val image: String? = null,
 )

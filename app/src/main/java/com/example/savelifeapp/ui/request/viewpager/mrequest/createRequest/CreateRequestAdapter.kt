@@ -1,5 +1,6 @@
 package com.example.savelifeapp.ui.request.viewpager.mrequest.createRequest
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.jenisDarah
 
-class CreateRequestAdapter(private var jenisGol: ArrayList<jenisDarah>,val onClickValue:golDarahListener) :
+class CreateRequestAdapter(
+    private var jenisGol: ArrayList<jenisDarah>,
+    val onClickValue: golDarahListener
+) :
     RecyclerView.Adapter<CreateRequestAdapter.ViewHolder>() {
 
     private var selectItemPosition: Int = 0
 
     interface golDarahListener {
-        fun onValueUbah(value:Int)
+        fun onValueUbah(value: Int)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -29,9 +33,12 @@ class CreateRequestAdapter(private var jenisGol: ArrayList<jenisDarah>,val onCli
         return ViewHolder(view)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val (jenis) = jenisGol[position]
         holder.textGolongan.text = jenis
+//        kondisi ketika item view tidak di klik
+        onClickValue.onValueUbah(selectItemPosition)
         holder.itemView.setOnClickListener {
             selectItemPosition = holder.adapterPosition
             onClickValue.onValueUbah(selectItemPosition)
@@ -39,12 +46,10 @@ class CreateRequestAdapter(private var jenisGol: ArrayList<jenisDarah>,val onCli
         }
         if (selectItemPosition == position) {
             holder.image.setImageResource(R.drawable.background_darah_selected)
-
         } else {
             holder.image.setImageResource(R.drawable.background_darah)
         }
     }
-
     override fun getItemCount(): Int {
         return jenisGol.size
     }

@@ -1,9 +1,6 @@
 package com.example.savelifeapp.di
 
-import com.example.savelifeapp.data.repository.AuthRepository
-import com.example.savelifeapp.data.repository.AuthRepositoryImplement
-import com.example.savelifeapp.data.repository.AccountRepositoryImpl
-import com.example.savelifeapp.data.repository.AccountRespository
+import com.example.savelifeapp.data.repository.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
@@ -34,4 +31,12 @@ object RepositoryModule {
         return AuthRepositoryImplement(auth, database)
     }
 
+    @Provides
+    @Singleton
+    fun provideHomeRepository(
+        database: FirebaseFirestore,
+        auth: FirebaseAuth,
+    ): HomeRepository {
+        return HomeRepositotyImpl(auth, database)
+    }
 }

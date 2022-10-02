@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Received
+import com.squareup.picasso.Picasso
 
 class ReceivedAdapter(private val Received: ArrayList<Received>) :
     RecyclerView.Adapter<ReceivedAdapter.ViewHolder>() {
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView = itemView.findViewById(R.id.img_bantu)
         var namaPasien: TextView = itemView.findViewById(R.id.tv_nama_pasien_bantu)
@@ -26,16 +26,14 @@ class ReceivedAdapter(private val Received: ArrayList<Received>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (nama, profile, alamat, golDarah) = Received[position]
-        holder.namaPasien.text = nama
-        holder.image.setImageResource(profile)
-        holder.alamatPasien.text = alamat
-        holder.golonganDarah.text = golDarah
+        val received: Received = Received[position]
+        holder.namaPasien.text = received.name
+        holder.alamatPasien.text = received.lokasi
+        holder.golonganDarah.text = received.golDarah
+        Picasso.get().load(received.image).into(holder.image)
     }
 
     override fun getItemCount(): Int {
         return Received.size
     }
-
-
 }

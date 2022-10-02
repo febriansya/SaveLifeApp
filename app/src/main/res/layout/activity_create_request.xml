@@ -57,7 +57,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginStart="22dp"
-                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginEnd="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_abu"
                     android:gravity="start"
@@ -126,7 +126,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -134,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="22dp"
-                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginEnd="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_abu"
                     android:gravity="start"
@@ -180,7 +180,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -188,7 +188,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_marginStart="22dp"
-                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginEnd="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_abu"
                     android:gravity="start"
@@ -235,7 +235,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
                 <androidx.recyclerview.widget.RecyclerView

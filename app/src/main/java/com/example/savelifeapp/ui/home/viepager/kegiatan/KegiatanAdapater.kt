@@ -18,7 +18,6 @@ class KegiatanAdapater(private val listSampleKegiatan: ArrayList<Kegiatan>) :
         var namaKegiatan: TextView = itemView.findViewById(R.id.tv_nama_pasien_bantu)
         var namaLokasiKegiatan: TextView = itemView.findViewById(R.id.tv_lokasi_pasien_bantu)
         var tanggalKegiatan: TextView = itemView.findViewById(R.id.tv_tanggal_home_kegiatan)
-        var jamKegiatan: TextView = itemView.findViewById(R.id.tv_alamat_bantu)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -30,7 +29,6 @@ class KegiatanAdapater(private val listSampleKegiatan: ArrayList<Kegiatan>) :
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data: Kegiatan = listSampleKegiatan[position]
         holder.namaKegiatan.text = data.nameKegiatan
-        holder.jamKegiatan.text = data.jamKegiatan
         holder.namaLokasiKegiatan.text = data.lokasiKegiatan
         holder.tanggalKegiatan.text = data.tanggalKegiatan
         Picasso.get().load(data.profilePmi).into(holder.imgPhoto)

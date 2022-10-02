@@ -7,11 +7,9 @@ import com.example.savelifeapp.ui.request.viewpager.received.ReceivedPagerFragme
 
 class SectionPagerAdapter(fm: Fragment) : FragmentStateAdapter(fm) {
 
-
     override fun getItemCount(): Int {
         return 2
     }
-
     override fun createFragment(position: Int): Fragment {
         var fragment = Fragment()
         when (position) {
