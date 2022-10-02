@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveLifeApp">
         <activity
+            android:name=".DetalRequestActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.request.viewpager.mrequest.createRequest.CreateRequestActivity"
             android:exported="false" />
         <activity

@@ -7,8 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Request
+import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
 
-class MrequestAdapter(private val Request: ArrayList<Request>) :
+class MrequestAdapter(private val Request: ArrayList<CreateRequest>) :
     RecyclerView.Adapter<MrequestAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,9 +24,9 @@ class MrequestAdapter(private val Request: ArrayList<Request>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (nama, golDarah, lokasi, keterangan) = Request[position]
-        holder.name.text = nama
-        holder.golDarahRequest.text = golDarah
+        val request: CreateRequest = Request[position]
+        holder.name.text = request.name.toString()
+        holder.golDarahRequest.text = request.golDarah.toString()
     }
 
     override fun getItemCount(): Int {

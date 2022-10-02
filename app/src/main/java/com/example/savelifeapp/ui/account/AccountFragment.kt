@@ -38,11 +38,7 @@ class AccountFragment : Fragment() {
     val loginView: LoginViewModel by viewModels()
 
     lateinit var objProfile: Profile
-
-
     private var _binding: FragmentAccountBinding? = null
-
-
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,7 +84,6 @@ class AccountFragment : Fragment() {
                     startActivity(intent)
                 }
                 else -> {
-
                 }
             }
         }

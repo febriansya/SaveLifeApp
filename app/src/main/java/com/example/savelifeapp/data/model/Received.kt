@@ -1,12 +1,10 @@
 package com.example.savelifeapp.data.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class Received(
-    val namaPasien: String,
-    val profileUpload: Int,
-    val alamat: String,
-    val golDarah: String
-) : Parcelable
+    val name: String? = "",
+    val golDarah: String? = "",
+    val lokasi: String? = "",
+    val keterangan: String? = "",
+    val image: String? = null
+)
