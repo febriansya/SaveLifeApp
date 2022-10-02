@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.request.viewpager.mrequest.createRequest.CreateRequestActivity">
+    tools:context=".ui.request.viewpager.createRequest.CreateRequestActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
