@@ -22,7 +22,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/img_bantu"
                 android:layout_width="55dp"
@@ -37,14 +36,18 @@
 
             <TextView
                 android:id="@+id/tv_nama_pasien_bantu"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="17dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="Masbagik"
                 android:textColor="@color/white"
                 android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView6"
                 app:layout_constraintStart_toEndOf="@+id/img_bantu"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +59,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="efef"
                 android:maxLines="4"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_nama_pasien_bantu"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_pasien_bantu" />
@@ -68,8 +71,7 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="tanggal"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_nama_pasien_bantu"
+                android:textColor="@color/red_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_nama_pasien_bantu" />
 
@@ -82,9 +84,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/tv_tanggal_home_kegiatan"
                 app:layout_constraintTop_toTopOf="@+id/tv_tanggal_home_kegiatan"
                 app:srcCompat="@drawable/calendar_days" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

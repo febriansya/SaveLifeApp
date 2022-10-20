@@ -19,6 +19,7 @@ interface AccountRespository {
         result: (UiState<List<CreateRequest>>) -> Unit
     )
 
+//    terima permintaan
     fun acceptRequest()
 
     //    tampilkan permintaan tolong

@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
 import com.example.savelifeapp.databinding.FragmentRequestPagerBinding
-import com.example.savelifeapp.ui.request.viewpager.mrequest.createRequest.CreateRequestActivity
-import com.example.savelifeapp.ui.request.viewpager.mrequest.createRequest.CreateRequestViewModel
+import com.example.savelifeapp.ui.request.viewpager.createRequest.CreateRequestActivity
+import com.example.savelifeapp.ui.request.viewpager.createRequest.CreateRequestViewModel
 import com.example.savelifeapp.utils.UiState
 import com.example.savelifeapp.utils.toast
 import dagger.hilt.android.AndroidEntryPoint

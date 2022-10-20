@@ -1,4 +1,4 @@
-package com.example.savelifeapp.ui.request.viewpager.mrequest.createRequest
+package com.example.savelifeapp.ui.request.viewpager.createRequest
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

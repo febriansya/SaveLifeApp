@@ -31,7 +31,7 @@ class KegiatanAdapater(private val listSampleKegiatan: ArrayList<Kegiatan>) :
         holder.namaKegiatan.text = data.nameKegiatan
         holder.namaLokasiKegiatan.text = data.lokasiKegiatan
         holder.tanggalKegiatan.text = data.tanggalKegiatan
-        Picasso.get().load(data.profilePmi).into(holder.imgPhoto)
+        Picasso.get().load(data.img).into(holder.imgPhoto)
     }
 
     override fun getItemCount(): Int {

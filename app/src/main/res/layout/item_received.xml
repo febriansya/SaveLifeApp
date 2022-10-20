@@ -10,11 +10,12 @@
         android:id="@+id/tv_lokasi_pasien_bantu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="AB+"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="@color/red_medium"
+        app:layout_constraintBottom_toTopOf="@+id/tv_alamat_bantu"
+        app:layout_constraintEnd_toEndOf="@+id/tv_nama_pasien_bantu"
         app:layout_constraintStart_toStartOf="@+id/tv_nama_pasien_bantu"
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_pasien_bantu" />
 
@@ -22,50 +23,60 @@
         android:id="@+id/btn_terima"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="3dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Jadi Pendonor"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_lokasi_pasien_bantu"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_pasien_bantu" />
+        app:layout_constraintBottom_toBottomOf="@+id/btn_tolak"
+        app:layout_constraintEnd_toStartOf="@id/btn_tolak"
+        app:layout_constraintStart_toStartOf="@+id/tv_alamat_bantu"
+        app:layout_constraintTop_toTopOf="@+id/btn_tolak"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_tolak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="@color/grey_dark"
         android:fontFamily="@font/poppins_medium"
         android:text="Saya Belum Bisa"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="9sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_alamat_bantu" />
+        app:layout_constraintBottom_toBottomOf="@id/btn_terima"
+        app:layout_constraintEnd_toEndOf="@+id/tv_alamat_bantu"
+        app:layout_constraintStart_toEndOf="@id/btn_terima"
+        app:layout_constraintTop_toBottomOf="@id/tv_alamat_bantu" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_bantu"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_lokasi_pasien_bantu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/CornerRadisu" />
 
     <TextView
         android:id="@+id/tv_nama_pasien_bantu"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Alpian Fauiz"
         android:textColor="@color/black"
         android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_lokasi_pasien_bantu"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_bantu"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,10 +85,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:maxLines="1"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_lokasi_pasien_bantu"
+        app:layout_constraintBottom_toTopOf="@+id/btn_terima"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_lokasi_pasien_bantu"
-        app:layout_constraintTop_toTopOf="@+id/tv_lokasi_pasien_bantu" />
+        app:layout_constraintStart_toStartOf="@+id/tv_lokasi_pasien_bantu"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_pasien_bantu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
