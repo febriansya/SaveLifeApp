@@ -8,12 +8,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailRequestActivity : AppCompatActivity() {
-
     private lateinit var binding:ActivityDetailRequestBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_request)
-
     }
 }

@@ -10,5 +10,5 @@ data class Kegiatan(
     val lokasiKegiatan: String? = null,
     val tanggalKegiatan: String? = null,
     val jamKegiatan: String? = null,
-    val profilePmi: String? = null,
+    val img: String? = null,
 ) : Parcelable

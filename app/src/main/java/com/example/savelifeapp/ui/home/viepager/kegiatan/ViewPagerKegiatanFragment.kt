@@ -29,7 +29,6 @@ class ViewPagerKegiatanFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
     val viewModel: KegiatanViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

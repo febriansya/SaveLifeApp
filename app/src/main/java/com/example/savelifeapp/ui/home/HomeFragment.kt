@@ -86,6 +86,11 @@ class HomeFragment : Fragment() {
                 }
             })
     }
+
+
+    private fun getProfile(){
+
+    }
     //    wajib ketika menggunakan fragment
     override fun onDestroyView() {
         super.onDestroyView()
