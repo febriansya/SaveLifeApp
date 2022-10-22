@@ -21,10 +21,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pesan" />
+            app:layout_constraintTop_toBottomOf="@+id/wa" />
 
         <LinearLayout
-            android:id="@+id/pesan"
+            android:id="@+id/wa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -34,24 +34,80 @@
             app:layout_constraintTop_toBottomOf="@+id/gol_darah_linear">
 
             <LinearLayout
+                android:id="@+id/pesan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gol_darah_linear">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_pesan" />
+
+                    <TextView
+                        android:id="@+id/pesanJudul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="3"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center|start"
+                        android:text="keterangan"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_keterangan_pasien"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_abu"
+                        android:gravity="start"
+                        android:hint="Keterangan.."
+                        android:paddingStart="12dp"
+                        android:paddingTop="12dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_pesan" />
+                    app:srcCompat="@drawable/icons8_whatsapp" />
 
                 <TextView
-                    android:id="@+id/pesanJudul"
+                    android:id="@+id/pesanWa"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_weight="3"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="keterangan"
-                    android:textColor="@color/black" />
+                    android:gravity="center|start"
+                    android:text="Whatsapp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -61,15 +117,15 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/edt_keterangan_pasien"
+                    android:id="@+id/edt_wa"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="22dp"
                     android:layout_marginEnd="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_abu"
                     android:gravity="start"
-                    android:hint="Keterangan.."
+                    android:hint="08189086654"
                     android:paddingStart="12dp"
                     android:paddingTop="12dp" />
             </LinearLayout>
@@ -109,18 +165,20 @@
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_account_black" />
 
                 <TextView
                     android:id="@+id/textView25"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_weight="3"
                     android:fontFamily="@font/poppins_medium"
+                    android:gravity="start|center_horizontal|center_vertical"
                     android:text="Nama Pasien"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -163,18 +221,20 @@
                 <ImageView
                     android:id="@+id/fefee"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/ic_location" />
 
                 <TextView
                     android:id="@+id/fedwed"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_weight="3"
                     android:fontFamily="@font/poppins_medium"
+                    android:gravity="center|start"
                     android:text="Lokasi Pasien"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -218,18 +278,21 @@
                 <ImageView
                     android:id="@+id/icon_darah"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="12dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_map_pin" />
+                    android:src="@drawable/ic_baseline_bloodtype_24" />
 
                 <TextView
                     android:id="@+id/gol"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_weight="3"
                     android:fontFamily="@font/poppins_medium"
+                    android:gravity="center|start"
                     android:text="Darah yang di butuhkan"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout

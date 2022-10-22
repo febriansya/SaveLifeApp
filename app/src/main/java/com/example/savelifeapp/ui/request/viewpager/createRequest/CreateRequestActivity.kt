@@ -97,7 +97,8 @@ class CreateRequestActivity : AppCompatActivity(),
             golDarah = goldarah,
             lokasi = binding.edtLocationPasien.text.toString(),
             keterangan = binding.edtKeteranganPasien.text.toString(),
-            image = image
+            image = image,
+            whatsapp = binding.edtWa.text.toString()
         )
     }
 
@@ -138,6 +139,11 @@ class CreateRequestActivity : AppCompatActivity(),
             binding.edtLocationPasien.text.isEmpty() -> {
                 isValid = false
                 toast("Location tidak boleh kosong")
+                return isValid
+            }
+            binding.edtWa.text.isEmpty()->{
+                isValid = false
+                toast("Wa tidak boleh kosong")
                 return isValid
             }
         }

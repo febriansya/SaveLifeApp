@@ -7,7 +7,8 @@ data class Request(
     val name: String? = "",
     val golDarah: String? = "",
     val lokasi: String? = "",
-    val keterangan: String? = ""
+    val keterangan: String? = "",
+    val whatsapp: String? = ""
 )
 
 @Parcelize

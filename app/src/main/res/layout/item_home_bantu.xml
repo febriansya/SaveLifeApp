@@ -43,11 +43,11 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="#8D92A3"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img_bantu"
+                app:layout_constraintStart_toEndOf="@+id/img_recived"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/img_bantu"
+                android:id="@+id/img_recived"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="16dp"
@@ -70,7 +70,7 @@
                 android:text="Yan Febriansyah"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@+id/img_bantu"
+                app:layout_constraintStart_toEndOf="@+id/img_recived"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

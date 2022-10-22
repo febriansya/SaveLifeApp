@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.model.Request
 import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
 
 class MrequestAdapter(private val Request: ArrayList<CreateRequest>) :

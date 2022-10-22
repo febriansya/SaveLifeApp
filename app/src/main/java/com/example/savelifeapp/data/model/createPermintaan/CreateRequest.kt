@@ -7,4 +7,5 @@ data class CreateRequest(
     val lokasi: String? = "",
     val keterangan: String? = "",
     val image: String? = null,
+    val whatsapp: String? = ""
 )

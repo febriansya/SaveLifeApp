@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/img_bantu"
+                android:id="@+id/img_recived"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:src="@drawable/profile"
@@ -48,7 +48,7 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView6"
-                app:layout_constraintStart_toEndOf="@+id/img_bantu"
+                app:layout_constraintStart_toEndOf="@+id/img_recived"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

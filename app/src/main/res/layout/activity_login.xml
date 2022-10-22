@@ -40,31 +40,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
+<!--        <TextView-->
+<!--            android:id="@+id/textView4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:fontFamily="@font/poppins"-->
+<!--            android:text="Email Address"-->
+<!--            android:textColor="@color/black" />-->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/outlinedTextFieldemail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/email"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/edt_email"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginStart="12dp"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                android:layout_marginEnd="12dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/coba1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
-            android:text="Email Address"
+            android:text="Email Adress"
             android:textColor="@color/black" />
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextFieldemail"
+            android:id="@+id/otu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="email"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:hint="@string/email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
-                android:layout_marginStart="12dp"
-                android:inputType="textEmailAddress"
-                android:layout_marginEnd="12dp"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
@@ -74,7 +100,6 @@
             android:fontFamily="@font/poppins"
             android:text="Password"
             android:textColor="@color/black" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField"
             android:layout_width="match_parent"
@@ -91,6 +116,7 @@
                 android:inputType="textPassword"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton

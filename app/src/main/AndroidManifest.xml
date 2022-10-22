@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveLifeApp">
         <activity
-            android:name=".RecivedDetailActivity"
+            android:name=".ui.request.viewpager.receivedDetail.RecivedDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
