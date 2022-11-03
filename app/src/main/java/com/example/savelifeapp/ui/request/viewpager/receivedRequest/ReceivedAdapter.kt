@@ -1,4 +1,4 @@
-package com.example.savelifeapp.ui.request.viewpager.received
+package com.example.savelifeapp.ui.request.viewpager.receivedRequest
 
 import android.view.LayoutInflater
 import android.view.View

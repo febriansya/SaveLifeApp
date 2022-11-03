@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class CalonPendonor(
     var id:String?= null,
     var name:String?=null,
+    var image:String? = null,
     var whatsapp:String?=null,
     var alamat:String?=null
 ):Parcelable

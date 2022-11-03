@@ -1,22 +1,27 @@
 package com.example.savelifeapp.data.repository
 
+import android.content.Context
 import android.util.Log
 import com.example.savelifeapp.data.model.Received
-import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
-import com.example.savelifeapp.ui.request.viewpager.mrequest.MrequestAdapter
-import com.example.savelifeapp.ui.request.viewpager.received.ReceivedAdapter
+import com.example.savelifeapp.data.model.CreateRequest
+import com.example.savelifeapp.ui.request.viewpager.myRequest.CellClickListener
+import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
+import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedAdapter
 import com.example.savelifeapp.utils.UiState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import javax.inject.Inject
 
-class AccountRepositoryImpl(
+class AccountRepositoryImpl @Inject constructor(
     val database: FirebaseFirestore,
     val auth: FirebaseAuth,
-) : AccountRespository {
+    private val context: Context
+) : AccountRespository, CellClickListener {
     private lateinit var image: String
     private lateinit var darahku: String
+    private lateinit var dataRequest: CreateRequest
 
     init {
         val id = auth.currentUser?.uid ?: ""
@@ -37,6 +42,7 @@ class AccountRepositoryImpl(
         val id = auth.currentUser?.uid ?: ""
         val request = database.collection("Request").document(id)
         val subOutRequest = request.collection("MyRequest").document()
+        createRequest.id = subOutRequest.id.toString()
         subOutRequest.set(createRequest).addOnCompleteListener {
             result.invoke(
                 UiState.Success("Request has been created")
@@ -57,7 +63,6 @@ class AccountRepositoryImpl(
         result: (UiState<List<CreateRequest>>) -> Unit
     ) {
         val id = auth.currentUser?.uid ?: ""
-//        val myref = database.collection(FireStoreCollection.USER).document(id)
         val myref = database.collection("Request").document(id)
         val subCollectionCreate = myref.collection("MyRequest")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -75,7 +80,28 @@ class AccountRepositoryImpl(
             })
     }
 
-    override fun acceptRequest() {
+    override suspend fun delMyRequest(
+        arrayList: CreateRequest,
+        result: (UiState<String>) -> Unit,
+    ) {
+        val currentU = auth.currentUser?.uid.toString()
+        database.collection("Request").document(currentU).collection("MyRequest")
+            .document(dataRequest.id.toString())
+            .delete()
+            .addOnCompleteListener {
+                result.invoke(
+                    UiState.Success("Data has been deleted")
+                )
+            }.addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
+    override suspend fun acceptRequest() {
         TODO("Not yet implemented")
     }
 
@@ -91,14 +117,12 @@ class AccountRepositoryImpl(
         darahCurrent.get().addOnCompleteListener {
             if (it.isSuccessful) {
                 darahku = it.result.getString("golDarah").toString()
-                Log.d("darah", darahku)
-                val collect = database.collectionGroup("MyRequest")
-                    .whereEqualTo("golDarah", darahku)
-                    .addSnapshotListener(
-                        object : EventListener<QuerySnapshot> {
+//                menggunakan collectionn group karena mengakses subcollection
+                val collect =
+                    database.collectionGroup("MyRequest").whereEqualTo("golDarah", darahku)
+                        .addSnapshotListener(object : EventListener<QuerySnapshot> {
                             override fun onEvent(
-                                value: QuerySnapshot?,
-                                error: FirebaseFirestoreException?
+                                value: QuerySnapshot?, error: FirebaseFirestoreException?
                             ) {
                                 if (error != null) {
                                     result.invoke(UiState.Failure(error.message.toString()))
@@ -108,12 +132,14 @@ class AccountRepositoryImpl(
                                     arrayList.add(dc.document.toObject(Received::class.java))
                                     result.invoke(UiState.Success(arrayList.filterNotNull()))
                                 }
-//                    adapter notifiydataChanged
                                 adapter.notifyDataSetChanged()
                             }
                         })
             }
         }
+    }
 
+    override fun onCellClickListener(data: CreateRequest) {
+        dataRequest = data
     }
 }

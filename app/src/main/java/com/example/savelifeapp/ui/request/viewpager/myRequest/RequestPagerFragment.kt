@@ -1,4 +1,4 @@
-package com.example.savelifeapp.ui.request.viewpager.mrequest
+package com.example.savelifeapp.ui.request.viewpager.myRequest
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,18 +11,19 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
+import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.databinding.FragmentRequestPagerBinding
 import com.example.savelifeapp.ui.request.viewpager.createRequest.CreateRequestActivity
 import com.example.savelifeapp.ui.request.viewpager.createRequest.CreateRequestViewModel
+import com.example.savelifeapp.ui.request.viewpager.detailRequest.DetailMyRequestActivity
 import com.example.savelifeapp.utils.UiState
 import com.example.savelifeapp.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RequestPagerFragment : Fragment() {
+class RequestPagerFragment : Fragment(), CellClickListener {
     private lateinit var rvRequest: RecyclerView
-    private lateinit var list:ArrayList<CreateRequest>
+    private lateinit var list: ArrayList<CreateRequest>
     private var _binding: FragmentRequestPagerBinding? = null
     lateinit var requestPagerAdapater: MrequestAdapter
     val viewModel: CreateRequestViewModel by viewModels()
@@ -48,7 +49,7 @@ class RequestPagerFragment : Fragment() {
         rvRequest.setHasFixedSize(true)
         list = arrayListOf()
 
-        requestPagerAdapater = MrequestAdapter(list)
+        requestPagerAdapater = MrequestAdapter(list, requireContext(), this)
         rvRequest.adapter = requestPagerAdapater
         observe()
         viewModel.getDataRequest(list, requestPagerAdapater)
@@ -62,7 +63,7 @@ class RequestPagerFragment : Fragment() {
         viewModel.getRequest.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is UiState.Loading -> {
-                    Log.d("loading","loading")
+                    Log.d("loading", "loading")
                 }
                 is UiState.Failure -> {
                     toast(state.error)
@@ -73,4 +74,12 @@ class RequestPagerFragment : Fragment() {
             }
         }
     }
+
+    override fun onCellClickListener(data: CreateRequest) {
+        val intent = Intent(requireContext(), DetailMyRequestActivity::class.java)
+        intent.putExtra("data_request", data)
+        startActivity(intent)
+    }
+
+
 }

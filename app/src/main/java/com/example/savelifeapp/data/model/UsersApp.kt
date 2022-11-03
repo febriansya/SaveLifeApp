@@ -1,8 +1,6 @@
 package com.example.savelifeapp.data.model
 
 
-import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
-
 data class UsersApp(
     var uuid: String,
     val nama: String,

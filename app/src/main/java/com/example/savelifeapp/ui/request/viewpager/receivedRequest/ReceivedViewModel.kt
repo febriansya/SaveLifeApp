@@ -1,4 +1,4 @@
-package com.example.savelifeapp.ui.request.viewpager.received
+package com.example.savelifeapp.ui.request.viewpager.receivedRequest
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
