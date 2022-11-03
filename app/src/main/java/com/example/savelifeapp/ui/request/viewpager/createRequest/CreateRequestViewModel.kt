@@ -26,6 +26,10 @@ class CreateRequestViewModel @Inject constructor(
     val getRequest: LiveData<UiState<String>>
         get() = _createRequest
 
+    private val _delRequest = MutableLiveData<UiState<String>>()
+    val delRequest: LiveData<UiState<String>>
+        get() = _delRequest
+
     fun createRequest(
         createRequest: CreateRequest
     ) {
@@ -55,12 +59,14 @@ class CreateRequestViewModel @Inject constructor(
 
     fun deleteRequest(
         arrayList: CreateRequest,
+        id: String
     ) {
         viewModelScope.launch {
-            accountRepository.delMyRequest(
-                arrayList = arrayList,
+            accountRepository.deleteRequest(
+                request = arrayList,
+                id,
             ) {
-                _createRequest.value = it
+                _delRequest.value = it
             }
         }
     }
