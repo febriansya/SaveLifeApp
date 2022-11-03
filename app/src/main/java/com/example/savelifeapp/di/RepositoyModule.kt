@@ -1,5 +1,6 @@
 package com.example.savelifeapp.di
 
+import android.content.Context
 import com.example.savelifeapp.data.repository.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,9 +18,10 @@ object RepositoryModule {
     @Singleton
     fun provideProfileRepository(
         database: FirebaseFirestore,
-        auth: FirebaseAuth
+        auth: FirebaseAuth,
+        context: Context
     ): AccountRespository {
-        return AccountRepositoryImpl(database, auth)
+        return AccountRepositoryImpl(database, auth, context)
     }
 
     @Provides

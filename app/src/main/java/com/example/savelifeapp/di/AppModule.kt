@@ -1,5 +1,6 @@
 package com.example.savelifeapp.di
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.savelifeapp.utils.SharedPrefConstants
@@ -17,4 +18,8 @@ object AppModule {
     fun provideSharePref(@ApplicationContext context:Context):SharedPreferences{
         return context.getSharedPreferences(SharedPrefConstants.LOCAL_SHARED_PREF,Context.MODE_PRIVATE)
     }
+
+    @Singleton
+    @Provides
+    fun provideContext(application:Application):Context =application.applicationContext
 }

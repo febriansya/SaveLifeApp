@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.savelifeapp.data.model.Kegiatan
-import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
 import com.example.savelifeapp.data.repository.AuthRepository
 import com.example.savelifeapp.data.repository.HomeRepository
 import com.example.savelifeapp.utils.UiState

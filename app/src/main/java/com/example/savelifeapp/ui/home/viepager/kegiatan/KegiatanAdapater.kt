@@ -14,7 +14,7 @@ class KegiatanAdapater(private val listSampleKegiatan: ArrayList<Kegiatan>) :
     RecyclerView.Adapter<KegiatanAdapater.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imgPhoto: ImageView = itemView.findViewById(R.id.img_bantu)
+        var imgPhoto: ImageView = itemView.findViewById(R.id.img_recived)
         var namaKegiatan: TextView = itemView.findViewById(R.id.tv_nama_pasien_bantu)
         var namaLokasiKegiatan: TextView = itemView.findViewById(R.id.tv_lokasi_pasien_bantu)
         var tanggalKegiatan: TextView = itemView.findViewById(R.id.tv_tanggal_home_kegiatan)

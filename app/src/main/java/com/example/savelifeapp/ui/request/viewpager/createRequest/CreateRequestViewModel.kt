@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
+import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.data.repository.AccountRespository
 import com.example.savelifeapp.data.repository.AuthRepository
-import com.example.savelifeapp.ui.request.viewpager.mrequest.MrequestAdapter
+import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
 import com.example.savelifeapp.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -25,7 +25,6 @@ class CreateRequestViewModel @Inject constructor(
     private val _getRequest = MutableLiveData<UiState<List<CreateRequest>>>()
     val getRequest: LiveData<UiState<String>>
         get() = _createRequest
-
 
     fun createRequest(
         createRequest: CreateRequest
@@ -50,6 +49,18 @@ class CreateRequestViewModel @Inject constructor(
                 adapter = adapter,
             ) {
                 _getRequest.value = it
+            }
+        }
+    }
+
+    fun deleteRequest(
+        arrayList: CreateRequest,
+    ) {
+        viewModelScope.launch {
+            accountRepository.delMyRequest(
+                arrayList = arrayList,
+            ) {
+                _createRequest.value = it
             }
         }
     }

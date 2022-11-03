@@ -2,8 +2,8 @@ package com.example.savelifeapp.ui.request.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.savelifeapp.ui.request.viewpager.mrequest.RequestPagerFragment
-import com.example.savelifeapp.ui.request.viewpager.received.ReceivedPagerFragment
+import com.example.savelifeapp.ui.request.viewpager.myRequest.RequestPagerFragment
+import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedPagerFragment
 
 class SectionPagerAdapter(fm: Fragment) : FragmentStateAdapter(fm) {
 

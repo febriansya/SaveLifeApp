@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.model.createPermintaan.CreateRequest
+import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.data.model.jenisDarah
 import com.example.savelifeapp.databinding.ActivityCreateRequestBinding
 import com.example.savelifeapp.ui.HomeActivity
@@ -72,6 +72,7 @@ class CreateRequestActivity : AppCompatActivity(),
         Log.d("goldarah", goldarah)
     }
 
+//    jenis darah
     private fun addData(): ArrayList<jenisDarah> {
         val stoks = ArrayList<jenisDarah>()
         val jenis = resources.getStringArray(R.array.jenis_darah)
@@ -97,7 +98,8 @@ class CreateRequestActivity : AppCompatActivity(),
             golDarah = goldarah,
             lokasi = binding.edtLocationPasien.text.toString(),
             keterangan = binding.edtKeteranganPasien.text.toString(),
-            image = image
+            image = image,
+            whatsapp = binding.edtWa.text.toString(),
         )
     }
 
@@ -138,6 +140,11 @@ class CreateRequestActivity : AppCompatActivity(),
             binding.edtLocationPasien.text.isEmpty() -> {
                 isValid = false
                 toast("Location tidak boleh kosong")
+                return isValid
+            }
+            binding.edtWa.text.isEmpty() -> {
+                isValid = false
+                toast("Wa tidak boleh kosong")
                 return isValid
             }
         }

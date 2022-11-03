@@ -13,7 +13,7 @@ class BantuAdapater(private val Bantu: ArrayList<Bantu>) :
     RecyclerView.Adapter<BantuAdapater.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imgPhoto: ImageView = itemView.findViewById(R.id.img_bantu)
+        var imgPhoto: ImageView = itemView.findViewById(R.id.img_recived)
         var namaPasien: TextView = itemView.findViewById(R.id.tv_nama_pasien_bantu)
         var golDarah: TextView = itemView.findViewById(R.id.tv_gol_pasien_bantu)
         var lokasiPasien: TextView = itemView.findViewById(R.id.tv_lokasi_pasien_bantu)
