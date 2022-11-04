@@ -20,11 +20,10 @@ interface AccountRespository {
         result: (UiState<List<CreateRequest>>) -> Unit
     )
 
-    //    delete my request
-    suspend fun delMyRequest(
-        arrayList: CreateRequest,
-        result: (UiState<String>) -> Unit,
-    )
+    suspend fun deleteRequest(request: CreateRequest, id: String, result: (UiState<String>) -> Unit)
+
+    suspend fun updateRequest(request: CreateRequest,id:String,result: (UiState<String>) -> Unit)
+
 
     //    terima permintaan
     suspend fun acceptRequest(

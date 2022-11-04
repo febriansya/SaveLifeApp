@@ -2,8 +2,8 @@ package com.example.savelifeapp.data.repository
 
 import android.content.Context
 import android.util.Log
-import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.data.model.CreateRequest
+import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.ui.request.viewpager.myRequest.CellClickListener
 import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedAdapter
@@ -18,7 +18,7 @@ class AccountRepositoryImpl @Inject constructor(
     val database: FirebaseFirestore,
     val auth: FirebaseAuth,
     private val context: Context
-) : AccountRespository, CellClickListener {
+) : AccountRespository {
     private lateinit var image: String
     private lateinit var darahku: String
     private lateinit var dataRequest: CreateRequest
@@ -80,19 +80,23 @@ class AccountRepositoryImpl @Inject constructor(
             })
     }
 
-    override suspend fun delMyRequest(
-        arrayList: CreateRequest,
-        result: (UiState<String>) -> Unit,
+
+    override suspend fun deleteRequest(
+        request: CreateRequest,
+        id: String,
+        result: (UiState<String>) -> Unit
     ) {
-        val currentU = auth.currentUser?.uid.toString()
-        database.collection("Request").document(currentU).collection("MyRequest")
-            .document(dataRequest.id.toString())
+        val document = database.collection("Request")
+            .document(auth.currentUser?.uid.toString())
+            .collection("MyRequest").document(id)
+        document
             .delete()
-            .addOnCompleteListener {
+            .addOnSuccessListener {
                 result.invoke(
-                    UiState.Success("Data has been deleted")
+                    UiState.Success("Request has been deleted")
                 )
-            }.addOnFailureListener {
+            }
+            .addOnFailureListener {
                 result.invoke(
                     UiState.Failure(
                         it.localizedMessage
@@ -100,6 +104,33 @@ class AccountRepositoryImpl @Inject constructor(
                 )
             }
     }
+
+    override suspend fun updateRequest(
+        request: CreateRequest,
+        id: String,
+        result: (UiState<String>) -> Unit
+    ) {
+
+        val document = database.collection("Request").document(auth.currentUser?.uid.toString()).collection("MyRequest").document(id)
+        document.update("name", request.name)
+        document.update("golDarah", request.golDarah)
+        document.update("lokasi", request.lokasi)
+        document.update("keterangan", request.keterangan)
+        document.update("whatsapp", request.whatsapp)
+            .addOnSuccessListener {
+                result.invoke(
+                    UiState.Success("Request has been updated")
+                )
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
 
     override suspend fun acceptRequest() {
         TODO("Not yet implemented")
@@ -134,12 +165,9 @@ class AccountRepositoryImpl @Inject constructor(
                                 }
                                 adapter.notifyDataSetChanged()
                             }
+
                         })
             }
         }
-    }
-
-    override fun onCellClickListener(data: CreateRequest) {
-        dataRequest = data
     }
 }

@@ -167,7 +167,6 @@
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:inputType="none" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView

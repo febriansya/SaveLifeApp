@@ -54,6 +54,7 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
         val bloodType = resources.getStringArray(R.array.blood_type)
         val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, bloodType)
         binding.autoCompleteText.setAdapter(arrayAdapter)
