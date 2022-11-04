@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class CreateRequest(
     var id: String?="",
-    val name: String? = "",
+    var name: String? = "",
     val golDarah: String? = "",
     val lokasi: String? = "",
     val keterangan: String? = "",

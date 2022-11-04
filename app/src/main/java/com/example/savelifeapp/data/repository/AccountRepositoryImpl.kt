@@ -105,6 +105,33 @@ class AccountRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun updateRequest(
+        request: CreateRequest,
+        id: String,
+        result: (UiState<String>) -> Unit
+    ) {
+
+        val document = database.collection("Request").document(auth.currentUser?.uid.toString()).collection("MyRequest").document(id)
+        document.update("name", request.name)
+        document.update("golDarah", request.golDarah)
+        document.update("lokasi", request.lokasi)
+        document.update("keterangan", request.keterangan)
+        document.update("whatsapp", request.whatsapp)
+            .addOnSuccessListener {
+                result.invoke(
+                    UiState.Success("Request has been updated")
+                )
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+    }
+
+
     override suspend fun acceptRequest() {
         TODO("Not yet implemented")
     }

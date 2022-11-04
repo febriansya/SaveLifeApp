@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.databinding.ActivityDetailMyRequestBinding
 import com.example.savelifeapp.ui.HomeActivity
-import com.example.savelifeapp.ui.request.RequestViewModel
 import com.example.savelifeapp.ui.request.viewpager.createRequest.CreateRequestViewModel
 import com.example.savelifeapp.utils.UiState
 import com.example.savelifeapp.utils.toast
@@ -31,14 +30,32 @@ class DetailMyRequestActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         observer()
+
         val intent: Intent = intent
         var request: CreateRequest? = intent.getParcelableExtra("data_request")
+
+        binding.apply {
+            idName.text = request?.name.toString()
+            idDarah.text = request?.golDarah.toString()
+            idLocation.text = request?.lokasi.toString()
+            idKeterangan.text = request?.keterangan.toString()
+        }
+
         binding.btnDelete.setOnClickListener {
             lifecycleScope.launch {
                 if (request != null) {
                     viewModels.deleteRequest(request, request.id.toString())
                 }
             }
+        }
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
+
+        binding.btnEditRequest.setOnClickListener {
+            val intent = Intent(this, UpdateRequestActivity::class.java)
+            intent.putExtra("update_request", request)
+            startActivity(intent)
         }
     }
 
