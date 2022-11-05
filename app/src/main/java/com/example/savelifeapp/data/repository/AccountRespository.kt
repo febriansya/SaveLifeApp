@@ -1,5 +1,6 @@
 package com.example.savelifeapp.data.repository
 
+import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
@@ -22,13 +23,21 @@ interface AccountRespository {
 
     suspend fun deleteRequest(request: CreateRequest, id: String, result: (UiState<String>) -> Unit)
 
-    suspend fun updateRequest(request: CreateRequest,id:String,result: (UiState<String>) -> Unit)
+    suspend fun updateRequest(request: CreateRequest, id: String, result: (UiState<String>) -> Unit)
 
 
     //    terima permintaan
     suspend fun acceptRequest(
+        calonPendonor:CalonPendonor,
+        idUserPeminta: String,
+        idRequestPeminta:String,
+        result: (UiState<String>) -> Unit
+    )
+
+    suspend fun calonPendonor(
 
     )
+
 
     //    tampilkan permintaan tolong
     suspend fun showHelpRequest(

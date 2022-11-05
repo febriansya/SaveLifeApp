@@ -23,6 +23,8 @@ class DetailMyRequestActivity : AppCompatActivity() {
     private val viewModels: CreateRequestViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    lateinit var calonPendonorAdapater: CalonPendonorRequestAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +59,21 @@ class DetailMyRequestActivity : AppCompatActivity() {
             intent.putExtra("update_request", request)
             startActivity(intent)
         }
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
 
 
     private fun observer() {

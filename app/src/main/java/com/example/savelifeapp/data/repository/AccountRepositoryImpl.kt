@@ -2,6 +2,7 @@ package com.example.savelifeapp.data.repository
 
 import android.content.Context
 import android.util.Log
+import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.ui.request.viewpager.myRequest.CellClickListener
@@ -43,6 +44,7 @@ class AccountRepositoryImpl @Inject constructor(
         val request = database.collection("Request").document(id)
         val subOutRequest = request.collection("MyRequest").document()
         createRequest.id = subOutRequest.id.toString()
+        createRequest.idPengirim = id.toString()
         subOutRequest.set(createRequest).addOnCompleteListener {
             result.invoke(
                 UiState.Success("Request has been created")
@@ -111,7 +113,8 @@ class AccountRepositoryImpl @Inject constructor(
         result: (UiState<String>) -> Unit
     ) {
 
-        val document = database.collection("Request").document(auth.currentUser?.uid.toString()).collection("MyRequest").document(id)
+        val document = database.collection("Request").document(auth.currentUser?.uid.toString())
+            .collection("MyRequest").document(id)
         document.update("name", request.name)
         document.update("golDarah", request.golDarah)
         document.update("lokasi", request.lokasi)
@@ -131,10 +134,41 @@ class AccountRepositoryImpl @Inject constructor(
             }
     }
 
+    override suspend fun acceptRequest(
+        calonPendonor: CalonPendonor,
+        idUserPeminta: String,
+        idRequestPeminta: String,
+        result: (UiState<String>) -> Unit
+    ) {
+        val currentUser = auth.currentUser?.uid.toString()
+        val idCurrent = Firebase.firestore.collection("UserApp").document(currentUser)
 
-    override suspend fun acceptRequest() {
+        /**
+         * 1. curerntUser
+         * 2. idRequest yang mau di accept
+         * 3. buat collection calon pendonor berdasarkan id request dan masukan id currentUser
+         */
+
+        val document = database.collection("Request").document(idUserPeminta)
+            .collection("MyRequest").document(idRequestPeminta)
+            .collection("CalonPendonor").document(currentUser)
+        document.set(calonPendonor).addOnCompleteListener {
+            result.invoke(
+                UiState.Success("Berhasil jadi calon Pendonor")
+            )
+        }.addOnFailureListener {
+            result.invoke(
+                UiState.Failure(
+                    it.localizedMessage
+                )
+            )
+        }
+    }
+
+    override suspend fun calonPendonor() {
         TODO("Not yet implemented")
     }
+
 
     //    get request with filter ketika darah yang diminta sama dengan darah user maka tampilkan
 //    yang ditampilkan adalah darah yang sama dengan user

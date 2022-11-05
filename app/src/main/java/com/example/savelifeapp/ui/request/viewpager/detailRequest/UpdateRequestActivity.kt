@@ -39,7 +39,7 @@ class UpdateRequestActivity : AppCompatActivity() {
         binding.nama.setText(request?.name)
         binding.keterangan.setText(request?.keterangan)
         binding.location.setText(request?.lokasi)
-
+        binding.wa.setText(request?.whatsapp)
 
 //        ini untuk mengambil positio dropdown darah teakhir
 //        val position =
@@ -53,13 +53,13 @@ class UpdateRequestActivity : AppCompatActivity() {
         }
     }
 
-
     private fun getUpdateObj(): CreateRequest {
         createRequest = CreateRequest(
             name = binding.nama.text.toString(),
             lokasi = binding.location.text.toString(),
             golDarah = binding.pilih.text.toString(),
-            keterangan = binding.keterangan.text.toString()
+            keterangan = binding.keterangan.text.toString(),
+            whatsapp = binding.wa.text.toString()
         )
         return createRequest
     }
