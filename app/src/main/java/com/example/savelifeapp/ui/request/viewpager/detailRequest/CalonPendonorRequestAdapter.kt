@@ -11,8 +11,8 @@ import com.example.savelifeapp.data.model.CalonPendonor
 import com.squareup.picasso.Picasso
 
 
-class DetailMyRequestAdapter(private var CalonPendonor: ArrayList<CalonPendonor>) :
-    RecyclerView.Adapter<DetailMyRequestAdapter.ViewHolder>() {
+class CalonPendonorRequestAdapter(private var CalonPendonor: ArrayList<CalonPendonor>) :
+    RecyclerView.Adapter<CalonPendonorRequestAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nama: TextView = itemView.findViewById(R.id.nama_calon_pendonor)
         var alamat: TextView = itemView.findViewById(R.id.alamat_calon_pendonor)

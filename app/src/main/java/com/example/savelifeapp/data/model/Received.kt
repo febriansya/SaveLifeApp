@@ -6,6 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Received(
+    val id:String?="",
+    val idPengirim:String?="",
     val name: String? = "",
     val golDarah: String? = "",
     val lokasi: String? = "",

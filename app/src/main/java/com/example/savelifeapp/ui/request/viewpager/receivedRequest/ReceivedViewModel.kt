@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.data.repository.AccountRespository
 import com.example.savelifeapp.data.repository.AuthRepository
@@ -27,6 +28,10 @@ class ReceivedViewModel @Inject constructor(
         get() = _receiveRequest
 
 
+    private val _acceptRequest = MutableLiveData<UiState<String>>()
+    val acceptRequest: LiveData<UiState<String>>
+        get() = _acceptRequest
+
     fun getReceivedData(
         arrayList: ArrayList<Received>,
         adapter: ReceivedAdapter
@@ -38,4 +43,19 @@ class ReceivedViewModel @Inject constructor(
             }
         }
     }
+
+    fun acceptRequestData(
+        calonPendonor: CalonPendonor,
+        idUserPeminta: String,
+        idRequestPeminta: String,
+        ) {
+        viewModelScope.launch {
+            accountRepository.acceptRequest(
+                calonPendonor, idUserPeminta, idRequestPeminta
+            ) {
+                _acceptRequest.value = it
+            }
+        }
+    }
+
 }
