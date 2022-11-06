@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.data.model.Received
+import com.example.savelifeapp.data.model.UsersApp
 import com.example.savelifeapp.databinding.ActivityRecivedDetailBinding
 import com.example.savelifeapp.ui.HomeActivity
 import com.example.savelifeapp.ui.request.viewpager.createRequest.CreateRequestViewModel
@@ -29,6 +30,7 @@ class RecivedDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRecivedDetailBinding
     private val viewModels: ReceivedViewModel by viewModels()
     private lateinit var calonPendonor: CalonPendonor
+    private lateinit var usersApp: UsersApp
     private lateinit var copyReceived: Received
     private lateinit var auth: FirebaseAuth
 
@@ -93,7 +95,8 @@ class RecivedDetailActivity : AppCompatActivity() {
             viewModels.acceptRequestData(
                 getUpdateObj(),
                 received?.idPengirim.toString(),
-                received?.id.toString()
+                received?.id.toString(),
+
             )
         }
     }
@@ -102,7 +105,7 @@ class RecivedDetailActivity : AppCompatActivity() {
     private fun getUpdateObj(): CalonPendonor {
         auth = FirebaseAuth.getInstance()
         calonPendonor = CalonPendonor(
-            id = auth.currentUser?.uid.toString()
+            id = auth.currentUser?.uid.toString(),
         )
         return calonPendonor
     }

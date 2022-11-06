@@ -4,9 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.CreateRequest
+import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.data.repository.AccountRespository
 import com.example.savelifeapp.data.repository.AuthRepository
+import com.example.savelifeapp.ui.request.viewpager.detailRequest.CalonPendonorRequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
 import com.example.savelifeapp.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,6 +37,9 @@ class CreateRequestViewModel @Inject constructor(
     val updateRequest: LiveData<UiState<String>>
         get() = _updateRequest
 
+    private val _calonPendonor = MutableLiveData<UiState<List<CalonPendonor>>>()
+    val getCalonPendonor: LiveData<UiState<String>>
+        get() = _updateRequest
 
     fun createRequest(
         createRequest: CreateRequest
@@ -89,4 +95,19 @@ class CreateRequestViewModel @Inject constructor(
             }
         }
     }
+
+    //    get calon pendonor
+    fun getCalonPendonor(
+        arrayList: ArrayList<CalonPendonor>,
+        idRequest: String,
+        adapter: CalonPendonorRequestAdapter
+    ) {
+        viewModelScope.launch {
+            accountRepository.calonPendonor(arrayList, idRequest, adapter) {
+                _calonPendonor.value = it
+            }
+        }
+    }
+
+
 }

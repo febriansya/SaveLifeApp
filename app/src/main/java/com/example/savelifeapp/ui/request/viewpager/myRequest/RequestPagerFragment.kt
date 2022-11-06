@@ -81,5 +81,4 @@ class RequestPagerFragment : Fragment(), CellClickListener {
         startActivity(intent)
     }
 
-
 }

@@ -12,7 +12,6 @@ import com.example.savelifeapp.data.model.CreateRequest
 class MrequestAdapter(
     private val Request: ArrayList<CreateRequest>, private val context: Context,
     private val cellClickListener: CellClickListener
-
 ) : RecyclerView.Adapter<MrequestAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

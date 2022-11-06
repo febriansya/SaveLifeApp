@@ -5,9 +5,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CalonPendonor(
-    var id:String?= null,
-    var name:String?=null,
-    var image:String? = null,
-    var whatsapp:String?=null,
-    var alamat:String?=null
-):Parcelable
+    var id: String? = "",
+    var nama: String? = "",
+    var image: String? = "",
+    var hone: String? = "",
+    var address: String? = "",
+    var idAccRequest: String? = ""
+) : Parcelable
