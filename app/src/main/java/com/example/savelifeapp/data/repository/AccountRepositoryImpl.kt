@@ -1,23 +1,22 @@
 package com.example.savelifeapp.data.repository
 
 import android.content.Context
-import android.media.metrics.Event
 import android.util.Log
+import android.widget.Toast
 import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.data.model.Received
-import com.example.savelifeapp.data.model.UsersApp
 import com.example.savelifeapp.ui.request.viewpager.detailRequest.CalonPendonorRequestAdapter
-import com.example.savelifeapp.ui.request.viewpager.myRequest.CellClickListener
 import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedAdapter
 import com.example.savelifeapp.utils.UiState
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
+
 
 class AccountRepositoryImpl @Inject constructor(
     val database: FirebaseFirestore,
@@ -27,6 +26,8 @@ class AccountRepositoryImpl @Inject constructor(
     private lateinit var image: String
     private lateinit var darahku: String
     private lateinit var dataRequest: CreateRequest
+
+    var calonPendonorDelete: String? = null
 
     init {
         val id = auth.currentUser?.uid ?: ""
@@ -92,14 +93,41 @@ class AccountRepositoryImpl @Inject constructor(
         id: String,
         result: (UiState<String>) -> Unit
     ) {
-        val document = database.collection("Request")
+
+////     delete subCollection
+//        database.collection("Request/" + auth.currentUser?.uid.toString() + "/MyRequest" + id + "/CalonPendonor")
+//            .get()
+//            .addOnCompleteListener { task ->
+//                for (snapshot in task.result) {
+//                    database.collection("Request/" + auth.currentUser?.uid.toString() + "/MyRequest" + id+ "/CalonPendonor")
+//                        .document(snapshot.id).delete()
+//                }
+//            }.addOnFailureListener {
+//                Log.d("failure",it.toString())
+//            }
+
+        database.collection("Request")
             .document(auth.currentUser?.uid.toString())
             .collection("MyRequest").document(id)
-        document
+            .collection("CalonPendonor").get()
+            .addOnCompleteListener { task ->
+                for (snapshot in task.result) {
+                    database.collection("Request")
+                        .document(auth.currentUser?.uid.toString())
+                        .collection("MyRequest").document(id)
+                        .collection("CalonPendonor").document(snapshot.id).delete()
+                }
+            }
+
+
+
+        database.collection("Request")
+            .document(auth.currentUser?.uid.toString())
+            .collection("MyRequest").document(id)
             .delete()
             .addOnSuccessListener {
                 result.invoke(
-                    UiState.Success("Request has been deleted")
+                    UiState.Success("Berhasil Delete Request")
                 )
             }
             .addOnFailureListener {
@@ -109,6 +137,9 @@ class AccountRepositoryImpl @Inject constructor(
                     )
                 )
             }
+
+//       delete collection calonPendonor ketika myrequest juga di delete
+
     }
 
     override suspend fun updateRequest(
@@ -146,6 +177,7 @@ class AccountRepositoryImpl @Inject constructor(
     ) {
 
         val currentUser = auth.currentUser?.uid.toString()
+
         /**
          * 1. curerntUser
          * 2. idRequest yang mau di accept
@@ -169,7 +201,7 @@ class AccountRepositoryImpl @Inject constructor(
                         calonPendonor.address = users.address
                         calonPendonor.hone = users.hone
                         calonPendonor.idAccRequest = idRequestPeminta
-
+                        calonPendonorDelete = users.id
                         val document = database.collection("Request").document(idUserPeminta)
                             .collection("MyRequest").document(idRequestPeminta)
                             .collection("CalonPendonor").document(currentUser)
