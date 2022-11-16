@@ -13,11 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RequestFragment : Fragment() {
-
     private var _binding: FragmentRequestBinding? = null
-
      private lateinit var viewpagerAdapter: SectionPagerAdapter
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -41,8 +38,8 @@ class RequestFragment : Fragment() {
 
         viewpagerAdapter = SectionPagerAdapter(this)
         with(binding) {
-            viewPager2.adapter = viewpagerAdapter
-            TabLayoutMediator(tabLayout2, viewPager2) { tab, position ->
+            viepagerReceived.adapter = viewpagerAdapter
+            TabLayoutMediator(tabLayout2, viepagerReceived) { tab, position ->
                 when (position) {
                     0 -> tab.text = "Received Request"
                     1 -> tab.text = "My Request"

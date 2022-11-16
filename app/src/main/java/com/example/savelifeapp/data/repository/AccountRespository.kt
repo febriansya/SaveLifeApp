@@ -35,9 +35,18 @@ interface AccountRespository {
         result: (UiState<String>) -> Unit
     )
 
+    //    tolak permintaan
+    suspend fun tolakRequest(
+        calonPendonor: CalonPendonor,
+        idUserPeminta: String,
+        idRequestPeminta: String,
+        result: (UiState<String>) -> Unit
+    )
+
+
     suspend fun calonPendonor(
         arrayList: ArrayList<CalonPendonor>,
-        idRequest:String,
+        idRequest: String,
         adapter: CalonPendonorRequestAdapter,
         result: (UiState<List<CalonPendonor>>) -> Unit
     )
@@ -48,4 +57,11 @@ interface AccountRespository {
         adapter: ReceivedAdapter,
         result: (UiState<List<Received>>) -> Unit
     )
+
+    //    untuk skip detail received, dimana dalam kondisi sebagai calon pendonor
+    suspend fun StatusCalonPendonor(
+        arrayList: ArrayList<CalonPendonor>,
+        idRequest: String
+    )
+
 }

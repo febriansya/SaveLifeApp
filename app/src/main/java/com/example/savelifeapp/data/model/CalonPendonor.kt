@@ -10,5 +10,6 @@ data class CalonPendonor(
     var image: String? = "",
     var hone: String? = "",
     var address: String? = "",
-    var idAccRequest: String? = ""
+    var idAccRequest: String? = "",
+    var status: String? = ""
 ) : Parcelable

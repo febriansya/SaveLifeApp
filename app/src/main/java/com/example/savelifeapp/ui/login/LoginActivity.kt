@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         //        inisialisasi firebase
+//        cek apakah sebelumnya sudah login atau belum
         auth = FirebaseAuth.getInstance()
         fireStore = FirebaseFirestore.getInstance()
         if (auth.currentUser != null && auth.currentUser!!.isEmailVerified) {
@@ -118,13 +119,6 @@ class LoginActivity : AppCompatActivity() {
         return isValid
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (auth.currentUser != null) {
-//            val intent = Intent(this, HomeActivity::class.java)
-//            startActivity(intent)
-        }
-    }
 
     override fun onBackPressed() {
         finishAffinity()

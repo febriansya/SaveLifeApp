@@ -41,4 +41,13 @@ object RepositoryModule {
     ): HomeRepository {
         return HomeRepositotyImpl(auth, database)
     }
+
+    @Provides
+    @Singleton
+    fun provideRequestRepository(
+        database: FirebaseFirestore,
+        auth: FirebaseAuth,
+    ): RequestRepository {
+        return RequestRepositoryImpl(auth, database)
+    }
 }

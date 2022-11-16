@@ -2,7 +2,6 @@ package com.example.savelifeapp.data.repository
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.CreateRequest
 import com.example.savelifeapp.data.model.Received
@@ -10,7 +9,6 @@ import com.example.savelifeapp.ui.request.viewpager.detailRequest.CalonPendonorR
 import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedAdapter
 import com.example.savelifeapp.utils.UiState
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
@@ -87,25 +85,12 @@ class AccountRepositoryImpl @Inject constructor(
             })
     }
 
-
     override suspend fun deleteRequest(
         request: CreateRequest,
         id: String,
         result: (UiState<String>) -> Unit
     ) {
-
-////     delete subCollection
-//        database.collection("Request/" + auth.currentUser?.uid.toString() + "/MyRequest" + id + "/CalonPendonor")
-//            .get()
-//            .addOnCompleteListener { task ->
-//                for (snapshot in task.result) {
-//                    database.collection("Request/" + auth.currentUser?.uid.toString() + "/MyRequest" + id+ "/CalonPendonor")
-//                        .document(snapshot.id).delete()
-//                }
-//            }.addOnFailureListener {
-//                Log.d("failure",it.toString())
-//            }
-
+//        delete subcollection calon pendonor
         database.collection("Request")
             .document(auth.currentUser?.uid.toString())
             .collection("MyRequest").document(id)
@@ -118,9 +103,6 @@ class AccountRepositoryImpl @Inject constructor(
                         .collection("CalonPendonor").document(snapshot.id).delete()
                 }
             }
-
-
-
         database.collection("Request")
             .document(auth.currentUser?.uid.toString())
             .collection("MyRequest").document(id)
@@ -137,9 +119,7 @@ class AccountRepositoryImpl @Inject constructor(
                     )
                 )
             }
-
 //       delete collection calonPendonor ketika myrequest juga di delete
-
     }
 
     override suspend fun updateRequest(
@@ -147,7 +127,6 @@ class AccountRepositoryImpl @Inject constructor(
         id: String,
         result: (UiState<String>) -> Unit
     ) {
-
         val document = database.collection("Request").document(auth.currentUser?.uid.toString())
             .collection("MyRequest").document(id)
         document.update("name", request.name)
@@ -169,13 +148,14 @@ class AccountRepositoryImpl @Inject constructor(
             }
     }
 
+
+    //TERIMA REQUEST
     override suspend fun acceptRequest(
         calonPendonor: CalonPendonor,
         idUserPeminta: String,
         idRequestPeminta: String,
         result: (UiState<String>) -> Unit
     ) {
-
         val currentUser = auth.currentUser?.uid.toString()
 
         /**
@@ -183,7 +163,6 @@ class AccountRepositoryImpl @Inject constructor(
          * 2. idRequest yang mau di accept
          * 3. buat collection calon pendonor berdasarkan id request dan masukan id currentUser
          */
-
         val idCurrent = Firebase.firestore.collection("UserApp").document(currentUser)
         database.collection("UserApp").whereEqualTo("uuid", currentUser)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -201,13 +180,14 @@ class AccountRepositoryImpl @Inject constructor(
                         calonPendonor.address = users.address
                         calonPendonor.hone = users.hone
                         calonPendonor.idAccRequest = idRequestPeminta
+                        calonPendonor.status = "Bersedia"
                         calonPendonorDelete = users.id
                         val document = database.collection("Request").document(idUserPeminta)
                             .collection("MyRequest").document(idRequestPeminta)
                             .collection("CalonPendonor").document(currentUser)
                         document.set(calonPendonor).addOnCompleteListener {
                             result.invoke(
-                                UiState.Success("Berhasil jadi calon Pendonor")
+                                UiState.Success("Menjadi Calon Pendonor")
                             )
                         }.addOnFailureListener {
                             result.invoke(
@@ -219,9 +199,63 @@ class AccountRepositoryImpl @Inject constructor(
 //                        arrayList.add(users)
                     }
                 }
+            })
+    }
+
+
+    //    TOLAK REQUEST
+    override suspend fun tolakRequest(
+        calonPendonor: CalonPendonor,
+        idUserPeminta: String,
+        idRequestPeminta: String,
+        result: (UiState<String>) -> Unit
+    ) {
+        val currentUser = auth.currentUser?.uid.toString()
+
+        /**
+         * 1. curerntUser
+         * 2. idRequest yang mau di tolak
+         * 3. buat collection calon pendonor berdasarkan id request dan masukan id currentUser
+         */
+        val idCurrent = Firebase.firestore.collection("UserApp").document(currentUser)
+        database.collection("UserApp").whereEqualTo("uuid", currentUser)
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(
+                    value: QuerySnapshot?, error: FirebaseFirestoreException?
+                ) {
+                    if (error != null) {
+                        result.invoke(UiState.Failure(error.message.toString()))
+                        return
+                    }
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        val users = (dc.document.toObject(CalonPendonor::class.java))
+                        calonPendonor.nama = users.nama
+                        calonPendonor.image = users.image
+                        calonPendonor.address = users.address
+                        calonPendonor.hone = users.hone
+                        calonPendonor.idAccRequest = idRequestPeminta
+                        calonPendonor.status = "Menolak"
+                        calonPendonorDelete = users.id
+                        val document = database.collection("Request").document(idUserPeminta)
+                            .collection("MyRequest").document(idRequestPeminta)
+                            .collection("CalonPendonor").document(currentUser)
+                        document.set(calonPendonor).addOnCompleteListener {
+                            result.invoke(
+                                UiState.Success("Pasien Ditolak")
+                            )
+                        }.addOnFailureListener {
+                            result.invoke(
+                                UiState.Failure(
+                                    it.localizedMessage
+                                )
+                            )
+                        }
+                    }
+                }
 
             })
     }
+
 
     override suspend fun calonPendonor(
         arrayList: ArrayList<CalonPendonor>,
@@ -257,7 +291,6 @@ class AccountRepositoryImpl @Inject constructor(
             }
     }
 
-
     //    get request with filter ketika darah yang diminta sama dengan darah user maka tampilkan
 //    yang ditampilkan adalah darah yang sama dengan user
     override suspend fun showHelpRequest(
@@ -268,6 +301,7 @@ class AccountRepositoryImpl @Inject constructor(
         val currentUser = auth.currentUser?.uid.toString()
         val darahCurrent = Firebase.firestore.collection("UserApp").document(currentUser)
         darahCurrent.get().addOnCompleteListener {
+
             if (it.isSuccessful) {
                 darahku = it.result.getString("golDarah").toString()
 //                menggunakan collectionn group karena mengakses subcollection
@@ -287,9 +321,38 @@ class AccountRepositoryImpl @Inject constructor(
                                 }
                                 adapter.notifyDataSetChanged()
                             }
-
                         })
             }
         }
+    }
+
+
+    override suspend fun StatusCalonPendonor(
+        arrayList: ArrayList<CalonPendonor>,
+        idRequest: String
+    ) {
+        val document = database.collection("Request").document(auth.currentUser?.uid.toString())
+            .collection("MyRequest").document(idRequest)
+            .get().addOnCompleteListener {
+                if (it.isSuccessful) {
+//                    tampilakan calon pendonor berdasarkan id MyRequset
+                    val calonPendonor = database.collectionGroup("CalonPendonor")
+                        .whereEqualTo("idAccRequest", idRequest)
+//                        .whereEqualTo("id", auth.currentUser?.uid.toString())
+                        .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                            override fun onEvent(
+                                value: QuerySnapshot?,
+                                error: FirebaseFirestoreException?
+                            ) {
+                                if (error != null) {
+                                    return
+                                }
+                                for (dc: DocumentChange in value?.documentChanges!!) {
+                                    arrayList.add(dc.document.toObject(CalonPendonor::class.java))
+                                }
+                            }
+                        })
+                }
+            }
     }
 }

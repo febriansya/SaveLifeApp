@@ -13,9 +13,12 @@ import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Stok
 import com.example.savelifeapp.databinding.FragmentHomeBinding
 import com.example.savelifeapp.ui.home.viepager.SectionPagerAdapter
+import com.google.android.material.shape.CornerSize
 
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var stokArrayList: ArrayList<Stok>
     private lateinit var stokAdapter: StokAdapter
     private lateinit var db: FirebaseFirestore
+    private lateinit var userCurrent: FirebaseAuth
 
 
     private var _binding: FragmentHomeBinding? = null
@@ -44,6 +48,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        db = FirebaseFirestore.getInstance()
+        userCurrent = FirebaseAuth.getInstance()
+
 //        recylerview for showing stock blood
         mRecylerView = view.findViewById(R.id.RecylerView_item_stok_darah)
         mRecylerView.layoutManager =
@@ -55,6 +62,7 @@ class HomeFragment : Fragment() {
         mRecylerView.adapter = stokAdapter
 
         EventChangedListener()
+        getProfile()
 //       implementation viewpager di dalam frgment dan  activity caranya berbeda
         sectionPagerAdapter = SectionPagerAdapter(this)
         with(binding) {
@@ -69,7 +77,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun EventChangedListener() {
-        db = FirebaseFirestore.getInstance()
         db.collection("Stok")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -88,9 +95,17 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun getProfile(){
+    private fun getProfile() {
 
+        db.collection("UserApp").document(userCurrent.currentUser?.uid.toString())
+            .get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    binding.welcomeName.text = task.result.getString("nama")
+                    Picasso.get().load(task.result.getString("image")).into(binding.profile)
+                }
+            }
     }
+
     //    wajib ketika menggunakan fragment
     override fun onDestroyView() {
         super.onDestroyView()

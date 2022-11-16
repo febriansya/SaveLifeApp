@@ -39,7 +39,6 @@ class CalonPendonorRequestAdapter(
         Picasso.get().load(calonPendonor.image).into(holder.image)
         holder.btnWa.setOnClickListener {
             listener.onItemClicked(calonPendonor)
-
         }
     }
 

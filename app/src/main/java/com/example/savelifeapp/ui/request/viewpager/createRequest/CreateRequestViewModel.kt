@@ -109,5 +109,13 @@ class CreateRequestViewModel @Inject constructor(
         }
     }
 
-
+//
+    fun CekStatusCalonPendonor(
+        arrayList: ArrayList<CalonPendonor>,
+       id: String
+    ) {
+        viewModelScope.launch {
+            accountRepository.StatusCalonPendonor(arrayList,id)
+        }
+    }
 }

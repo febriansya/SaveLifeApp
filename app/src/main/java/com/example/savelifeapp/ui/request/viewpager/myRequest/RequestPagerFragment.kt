@@ -52,6 +52,7 @@ class RequestPagerFragment : Fragment(), CellClickListener {
         requestPagerAdapater = MrequestAdapter(list, requireContext(), this)
         rvRequest.adapter = requestPagerAdapater
         observe()
+
         viewModel.getDataRequest(list, requestPagerAdapater)
         binding.floatingActionButton.setOnClickListener {
             val intent = Intent(requireActivity(), CreateRequestActivity::class.java)
