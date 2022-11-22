@@ -14,7 +14,7 @@
             android:id="@+id/btn_lanjutkan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="51dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Kirim Permintaan"
             android:textAllCaps="false"
