@@ -9,8 +9,9 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
+import javax.inject.Inject
 
-class HomeRepositotyImpl(
+class HomeRepositotyImpl @Inject constructor(
     val auth: FirebaseAuth,
     val database: FirebaseFirestore,
 ) : HomeRepository {

@@ -59,7 +59,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="efef"
                 android:maxLines="4"
-                android:textColor="@color/black"
+                android:textColor="@color/brown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_nama_pasien_bantu"
                 app:layout_constraintTop_toBottomOf="@+id/tv_nama_pasien_bantu" />
@@ -71,7 +71,7 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="tanggal"
-                android:textColor="@color/red_medium"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_nama_pasien_bantu" />
 

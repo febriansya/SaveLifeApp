@@ -125,7 +125,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/btn_abu"
                     android:gravity="start"
-                    android:hint="08189086654"
+                    android:inputType="numberDecimal"
+                    android:hint=""
                     android:paddingStart="12dp"
                     android:paddingTop="12dp" />
             </LinearLayout>

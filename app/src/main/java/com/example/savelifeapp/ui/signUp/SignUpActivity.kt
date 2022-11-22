@@ -137,6 +137,7 @@ class SignUpActivity : AppCompatActivity() {
             email = binding.edtEmail.text.toString(),
             password = binding.edtPassword.text.toString(),
             golDarah = binding.autoCompleteText.text.toString(),
+//            phone wa
             hone = binding.edtPhone.text.toString(),
             address = binding.edtAddress.text.toString(),
             data = binding.textdate?.text.toString(),

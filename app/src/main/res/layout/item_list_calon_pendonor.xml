@@ -3,58 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="0dp">
 
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/image_calon_pendonor"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/background_darah"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nama_calon_pendonor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:orientation="vertical"
-        android:paddingTop="25dp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_calon_pendonor"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+    <TextView
+        android:id="@+id/nama_calon_pendonor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Bertus"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/image_calon_pendonor"
-        app:layout_constraintTop_toTopOf="@+id/image_calon_pendonor"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="@+id/image_calon_pendonor" />
 
-        <TextView
-            android:id="@+id/nama_calon_pendonor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Bertus"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/alamat_calon_pendonor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Alamat Calon Pendonor"
-            android:textSize="12sp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/alamat_calon_pendonor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Alamat Calon Pendonor"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/nama_calon_pendonor"
+        app:layout_constraintTop_toBottomOf="@+id/nama_calon_pendonor" />
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/btn_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout8"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout8"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icons8_whatsapp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
