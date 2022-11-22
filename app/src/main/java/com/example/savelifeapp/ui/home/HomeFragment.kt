@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,25 +25,31 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    lateinit private var mRecylerView: RecyclerView
     private lateinit var sectionPagerAdapter: SectionPagerAdapter
     private lateinit var stokArrayList: ArrayList<Stok>
     private lateinit var stokAdapter: StokAdapter
     private lateinit var db: FirebaseFirestore
     private lateinit var userCurrent: FirebaseAuth
 
-
     private var _binding: FragmentHomeBinding? = null
+    // This property is only valid between onCreateView and
+// onDestroyView.
     private val binding get() = _binding!!
+
+//
+//    private var _binding: FragmentHomeBinding? = null
+//    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+//        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+//        val root: View = binding.root
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,14 +59,13 @@ class HomeFragment : Fragment() {
         userCurrent = FirebaseAuth.getInstance()
 
 //        recylerview for showing stock blood
-        mRecylerView = view.findViewById(R.id.RecylerView_item_stok_darah)
-        mRecylerView.layoutManager =
+        binding.RecylerViewItemStokDarah.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayout.HORIZONTAL, false)
-        mRecylerView.setHasFixedSize(true)
+        binding.RecylerViewItemStokDarah.setHasFixedSize(true)
         stokArrayList = arrayListOf()
 
         stokAdapter = StokAdapter(stokArrayList)
-        mRecylerView.adapter = stokAdapter
+        binding.RecylerViewItemStokDarah.adapter = stokAdapter
 
         EventChangedListener()
         getProfile()

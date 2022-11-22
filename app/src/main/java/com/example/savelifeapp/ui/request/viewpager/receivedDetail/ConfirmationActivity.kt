@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.db.CalonEntity
 import com.example.savelifeapp.data.db.RoomAppDb
+import com.example.savelifeapp.data.model.CalonPendonor
 import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.databinding.ActivityConfirmationBinding
 import com.example.savelifeapp.databinding.FragmentReceivedPagerBinding
@@ -17,6 +18,7 @@ import com.example.savelifeapp.ui.request.RequestViewModel
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedPagerFragment
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedViewModel
 import com.example.savelifeapp.utils.toast
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.coroutineScope
@@ -27,7 +29,9 @@ import java.net.URLEncoder
 @AndroidEntryPoint
 class ConfirmationActivity : AppCompatActivity() {
 
-    private val viewModels: RequestViewModel by viewModels()
+    private val viewModels: ReceivedViewModel by viewModels()
+    private lateinit var auth: FirebaseAuth
+    private lateinit var calonPendonor: CalonPendonor
     private lateinit var binding: ActivityConfirmationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +42,7 @@ class ConfirmationActivity : AppCompatActivity() {
         var received: Received? = intent.getParcelableExtra("data_request")
         binding.apply {
             Picasso.get().load(received?.image).into(imgRecived)
-            namePasie.text = received?.name
+            namePengirim.text = received?.name
             riLocation.text = received?.lokasi
             idGol.text = received?.golDarah
             idKeteranganReq.text = received?.keterangan
@@ -47,6 +51,11 @@ class ConfirmationActivity : AppCompatActivity() {
             imgBack.setOnClickListener {
                 onBackPressed()
             }
+
+            btnSudah.setOnClickListener {
+
+            }
+
 
             intentWa.setOnClickListener {
                 try {
@@ -89,6 +98,11 @@ class ConfirmationActivity : AppCompatActivity() {
 //        toast(result.toString())
 
         binding.btnBatal.setOnClickListener {
+            viewModels.tolakRequest(
+                getUpdateObj(),
+                received?.idPengirim.toString(),
+                received?.id.toString(),
+            )
 //            val id = received?.id.toString()
 //            val name = result?.name.toString()
 //            val idRequest = result?.idRequest.toString()
@@ -101,9 +115,23 @@ class ConfirmationActivity : AppCompatActivity() {
                     "Ditolak"
                 )
             )
+            viewModels.tolakRequest(
+                getUpdateObj(),
+                received?.idPengirim.toString(),
+                received?.id.toString(),
+            )
             finish()
         }
     }
+
+    fun getUpdateObj(): CalonPendonor {
+        auth = FirebaseAuth.getInstance()
+        calonPendonor = CalonPendonor(
+            id = auth.currentUser?.uid.toString()
+        )
+        return calonPendonor
+    }
+
 }
 
 //this for creating api

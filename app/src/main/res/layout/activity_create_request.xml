@@ -14,9 +14,9 @@
             android:id="@+id/btn_lanjutkan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Lanjutkan"
+            android:text="Kirim Permintaan"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,18 +72,19 @@
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/edt_keterangan_pasien"
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_marginStart="22dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginEnd="12dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btn_abu"
-                        android:gravity="start"
-                        android:hint="Keterangan.."
-                        android:paddingStart="12dp"
-                        android:paddingTop="12dp" />
+                        android:hint="Keterangan">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_keterangan_pasien"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -116,20 +117,32 @@
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edt_wa"
+
+<!--                ewa-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginStart="22dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_abu"
-                    android:gravity="start"
-                    android:inputType="numberDecimal"
-                    android:hint=""
-                    android:paddingStart="12dp"
-                    android:paddingTop="12dp" />
+                    android:hint="Nomor">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_wa"
+                        android:layout_width="match_parent"
+                        android:inputType="number"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/uploadBukti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:backgroundTint="@color/dark_gray"
+                android:text="Upload Bukti"
+                android:textAllCaps="false" />
         </LinearLayout>
 
         <TextView
@@ -188,18 +201,19 @@
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edt_name_pasien"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="22dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_abu"
-                    android:gravity="start"
-                    android:hint="name.."
-                    android:paddingStart="12dp"
-                    android:paddingTop="12dp" />
+                    android:hint="Nama Lengkap">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_name_pasien"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -238,24 +252,26 @@
                     android:textSize="20sp" />
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/edt_location_pasien"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="22dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_abu"
-                    android:gravity="start"
-                    android:hint="Location.."
-                    android:paddingStart="12dp"
-                    android:paddingTop="12dp" />
+                    android:hint="Lokasi Pasien">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_location_pasien"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -308,6 +324,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal" />
             </LinearLayout>
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

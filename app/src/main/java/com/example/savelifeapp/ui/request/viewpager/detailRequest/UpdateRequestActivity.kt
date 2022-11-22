@@ -31,7 +31,6 @@ class UpdateRequestActivity : AppCompatActivity() {
         var request: CreateRequest? = intent.getParcelableExtra("update_request")
 
         supportActionBar?.hide()
-
         val bloodType = resources.getStringArray(R.array.blood_type)
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, bloodType)
         binding.pilih.setAdapter(arrayAdapter)
@@ -40,17 +39,20 @@ class UpdateRequestActivity : AppCompatActivity() {
         binding.keterangan.setText(request?.keterangan)
         binding.location.setText(request?.lokasi)
         binding.wa.setText(request?.whatsapp)
-
 //        ini untuk mengambil positio dropdown darah teakhir
 //        val position =
 //            binding.pilih.setText(arrayAdapter.getPosition(request?.golDarah).toString(), false)
         val p = arrayAdapter.getPosition(request?.golDarah).toInt()
         binding.pilih.setText(arrayAdapter.getItem(p).toString(), false)
-        
         observer()
         binding.btnUpdate.setOnClickListener {
             viewModels.updateRequest(getUpdateObj(), request?.id.toString())
         }
+
+        binding.btnCancel.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun getUpdateObj(): CreateRequest {

@@ -13,29 +13,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveLifeApp">
         <activity
-            android:name=".ui.request.viewpager.receivedDetail.ConfirmationActivity"
+            android:name=".ui.account.HistoryDonorActictiy"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.account.UpdateAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.request.viewpager.receivedDetail.ConfirmationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ui.request.viewpager.detailRequest.UpdateRequestActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ui.request.viewpager.detailRequest.DetailMyRequestActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ui.request.viewpager.receivedDetail.RecivedDetailActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -45,7 +64,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.login.forgotPassword.ResetPasswordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.HomeActivity"
             android:exported="false"

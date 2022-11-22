@@ -1,12 +1,18 @@
 package com.example.savelifeapp.ui.account
 
+import android.app.Activity
+import android.content.ContentProvider
+import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.savelifeapp.data.model.Profile
@@ -17,10 +23,15 @@ import com.example.savelifeapp.ui.login.LoginViewModel
 import com.example.savelifeapp.utils.UiState
 import com.example.savelifeapp.utils.toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.util.*
 
 @AndroidEntryPoint
 class AccountFragment : Fragment() {
@@ -31,9 +42,12 @@ class AccountFragment : Fragment() {
         const val REQUEST_CAMERA = 100
     }
 
+    private val PICK_IMAGE_REQUEST = 100
     private lateinit var user: UsersApp
     private lateinit var imageUri: Uri
     private lateinit var auth: FirebaseAuth
+    private var mFirebaseDatabaseInstance: FirebaseFirestore? = null
+    private var storageRef: FirebaseStorage? = null
     val viewmodel: AccountViewModel by viewModels()
     val loginView: LoginViewModel by viewModels()
 
@@ -58,11 +72,14 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+        mFirebaseDatabaseInstance = FirebaseFirestore.getInstance()
+        storageRef = FirebaseStorage.getInstance()
 
         observer()
         binding.logout.setOnClickListener {
             viewmodel.logout()
         }
+
 
         val currentUser = auth.currentUser?.uid.toString()
         val userAppColection = Firebase.firestore.collection("UserApp").document(currentUser)
@@ -73,6 +90,19 @@ class AccountFragment : Fragment() {
                 Picasso.get().load(task.result.getString("image")).into(binding.imgProfile)
             }
         }
+
+        binding.apply {
+            edSetings.setOnClickListener {
+                val intent = Intent(requireContext(), UpdateAccountActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        binding.btnRiawayat.setOnClickListener {
+            val intent = Intent(requireActivity(), HistoryDonorActictiy::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun observer() {

@@ -64,4 +64,14 @@ interface AccountRespository {
         idRequest: String
     )
 
+//    update account setings
+    suspend fun UpdateAccount(
+      arrayList: UsersApp,
+      result: (UiState<String>) -> Unit
+    )
+
+
+//    create history Calon Pendonor
+
+
 }

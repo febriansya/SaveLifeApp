@@ -36,7 +36,7 @@ class AuthRepositoryImplement(
         user: UsersApp,
         result: (UiState<String>) -> Unit
     ) {
-        val document = database.collection(FireStoreCollection.USER).document(user.uuid)
+        val document = database.collection(FireStoreCollection.USER).document(user.uuid.toString())
         document.set(user)
             .addOnSuccessListener {
                 result.invoke(

@@ -11,7 +11,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
@@ -185,7 +184,7 @@
                     android:text="icon" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/ed_setings"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
@@ -195,7 +194,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
-                    android:id="@+id/textView18"
+                    android:id="@+id/img_setings"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

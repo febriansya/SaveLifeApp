@@ -55,6 +55,11 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+
+// creating a storage reference
+
+
+//        list golongan darah
         val bloodType = resources.getStringArray(R.array.blood_type)
         val arrayAdapter = ArrayAdapter(applicationContext, R.layout.dropdown_item, bloodType)
         binding.autoCompleteText.setAdapter(arrayAdapter)
@@ -87,6 +92,13 @@ class SignUpActivity : AppCompatActivity() {
             )
             datePickerDialog.show()
         }
+
+
+
+
+
+
+
         binding.signUp?.setOnClickListener {
             nama = binding.edtName.text.toString()
             email = binding.edtEmail.text.toString()

@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/namePasie"
+        android:id="@+id/namePengirim"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -113,10 +113,10 @@
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/icons8_whatsapp"
-        app:layout_constraintBottom_toBottomOf="@+id/namePasie"
+        app:layout_constraintBottom_toBottomOf="@+id/namePengirim"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/namePasie"
-        app:layout_constraintTop_toTopOf="@+id/namePasie" />
+        app:layout_constraintStart_toEndOf="@+id/namePengirim"
+        app:layout_constraintTop_toTopOf="@+id/namePengirim" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -152,7 +152,7 @@
         app:layout_constraintTop_toBottomOf="@+id/id_keterangan_req">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_sudah"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_margin="6dp"
