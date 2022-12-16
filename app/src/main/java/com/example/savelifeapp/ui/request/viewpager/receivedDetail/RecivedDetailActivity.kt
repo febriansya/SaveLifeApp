@@ -5,6 +5,11 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +40,7 @@ class RecivedDetailActivity : AppCompatActivity() {
     private lateinit var usersApp: UsersApp
     private lateinit var copyReceived: Received
     private lateinit var auth: FirebaseAuth
+    private lateinit var received:Received
 
     //    state shared preferences
     lateinit var preference: SharedPreferences
@@ -53,8 +59,7 @@ class RecivedDetailActivity : AppCompatActivity() {
         observer()
         observerTolak()
         val intent: Intent = intent
-
-        var received: Received? = intent.getParcelableExtra("data_request")
+        received = intent.getParcelableExtra("data_request")!!
 
         val calonPendnor = RoomAppDb.getAppDatabase(this)?.pendonorDao()
         val list = calonPendnor?.getPendonorData()
@@ -62,23 +67,25 @@ class RecivedDetailActivity : AppCompatActivity() {
             it.id == received?.id
         }
         Log.d("cekData", filter.toString())
-
-//        if (filter != null) {
-//            if(filter.isEmpty()){
-//                val getStatus = filter?.get(0).status
-//                if (getStatus == "Ditolak"){
-//                    binding.idStatus.text = "Kondisi Terakhir permintaan ditolak, silahkan pilih button jadi pendonor jika bersedia"
-//                    binding.idStatus.setTextColor(R.color.red_medium)
-//                }else{
-//                    binding.idStatus.text = "Belum Di Konfirmasi silahkan pilih salah satu Button"
-//                    binding.idStatus.setTextColor(android.R.color.holo_orange_light)
-//                }
-//            }
-//        }else{
-//            binding.idStatus.text = "Belum Di Konfirmasi silahkan pilih salah satu Button"
-//            binding.idStatus.setTextColor(android.R.color.holo_orange_light)
-//        }
-
+        if (filter != null) {
+            if (filter.isNotEmpty()) {
+                val status = filter.get(0).status.toString()
+                if (status == "Ditolak") {
+                    binding.idStatus.text =
+                        "Kondisi Terakhir permintaan ditolak, silahkan pilih button jadi pendonor jika bersedia"
+                    binding.idStatus.setTextColor(R.color.red_medium)
+                } else {
+                    binding.idStatus.text = "Status diterima"
+                    binding.idStatus.setTextColor(android.R.color.holo_orange_light)
+                }
+            } else {
+                binding.idStatus.text = "Belum Di Konfirmasi silahkan pilih salah satu Button"
+                binding.idStatus.setTextColor(android.R.color.holo_orange_light)
+            }
+        } else {
+            binding.idStatus.text = "Belum Di Konfirmasi silahkan pilih salah satu Button"
+            binding.idStatus.setTextColor(android.R.color.holo_orange_light)
+        }
 
         //            BUTTON TOLAK PERMINTAAN
         binding.btnTolak.setOnClickListener {
@@ -105,6 +112,7 @@ class RecivedDetailActivity : AppCompatActivity() {
             riLocation.text = received?.lokasi.toString()
             idGol.text = received?.golDarah.toString()
             idKeteranganReq.text = received?.keterangan.toString()
+            namePengirim.text = received?.namaPengirim.toString()
             Picasso.get().load(received?.image).into(imgRecived)
 //            code dibawah ini untuk intent ke whatsapp
             intentWa.setOnClickListener {
@@ -138,6 +146,12 @@ class RecivedDetailActivity : AppCompatActivity() {
         }
 
 
+//        buttin show image
+        binding.showbukti.setOnClickListener {
+            showBukti(received?.photoBukti.toString())
+        }
+
+
 //        BUTTON TERIMA PERMINTAAN
         binding.button2.setOnClickListener {
             viewModels.acceptRequestData(
@@ -145,7 +159,6 @@ class RecivedDetailActivity : AppCompatActivity() {
                 received?.idPengirim.toString(),
                 received?.id.toString(),
             )
-
 //            ini untuk state button ketika sudah klik jadi pendonor
             val pendonorDao = RoomAppDb.getAppDatabase(this)?.pendonorDao()?.insertPendonor(
                 CalonEntity(
@@ -159,11 +172,10 @@ class RecivedDetailActivity : AppCompatActivity() {
         }
     }
 
-
     private fun getUpdateObj(): CalonPendonor {
         auth = FirebaseAuth.getInstance()
         calonPendonor = CalonPendonor(
-            id = auth.currentUser?.uid.toString(),
+            idPendonor = auth.currentUser?.uid.toString(),
         )
         return calonPendonor
     }
@@ -198,10 +210,30 @@ class RecivedDetailActivity : AppCompatActivity() {
                     toast(state.data)
                     val intent =
                         Intent(this@RecivedDetailActivity, ConfirmationActivity::class.java)
+                    intent.putExtra("data_request", received)
                     startActivity(intent)
                     finish()
                 }
             }
+        }
+    }
+
+    private fun showBukti(image: String) {
+        var inflater = LayoutInflater.from(this)
+        var pupupview = inflater.inflate(R.layout.image_showing, null, false)
+        var imgagee = pupupview.findViewById<ImageView>(R.id.image_tampil)
+        Picasso.get().load(image).into(imgagee)
+        var close = pupupview.findViewById<ImageView>(R.id.ic_close)
+        var builder = PopupWindow(
+            pupupview,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            true
+        )
+        builder.setBackgroundDrawable(getDrawable(R.drawable.background_showing))
+        builder.showAtLocation(this.findViewById(R.id.detailReceived), Gravity.CENTER, 0, 0)
+        close.setOnClickListener {
+            builder.dismiss()
         }
     }
 }

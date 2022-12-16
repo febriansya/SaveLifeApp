@@ -8,10 +8,12 @@ import kotlinx.parcelize.Parcelize
 data class Received(
     val id: String? = "",
     val idPengirim: String? = "",
+    val namaPengirim:String? = "",
     val name: String? = "",
     val golDarah: String? = "",
     val lokasi: String? = "",
     val keterangan: String? = "",
     val image: String? = null,
-    val whatsapp: String? = null
+    val whatsapp: String? = null,
+    val photoBukti: String? = null
 ) : Parcelable

@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CalonPendonor(
-    var id: String? = "",
+    var idPendonor: String? = "",
     var nama: String? = "",
     var image: String? = "",
     var hone: String? = "",

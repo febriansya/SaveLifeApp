@@ -6,47 +6,62 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.example.savelifeapp.R
 import com.example.savelifeapp.data.db.CalonEntity
 import com.example.savelifeapp.data.db.RoomAppDb
+import com.example.savelifeapp.data.model.CalonPendonor
+import com.example.savelifeapp.data.model.HistoryDonors
 import com.example.savelifeapp.data.model.Received
 import com.example.savelifeapp.databinding.ActivityConfirmationBinding
-import com.example.savelifeapp.databinding.FragmentReceivedPagerBinding
-import com.example.savelifeapp.ui.request.RequestViewModel
-import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedPagerFragment
+import com.example.savelifeapp.ui.account.HistoryDonorActivity
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedViewModel
+import com.example.savelifeapp.utils.UiState
 import com.example.savelifeapp.utils.toast
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 import java.net.URLEncoder
 
 
 @AndroidEntryPoint
 class ConfirmationActivity : AppCompatActivity() {
 
-    private val viewModels: RequestViewModel by viewModels()
+    private val viewModels: ReceivedViewModel by viewModels()
+    private lateinit var auth: FirebaseAuth
+    private lateinit var calonPendonor: CalonPendonor
+    private lateinit var history: HistoryDonors
     private lateinit var binding: ActivityConfirmationBinding
+    private lateinit var received: Received
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        var received: Received? = intent.getParcelableExtra("data_request")
+        received = intent.getParcelableExtra("data_request")!!
         binding.apply {
             Picasso.get().load(received?.image).into(imgRecived)
-            namePasie.text = received?.name
+            namePengirim.text = received?.name
             riLocation.text = received?.lokasi
             idGol.text = received?.golDarah
             idKeteranganReq.text = received?.keterangan
 
-
             imgBack.setOnClickListener {
                 onBackPressed()
             }
+
+            observer()
+
+//            btnSudah.setOnClickListener {
+//                viewModels.buatRiwayat(
+//                    createHitory(),
+//                    received?.id.toString(),
+//                    received.name.toString()
+//                )
+
+
+//            }
 
             intentWa.setOnClickListener {
                 try {
@@ -78,7 +93,6 @@ class ConfirmationActivity : AppCompatActivity() {
             }
         }
 //        update room ketika
-
         val calonPendnor = RoomAppDb.getAppDatabase(this)?.pendonorDao()
         val list = calonPendnor?.getPendonorData()
         val filter = list?.filter {
@@ -87,8 +101,12 @@ class ConfirmationActivity : AppCompatActivity() {
 
 //        val result = filter?.get(0)
 //        toast(result.toString())
-
         binding.btnBatal.setOnClickListener {
+            viewModels.tolakRequest(
+                getUpdateObj(),
+                received?.idPengirim.toString(),
+                received?.id.toString(),
+            )
 //            val id = received?.id.toString()
 //            val name = result?.name.toString()
 //            val idRequest = result?.idRequest.toString()
@@ -101,10 +119,45 @@ class ConfirmationActivity : AppCompatActivity() {
                     "Ditolak"
                 )
             )
+            viewModels.tolakRequest(
+                getUpdateObj(),
+                received?.idPengirim.toString(),
+                received?.id.toString(),
+            )
             finish()
         }
     }
-}
+//
+//    fun createHitory(): HistoryDonors {
+//        history = HistoryDonors(
+//            namaPasien = received.name,
+//        )
+//        return history
+//    }
 
-//this for creating api
+
+    fun observer() {
+        viewModels.buatRiwayat.observe(this) { state ->
+            when (state) {
+                is UiState.Loading -> {
+                    toast("Loading dulu ya")
+                }
+                is UiState.Failure -> {
+                    toast(state.error)
+                }
+                is UiState.Success -> {
+                    toast(state.data)
+                }
+            }
+        }
+    }
+
+    fun getUpdateObj(): CalonPendonor {
+        auth = FirebaseAuth.getInstance()
+        calonPendonor = CalonPendonor(
+            idPendonor = auth.currentUser?.uid.toString()
+        )
+        return calonPendonor
+    }
+}
 

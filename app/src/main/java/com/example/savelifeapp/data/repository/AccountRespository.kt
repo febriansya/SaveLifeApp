@@ -1,9 +1,7 @@
 package com.example.savelifeapp.data.repository
 
-import com.example.savelifeapp.data.model.CalonPendonor
-import com.example.savelifeapp.data.model.Received
-import com.example.savelifeapp.data.model.CreateRequest
-import com.example.savelifeapp.data.model.UsersApp
+import com.example.savelifeapp.data.model.*
+import com.example.savelifeapp.ui.account.HistoryAdapter
 import com.example.savelifeapp.ui.request.viewpager.detailRequest.CalonPendonorRequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedAdapter
@@ -64,4 +62,32 @@ interface AccountRespository {
         idRequest: String
     )
 
+    //    update account setings
+    suspend fun UpdateAccount(
+        arrayList: UsersApp,
+        result: (UiState<String>) -> Unit
+    )
+
+    //    create history Calon Pendonor
+//    suspend fun CreateHistory(
+//        historyDonors: HistoryDonors,
+//        idRequest: String,
+//        namaPasien: String,
+//    )
+
+    //    another option create history
+//    suspend fun RiwayatPendonor(
+//        historyDonors: HistoryDonors,
+//        idRequest: String,
+//        namaPasien: String,
+//        result: (UiState<String>) -> Unit
+//    )
+
+
+    //    getHistoryDonors
+    suspend fun getHistoryDonors(
+        historyDonors: ArrayList<HistoryDonors>,
+        adapter: HistoryAdapter,
+        result: (UiState<String>) -> Unit
+    )
 }

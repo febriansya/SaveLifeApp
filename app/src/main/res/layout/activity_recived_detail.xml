@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/detailReceived"
     android:layout_height="match_parent"
     tools:context=".ui.request.viewpager.receivedDetail.RecivedDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linearLayout7"
@@ -72,7 +77,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/namePasie"
+        android:id="@+id/namePengirim"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -112,10 +117,10 @@
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/icons8_whatsapp"
-        app:layout_constraintBottom_toBottomOf="@+id/namePasie"
+        app:layout_constraintBottom_toBottomOf="@+id/namePengirim"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/namePasie"
-        app:layout_constraintTop_toTopOf="@+id/namePasie" />
+        app:layout_constraintStart_toEndOf="@+id/namePengirim"
+        app:layout_constraintTop_toTopOf="@+id/namePengirim" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -137,58 +142,70 @@
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout10"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_keterangan_req">
+        <LinearLayout
+            android:id="@+id/linearLayout10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/showbukti">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_red"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Jadi Pendonor"
-            android:textAllCaps="false" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_red"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Jadi Pendonor"
+                android:textAllCaps="false" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_tolak"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_dark_grey"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Belum Bisa"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tolak"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_dark_grey"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Belum Bisa"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id_keterangan_req"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_abu"
+            android:fontFamily="@font/poppins_light"
+            android:padding="12dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
+            app:layout_constraintStart_toEndOf="@+id/imageView11"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
     <TextView
-        android:id="@+id/id_keterangan_req"
+        android:id="@+id/textView20"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/poppins_light"
-        android:background="@drawable/btn_abu"
-        android:padding="12dp"
-        android:textSize="14sp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Nama Pasien"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/id_keterangan_req"
+        app:layout_constraintStart_toStartOf="@+id/id_keterangan_req"
+        app:layout_constraintTop_toBottomOf="@+id/id_keterangan_req" />
 
     <TextView
         android:id="@+id/id_status"
@@ -202,4 +219,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/namePasie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView20"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <Button
+        android:id="@+id/showbukti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Show Bukti"
+        app:layout_constraintStart_toStartOf="@+id/namePasie"
+        app:layout_constraintTop_toBottomOf="@+id/namePasie" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

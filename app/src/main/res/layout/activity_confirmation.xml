@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/namePasie"
+        android:id="@+id/namePengirim"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -113,10 +113,10 @@
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/icons8_whatsapp"
-        app:layout_constraintBottom_toBottomOf="@+id/namePasie"
+        app:layout_constraintBottom_toBottomOf="@+id/namePengirim"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/namePasie"
-        app:layout_constraintTop_toTopOf="@+id/namePasie" />
+        app:layout_constraintStart_toEndOf="@+id/namePengirim"
+        app:layout_constraintTop_toTopOf="@+id/namePengirim" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -151,16 +151,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_keterangan_req">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_red"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Sudah Donor"
-            android:textAllCaps="false" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_sudah"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_margin="6dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btn_red"-->
+<!--            android:fontFamily="@font/poppins_semibold"-->
+<!--            android:text="Sudah Donor"-->
+<!--            android:textAllCaps="false" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_batal"
@@ -199,7 +199,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Success Menjadi Calon Pendonor silahkan pilih button sudah donor jika sudah melakukan donor"
+        android:text="Success Menjadi Calon Pendonor silahkan Hubungi Pasien Untuk melakukan donor"
         android:textColor="@color/teal_200"
         android:textColorHighlight="#0BC54F"
         app:layout_constraintEnd_toEndOf="parent"
