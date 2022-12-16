@@ -22,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
     val viewmodel: LoginViewModel by viewModels()
     //    this is fo firebase
 
-
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var fireStore: FirebaseFirestore
     private lateinit var binding: ActivityLoginBinding

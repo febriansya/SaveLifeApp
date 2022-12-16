@@ -74,6 +74,8 @@
     <string name="invalid_email">invalid email</string>
     <string name="invalid_password">password empty</string>
     <string name="password_invalid">psasword must more than 8</string>
+    <string name="pekerjaan_invalid">pekerjaan harus di isi</string>
+
     <string name="no_field">please input email and password</string>
     <string name="enter_name">masukan field nama</string>
     <string name="edit_nama">Edit nama pasien</string>

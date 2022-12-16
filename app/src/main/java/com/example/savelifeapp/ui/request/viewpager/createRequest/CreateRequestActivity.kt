@@ -69,8 +69,8 @@ class CreateRequestActivity : AppCompatActivity(),
         binding.uploadBukti.setOnClickListener {
             OpenGallery()
         }
-
         getImageFromUrl()
+
     }
 
     private fun getImageFromUrl() {
@@ -197,7 +197,9 @@ class CreateRequestActivity : AppCompatActivity(),
                         it.result.let {
                             filePath = it
                             toast("photo success upload")
+
 //                            binding.imageChange.setText(filePath.toString())
+
                         }
                     }
                 }

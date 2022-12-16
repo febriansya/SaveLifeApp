@@ -2,21 +2,18 @@ package com.example.savelifeapp.data.repository
 
 import android.content.Context
 import android.util.Log
-import com.example.savelifeapp.data.model.CalonPendonor
-import com.example.savelifeapp.data.model.CreateRequest
-import com.example.savelifeapp.data.model.Received
-import com.example.savelifeapp.data.model.UsersApp
+import com.example.savelifeapp.data.model.*
+import com.example.savelifeapp.ui.account.HistoryAdapter
 import com.example.savelifeapp.ui.request.viewpager.detailRequest.CalonPendonorRequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.myRequest.MrequestAdapter
 import com.example.savelifeapp.ui.request.viewpager.receivedRequest.ReceivedAdapter
 import com.example.savelifeapp.utils.UiState
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
-
 
 class AccountRepositoryImpl @Inject constructor(
     val database: FirebaseFirestore,
@@ -193,7 +190,7 @@ class AccountRepositoryImpl @Inject constructor(
                         calonPendonor.hone = users.hone
                         calonPendonor.idAccRequest = idRequestPeminta
                         calonPendonor.status = "Bersedia"
-                        calonPendonorDelete = users.id
+                        calonPendonorDelete = users.idPendonor
                         val document =
                             database.collection("Request").document(idUserPeminta)
                                 .collection("MyRequest").document(idRequestPeminta)
@@ -248,7 +245,7 @@ class AccountRepositoryImpl @Inject constructor(
                         calonPendonor.hone = users.hone
                         calonPendonor.idAccRequest = idRequestPeminta
                         calonPendonor.status = "Menolak"
-                        calonPendonorDelete = users.id
+                        calonPendonorDelete = users.idPendonor
                         val document =
                             database.collection("Request").document(idUserPeminta)
                                 .collection("MyRequest").document(idRequestPeminta)
@@ -266,7 +263,6 @@ class AccountRepositoryImpl @Inject constructor(
                         }
                     }
                 }
-
             })
     }
 
@@ -277,7 +273,6 @@ class AccountRepositoryImpl @Inject constructor(
         adapter: CalonPendonorRequestAdapter,
         result: (UiState<List<CalonPendonor>>) -> Unit
     ) {
-
         val document =
             database.collection("Request").document(auth.currentUser?.uid.toString())
                 .collection("MyRequest").document(idRequest)
@@ -285,7 +280,8 @@ class AccountRepositoryImpl @Inject constructor(
                     if (it.isSuccessful) {
 //                    tampilakan calon pendonor berdasarkan id MyRequset
                         val calonPendonor = database.collectionGroup("CalonPendonor")
-                            .whereEqualTo("idAccRequest", idRequest).whereEqualTo("status","Bersedia")
+                            .whereEqualTo("idAccRequest", idRequest)
+                            .whereEqualTo("status", "Bersedia")
                             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                                 override fun onEvent(
                                     value: QuerySnapshot?,
@@ -317,7 +313,6 @@ class AccountRepositoryImpl @Inject constructor(
         val darahCurrent =
             Firebase.firestore.collection("UserApp").document(currentUser)
         darahCurrent.get().addOnCompleteListener {
-
             if (it.isSuccessful) {
                 darahku = it.result.getString("golDarah").toString()
 //                menggunakan collectionn group karena mengakses subcollection
@@ -345,6 +340,7 @@ class AccountRepositoryImpl @Inject constructor(
     }
 
 
+    //    ini sebenarnya bisa tapi pake adapter
     override suspend fun StatusCalonPendonor(
         arrayList: ArrayList<CalonPendonor>,
         idRequest: String
@@ -402,8 +398,78 @@ class AccountRepositoryImpl @Inject constructor(
             }
     }
 
-//    history Donor create collection History
+    //    history Donor create collection History
+//    only cant insert one array belum menemukan cara
+//    override suspend fun CreateHistory(
+//        historyDonors: HistoryDonors,
+//        idRequest: String,
+//        namaPasien: String
+//    ) {
+//        val id = auth.currentUser?.uid.toString()
+//        historyDonors.idPasien = idRequest
+//        historyDonors.idPendonor = id
+//        historyDonors.namaPasien = namaPasien
+//        historyDonors.tglDonor = Timestamp.now()
+//        val v = listOf<HistoryDonors>(historyDonors)
+//        val his = ListHistoryDonor(
+//            v
+//        )
+//        database.collection("HistoryDonor").document(id)
+//            .set(his)
+//            .addOnSuccessListener { Log.d("mas", "DocumentSnapshot successfully written!") }
+//            .addOnFailureListener { e -> Log.w("mas", "Error writing document", e) }
+//    }
 
+//    override suspend fun RiwayatPendonor(
+//        historyDonors: HistoryDonors,
+//        idRequest: String,
+//        namaPasien: String,
+//        result: (UiState<String>) -> Unit
+//    ) {
+//        val id = auth.currentUser?.uid.toString()
+//        historyDonors.idPasien = idRequest
+//        historyDonors.idPendonor = id
+//        historyDonors.namaPasien = namaPasien
+////        historyDonors.timesTamp = Timestamp.now()
+//        database.collection("HistoryDonor").document(id).collection("Riwayat").document(idRequest)
+//            .set(historyDonors)
+//            .addOnSuccessListener {
+//                result.invoke(
+//                    UiState.Success("Berhasil di tambahkan ke riwayat")
+//                )
+//            }.addOnFailureListener {
+//                result.invoke(
+//                    UiState.Failure(
+//                        it.localizedMessage
+//                    )
+//                )
+//            }
+//    }
 
-
+    override suspend fun getHistoryDonors(
+        historyDonors: ArrayList<HistoryDonors>,
+        adapter: HistoryAdapter,
+        result: (UiState<String>) -> Unit
+    ) {
+        val user = auth.currentUser?.uid.toString()
+        val history1 = database.collection("HistoryDonor").document(user)
+            .collection("Riwayat")
+//        val history =
+//            database.collectionGroup("Riwayat")
+//                .whereEqualTo("idPendonor", user)
+                .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                    override fun onEvent(
+                        value: QuerySnapshot?,
+                        error: FirebaseFirestoreException?
+                    ) {
+                        if (error != null) {
+                            return
+                        }
+                        for (dc: DocumentChange in value?.documentChanges!!) {
+                            historyDonors.add(dc.document.toObject(HistoryDonors::class.java))
+                        }
+                        adapter.notifyDataSetChanged()
+                    }
+                })
+    }
 }

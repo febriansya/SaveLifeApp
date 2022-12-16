@@ -151,16 +151,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_keterangan_req">
 
-        <Button
-            android:id="@+id/btn_sudah"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="6dp"
-            android:layout_weight="1"
-            android:background="@drawable/btn_red"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Sudah Donor"
-            android:textAllCaps="false" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_sudah"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_margin="6dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btn_red"-->
+<!--            android:fontFamily="@font/poppins_semibold"-->
+<!--            android:text="Sudah Donor"-->
+<!--            android:textAllCaps="false" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_batal"
@@ -199,7 +199,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Success Menjadi Calon Pendonor silahkan pilih button sudah donor jika sudah melakukan donor"
+        android:text="Success Menjadi Calon Pendonor silahkan Hubungi Pasien Untuk melakukan donor"
         android:textColor="@color/teal_200"
         android:textColorHighlight="#0BC54F"
         app:layout_constraintEnd_toEndOf="parent"

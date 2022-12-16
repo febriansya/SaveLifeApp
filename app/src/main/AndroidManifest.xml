@@ -13,7 +13,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveLifeApp">
         <activity
-            android:name=".ui.account.HistoryDonorActictiy"
+            android:name=".ui.request.viewpager.receivedRequest.SuccessDonorActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.account.ChangePwdActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.home.viepager.kegiatan.DetailKegiatanActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.account.HistoryDonorActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

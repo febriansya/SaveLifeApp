@@ -40,6 +40,7 @@ class RecivedDetailActivity : AppCompatActivity() {
     private lateinit var usersApp: UsersApp
     private lateinit var copyReceived: Received
     private lateinit var auth: FirebaseAuth
+    private lateinit var received:Received
 
     //    state shared preferences
     lateinit var preference: SharedPreferences
@@ -58,8 +59,7 @@ class RecivedDetailActivity : AppCompatActivity() {
         observer()
         observerTolak()
         val intent: Intent = intent
-
-        var received: Received? = intent.getParcelableExtra("data_request")
+        received = intent.getParcelableExtra("data_request")!!
 
         val calonPendnor = RoomAppDb.getAppDatabase(this)?.pendonorDao()
         val list = calonPendnor?.getPendonorData()
@@ -175,7 +175,7 @@ class RecivedDetailActivity : AppCompatActivity() {
     private fun getUpdateObj(): CalonPendonor {
         auth = FirebaseAuth.getInstance()
         calonPendonor = CalonPendonor(
-            id = auth.currentUser?.uid.toString(),
+            idPendonor = auth.currentUser?.uid.toString(),
         )
         return calonPendonor
     }
@@ -210,6 +210,7 @@ class RecivedDetailActivity : AppCompatActivity() {
                     toast(state.data)
                     val intent =
                         Intent(this@RecivedDetailActivity, ConfirmationActivity::class.java)
+                    intent.putExtra("data_request", received)
                     startActivity(intent)
                     finish()
                 }
@@ -230,7 +231,6 @@ class RecivedDetailActivity : AppCompatActivity() {
             true
         )
         builder.setBackgroundDrawable(getDrawable(R.drawable.background_showing))
-        builder.animationStyle
         builder.showAtLocation(this.findViewById(R.id.detailReceived), Gravity.CENTER, 0, 0)
         close.setOnClickListener {
             builder.dismiss()

@@ -5,12 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.savelifeapp.data.model.CalonPendonor
-import com.example.savelifeapp.data.model.Received
-import com.example.savelifeapp.data.model.UsersApp
+import com.example.savelifeapp.data.model.*
 import com.example.savelifeapp.data.repository.AccountRespository
 import com.example.savelifeapp.data.repository.AuthRepository
 import com.example.savelifeapp.data.repository.RequestRepository
+import com.example.savelifeapp.ui.account.HistoryAdapter
 import com.example.savelifeapp.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -39,6 +38,17 @@ class ReceivedViewModel @Inject constructor(
     private val _tolakRequest = MutableLiveData<UiState<String>>()
     val tolakRequest: LiveData<UiState<String>>
         get() = _tolakRequest
+
+
+    private val _showHistory = MutableLiveData<UiState<String>>()
+    val showHistory: LiveData<UiState<String>>
+        get() = _showHistory
+
+
+    private val _buatRiwayat = MutableLiveData<UiState<String>>()
+    val buatRiwayat: LiveData<UiState<String>>
+        get() = _buatRiwayat
+
 
     fun getReceivedData(
         arrayList: ArrayList<Received>,
@@ -86,6 +96,40 @@ class ReceivedViewModel @Inject constructor(
                 calonPendonor, idUserPeminta, idRequestPeminta
             ) {
                 _tolakRequest.value = it
+            }
+        }
+    }
+
+//    fun sudahDonor(
+//        historyDonors: HistoryDonors,
+//        idRequest: String,
+//        namaPasien: String
+//    ) {
+//        viewModelScope.launch {
+//            accountRepository.CreateHistory(historyDonors, idRequest, namaPasien)
+//        }
+//    }
+
+//    fun buatRiwayat(
+//        historyDonors: HistoryDonors,
+//        idRequest: String,
+//        namaPasien: String,
+//    ) {
+//        viewModelScope.launch {
+//            accountRepository.RiwayatPendonor(historyDonors, idRequest, namaPasien) {
+//                _buatRiwayat.value = it
+//            }
+//        }
+//    }
+
+
+    fun showMyHistory(
+        historyDonors: ArrayList<HistoryDonors>,
+        adapter: HistoryAdapter
+    ) {
+        viewModelScope.launch {
+            accountRepository.getHistoryDonors(historyDonors, adapter) {
+                _showHistory.value = it
             }
         }
     }

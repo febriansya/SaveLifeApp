@@ -153,7 +153,8 @@ class SignUpActivity : AppCompatActivity() {
             hone = binding.edtPhone.text.toString(),
             address = binding.edtAddress.text.toString(),
             data = binding.textdate?.text.toString(),
-            image = filepath.toString()
+            image = filepath.toString(),
+            pekerjaan = binding.edtPekerjaan?.text.toString()
         )
     }
 
@@ -202,7 +203,7 @@ class SignUpActivity : AppCompatActivity() {
         when {
             binding.edtAddress.text.isNullOrEmpty() && binding.edtName.text.isNullOrEmpty() &&
                     binding.edtEmail.text.isNullOrEmpty() && binding.textdate?.text.isNullOrEmpty() && binding.autoCompleteText.text.isNullOrEmpty()
-                    && binding.edtPassword.text.isNullOrEmpty() -> {
+                    && binding.edtPassword.text.isNullOrEmpty()  && binding.edtPekerjaan?.text.isNullOrEmpty()-> {
                 toast(getString(R.string.all_fill_must_input))
                 isValid = false
                 return isValid
@@ -242,6 +243,12 @@ class SignUpActivity : AppCompatActivity() {
                 toast(getString(R.string.password_invalid))
                 return isValid
             }
+            binding.edtPekerjaan?.text.toString().isEmpty() ->{
+                isValid = false
+                toast(getString(R.string.pekerjaan_invalid))
+                return isValid
+            }
+
         }
         return isValid
     }

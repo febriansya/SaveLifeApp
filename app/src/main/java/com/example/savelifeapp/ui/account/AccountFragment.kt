@@ -1,18 +1,13 @@
 package com.example.savelifeapp.ui.account
 
-import android.app.Activity
-import android.content.ContentProvider
-import android.content.ContentResolver
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.savelifeapp.data.model.Profile
@@ -22,16 +17,17 @@ import com.example.savelifeapp.ui.login.LoginActivity
 import com.example.savelifeapp.ui.login.LoginViewModel
 import com.example.savelifeapp.utils.UiState
 import com.example.savelifeapp.utils.toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.ByteArrayOutputStream
-import java.io.IOException
 import java.util.*
+
 
 @AndroidEntryPoint
 class AccountFragment : Fragment() {
@@ -80,7 +76,6 @@ class AccountFragment : Fragment() {
             viewmodel.logout()
         }
 
-
         val currentUser = auth.currentUser?.uid.toString()
         val userAppColection = Firebase.firestore.collection("UserApp").document(currentUser)
         userAppColection.get().addOnCompleteListener { task ->
@@ -96,13 +91,37 @@ class AccountFragment : Fragment() {
                 val intent = Intent(requireContext(), UpdateAccountActivity::class.java)
                 startActivity(intent)
             }
+
+            tvChangedpw.setOnClickListener {
+                val intent = Intent(requireContext(),ChangePwdActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         binding.btnRiawayat.setOnClickListener {
-            val intent = Intent(requireActivity(), HistoryDonorActictiy::class.java)
+            val intent = Intent(requireActivity(), HistoryDonorActivity::class.java)
             startActivity(intent)
         }
 
+        val userCurrent = auth.currentUser?.uid.toString()
+
+
+//        hitung berapa kali donor berdasarkan history donor
+        mFirebaseDatabaseInstance!!.collection("HistoryDonor").document(userCurrent)
+            .collection("Riwayat")
+//            .whereEqualTo("idPendonor", userCurrent)
+            .get()
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot?> { task ->
+                if (task.isSuccessful) {
+                    var count = 0
+                    for (document in task.result) {
+                        count++
+                    }
+                    binding.textView17.setText(count.toString())
+                } else {
+                    Log.d("errror", "Error getting documents: ", task.exception)
+                }
+            })
     }
 
     private fun observer() {

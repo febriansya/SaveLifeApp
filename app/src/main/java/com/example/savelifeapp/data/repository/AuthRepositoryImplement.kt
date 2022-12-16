@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 
-
 class AuthRepositoryImplement(
     val auth: FirebaseAuth,
     val database: FirebaseFirestore,
