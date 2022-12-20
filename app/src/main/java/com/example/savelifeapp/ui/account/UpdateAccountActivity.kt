@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,7 @@ class UpdateAccountActivity : AppCompatActivity() {
     private var storageRef: FirebaseStorage? = null
     private var userAuth: FirebaseAuth? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateAccountBinding.inflate(layoutInflater)
@@ -61,9 +63,7 @@ class UpdateAccountActivity : AppCompatActivity() {
             textDate()
         }
 
-        binding.imageChange.setOnClickListener {
-            OpenGallery()
-        }
+        binding.imgSrc.setVisibility(View.GONE);
     }
 
     //    Update Profile
@@ -144,7 +144,8 @@ class UpdateAccountActivity : AppCompatActivity() {
             binding.edtPhone.setText(user?.hone)
             binding.edtAdress.setText(user?.address)
             binding.textdate.setText(user?.data)
-            binding.imageChange.setText(user?.image)
+            binding.imgSrc.setText(user?.image)
+
         }
     }
 
@@ -156,7 +157,7 @@ class UpdateAccountActivity : AppCompatActivity() {
             golDarah = binding.choose.text.toString(),
             hone = binding.edtPhone.text.toString(),
             data = binding.textdate.text.toString(),
-            image = filePath.toString()
+            image = binding.imgSrc.text.toString()
         )
         return userApp
     }

@@ -35,7 +35,6 @@ class DetailKegiatanActivity : AppCompatActivity() {
             namaKegiatan.text = received.nameKegiatan
             lokasiKegiatan.text= received.lokasiKegiatan
 
-
             val timestamp = received.timeStamp as com.google.firebase.Timestamp
             val milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
             val sdf = SimpleDateFormat("MM/dd/yyyy")

@@ -1,6 +1,8 @@
 package com.example.savelifeapp.data.repository
 
+import com.example.savelifeapp.data.model.Bantu
 import com.example.savelifeapp.data.model.Kegiatan
+import com.example.savelifeapp.ui.home.viepager.bantu.BantuAdapater
 import com.example.savelifeapp.ui.home.viepager.kegiatan.KegiatanAdapater
 import com.example.savelifeapp.utils.UiState
 import com.google.firebase.auth.FirebaseAuth
@@ -15,8 +17,6 @@ class HomeRepositotyImpl @Inject constructor(
     val auth: FirebaseAuth,
     val database: FirebaseFirestore,
 ) : HomeRepository {
-
-
     override suspend fun getKegiatan(
         arrayList: ArrayList<Kegiatan>,
         adapter: KegiatanAdapater,
@@ -37,5 +37,26 @@ class HomeRepositotyImpl @Inject constructor(
                     adapter.notifyDataSetChanged()
                 }
             })
+    }
+
+    override suspend fun getAllPasien(
+        arrayList: ArrayList<Bantu>,
+        adapter: BantuAdapater,
+        result: (UiState<List<Bantu>>) -> Unit
+    ) {
+        database.collectionGroup("MyRequest")
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if (error != null) {
+                    result.invoke(UiState.Failure(error.message.toString()))
+                    return
+                }
+                for (dc: DocumentChange in value?.documentChanges!!) {
+                    arrayList.add(dc.document.toObject(Bantu::class.java))
+                    result.invoke(UiState.Success(arrayList.filterNotNull()))
+                }
+                adapter.notifyDataSetChanged()
+            }
+        })
     }
 }

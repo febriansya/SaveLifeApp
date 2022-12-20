@@ -46,7 +46,6 @@ class KegiatanAdapater(
         val dat = sdf.format(netDate).toString()
         holder.tanggalKegiatan.text = dat
         Picasso.get().load(data.img).into(holder.imgPhoto)
-
         holder.itemView.setOnClickListener {
             listener.itemClicked(data)
         }

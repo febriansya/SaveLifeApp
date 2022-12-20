@@ -102,7 +102,6 @@ class HomeFragment : Fragment() {
 
 
     private fun getProfile() {
-
         db.collection("UserApp").document(userCurrent.currentUser?.uid.toString())
             .get().addOnCompleteListener { task ->
                 if (task.isSuccessful) {

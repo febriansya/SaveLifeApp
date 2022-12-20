@@ -104,7 +104,7 @@ class SignUpActivity : AppCompatActivity() {
             email = binding.edtEmail.text.toString()
             password = binding.edtPassword.text.toString()
             golDarah = binding.autoCompleteText.text.toString()
-            phone = binding.edtPhone.text.toString()
+            phone = binding.edtPhone?.text.toString()
             address = binding.edtAddress.text.toString()
             data = binding.textdate?.text.toString()
             image = binding.imgProfile.toString()
@@ -150,7 +150,7 @@ class SignUpActivity : AppCompatActivity() {
             password = binding.edtPassword.text.toString(),
             golDarah = binding.autoCompleteText.text.toString(),
 //            phone wa
-            hone = binding.edtPhone.text.toString(),
+            hone = binding.edtPhone?.text.toString(),
             address = binding.edtAddress.text.toString(),
             data = binding.textdate?.text.toString(),
             image = filepath.toString(),

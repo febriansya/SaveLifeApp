@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/detailBantu"
+    tools:context=".ui.home.viepager.bantu.DetailBantuActivity">
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Pengirim : "
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/name_pengirim"
+        app:layout_constraintStart_toStartOf="@+id/textView34"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Nama Pasien : "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <TextView
+        android:id="@+id/name_pengirim"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView32"
+        app:layout_constraintEnd_toStartOf="@+id/wa_detail"
+        app:layout_constraintStart_toEndOf="@+id/textView32"
+        app:layout_constraintTop_toTopOf="@+id/textView32" />
+
+    <TextView
+        android:id="@+id/name_pasien"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView34"
+        app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView33"
+        app:layout_constraintEnd_toStartOf="@+id/textView33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView33"
+        app:srcCompat="@drawable/ic_location" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Lokasi Pasien"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+    <TextView
+        android:id="@+id/id_lokasi_pasien"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/textView33"
+        app:layout_constraintStart_toStartOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        app:layout_constraintTop_toBottomOf="@+id/id_lokasi_pasien"
+        app:srcCompat="@drawable/ic_baseline_bloodtype_24" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Darah Yang Di Butuhkan"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+    <TextView
+        android:id="@+id/gol_darah"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/textView37"
+        app:layout_constraintStart_toStartOf="@+id/textView37"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+    <TextView
+        android:id="@+id/keterangan_pasien"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey_dark"
+        android:backgroundTint="@color/grey_dark"
+        android:fontFamily="@font/poppins_light"
+        android:padding="12dp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/gol_darah"
+        app:layout_constraintStart_toStartOf="@+id/gol_darah"
+        app:layout_constraintTop_toBottomOf="@+id/gol_darah" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/icon_asli_background"
+        android:text="Lihat Bukti"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@+id/keterangan_pasien"
+        app:layout_constraintTop_toBottomOf="@+id/keterangan_pasien" />
+
+    <ImageView
+        android:id="@+id/wa_detail"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/name_pengirim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/name_pengirim"
+        app:srcCompat="@drawable/icons8_whatsapp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

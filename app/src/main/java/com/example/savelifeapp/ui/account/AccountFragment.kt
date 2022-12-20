@@ -1,8 +1,11 @@
 package com.example.savelifeapp.ui.account
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,12 +29,14 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.util.*
 
 
 @AndroidEntryPoint
 class AccountFragment : Fragment() {
-
+    lateinit var filePath: Uri
     private var objUser: UsersApp? = null
 
     companion object {
@@ -96,6 +101,10 @@ class AccountFragment : Fragment() {
                 val intent = Intent(requireContext(),ChangePwdActivity::class.java)
                 startActivity(intent)
             }
+
+            imgProfile.setOnClickListener {
+                OpenGallery()
+            }
         }
 
         binding.btnRiawayat.setOnClickListener {
@@ -137,4 +146,55 @@ class AccountFragment : Fragment() {
             }
         }
     }
+
+    fun OpenGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    private fun uploadImage(imgBitmap: Bitmap) {
+        val baos = ByteArrayOutputStream()
+        val ref = storageRef?.reference?.child("img")?.child("${UUID.randomUUID()}")
+        imgBitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+        val image = baos.toByteArray()
+        ref?.putBytes(image)
+            ?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    ref.downloadUrl.addOnCompleteListener {
+                        it.result.let {
+                            filePath = it
+                           binding.imgProfile.setImageBitmap(imgBitmap)
+//
+//                            binding.imageChange.setText(filePath.toString())
+                        }
+//                        ganti image disini boss
+                        mFirebaseDatabaseInstance!!.collection("UserApp").document(auth.currentUser!!.uid)
+                            .update("image",filePath)
+                    }
+                }
+            }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+            if (data == null || data.data == null) {
+                return
+            }
+            filePath = data.data!!
+            try {
+                val bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, filePath)
+                uploadImage(bitmap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+
+
+
+
+
 }

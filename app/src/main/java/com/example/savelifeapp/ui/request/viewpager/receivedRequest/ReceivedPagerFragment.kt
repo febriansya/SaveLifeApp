@@ -44,7 +44,7 @@ class ReceivedPagerFragment() : Fragment(), RecylerViewClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         database = FirebaseFirestore.getInstance()
-        auth  = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         rvReceived = view.findViewById(R.id.rv_received)
         rvReceived.layoutManager = LinearLayoutManager(requireContext())
@@ -94,39 +94,20 @@ class ReceivedPagerFragment() : Fragment(), RecylerViewClickListener {
          *
          * */
 
-        val idPendonor  = auth.currentUser?.uid.toString()
+        val idPendonor = auth.currentUser?.uid.toString()
         val arrayList: ArrayList<CalonPendonor> = arrayListOf()
 
-        val getHisotyDonors = database.collectionGroup("CalonPendonor").whereEqualTo("idAccRequest",received.id).get()
-            .addOnSuccessListener {
-                   val tes =  it.toObjects(CalonPendonor::class.java)
-                   val fill1 = tes.filter {
-                       it.idPendonor == idPendonor
-                   }
-            val status  = fill1.get(0).status.toString()
-//                cek status kondisi pendonor
-                if (status == "SudahDonor") {
-//                    arahkan ke succes donor page
-                    toast("otwbuat intent")
-                    val intent = Intent(requireContext(),SuccessDonorActivity::class.java)
-                    startActivity(intent)
-                }else{
-//                    cek apakah sebelumnya user sudah menekan tombol button menjadi pendonor
-                    if (list?.isEmpty() == true) {
-                        val intent = Intent(
-                            requireContext(),
-                            RecivedDetailActivity::class.java
-                        )
-                        intent.putExtra("data_request", received)
-                        startActivity(intent)
-                    } else {
-                        val filter = list?.filter {
-                            it.idRequest == received.id
-                        }
-                        Log.d("filter", filter.toString())
-
-//            cek jika user belum klik jadi pendonor maka niali filter akan kosong kalau sudah lanjut ke else
-                        if (filter?.isEmpty() == true) {
+        val getHisotyDonors =
+            database.collectionGroup("CalonPendonor").whereEqualTo("idAccRequest", received.id)
+                .get()
+                .addOnSuccessListener {
+                    val tes = it.toObjects(CalonPendonor::class.java)
+                    val fill1 = tes.filter {
+                        it.idPendonor == idPendonor
+                    }
+                    if (fill1.isNullOrEmpty()) {
+                        //                    cek apakah sebelumnya user sudah menekan tombol button menjadi pendonor
+                        if (list?.isEmpty() == true) {
                             val intent = Intent(
                                 requireContext(),
                                 RecivedDetailActivity::class.java
@@ -134,31 +115,103 @@ class ReceivedPagerFragment() : Fragment(), RecylerViewClickListener {
                             intent.putExtra("data_request", received)
                             startActivity(intent)
                         } else {
+                            val filter = list?.filter {
+                                it.idRequest == received.id
+                            }
+                            Log.d("filter", filter.toString())
 
-//                ambil data dari filter dengan id request
-                            val idFromFilter = filter?.get(0)
-                            val finalId = idFromFilter?.idRequest
-
-//                cek apakah yang di klik dengan final id sama posisi disesuaikan dengan item yang di klik
-                            if (received.id == finalId && idFromFilter?.status == "Bisa") {
-                                val intent = Intent(
-                                    requireContext(),
-                                    ConfirmationActivity::class.java
-                                )
-                                intent.putExtra("data_request", received)
-                                startActivity(intent)
-                            } else {
-//                    arahkan ke detail
+//            cek jika user belum klik jadi pendonor maka niali filter akan kosong kalau sudah lanjut ke else
+                            if (filter?.isEmpty() == true) {
                                 val intent = Intent(
                                     requireContext(),
                                     RecivedDetailActivity::class.java
                                 )
                                 intent.putExtra("data_request", received)
                                 startActivity(intent)
+                            } else {
+
+//                ambil data dari filter dengan id request
+                                val idFromFilter = filter?.get(0)
+                                val finalId = idFromFilter?.idRequest
+
+//                cek apakah yang di klik dengan final id sama posisi disesuaikan dengan item yang di klik
+                                if (received.id == finalId && idFromFilter?.status == "Bisa") {
+                                    val intent = Intent(
+                                        requireContext(),
+                                        ConfirmationActivity::class.java
+                                    )
+                                    intent.putExtra("data_request", received)
+                                    startActivity(intent)
+                                } else {
+//                    arahkan ke detail
+                                    val intent = Intent(
+                                        requireContext(),
+                                        RecivedDetailActivity::class.java
+                                    )
+                                    intent.putExtra("data_request", received)
+                                    startActivity(intent)
+                                }
+                            }
+                        }
+                }else{
+                    val status  = fill1.get(0).status.toString()
+//                cek status kondisi pendonor
+                    if (status == "SudahDonor") {
+//                    arahkan ke succes donor page
+                        toast("Selamat Kamu Sudah Donor")
+                        val intent = Intent(requireContext(),SuccessDonorActivity::class.java)
+                        startActivity(intent)
+                    }else{
+//                    cek apakah sebelumnya user sudah menekan tombol button menjadi pendonor
+                        if (list?.isEmpty() == true) {
+                            val intent = Intent(
+                                requireContext(),
+                                RecivedDetailActivity::class.java
+                            )
+                            intent.putExtra("data_request", received)
+                            startActivity(intent)
+                        } else {
+                            val filter = list?.filter {
+                                it.idRequest == received.id
+                            }
+                            Log.d("filter", filter.toString())
+
+//            cek jika user belum klik jadi pendonor maka niali filter akan kosong kalau sudah lanjut ke else
+                            if (filter?.isEmpty() == true) {
+                                val intent = Intent(
+                                    requireContext(),
+                                    RecivedDetailActivity::class.java
+                                )
+                                intent.putExtra("data_request", received)
+                                startActivity(intent)
+                            } else {
+
+//                ambil data dari filter dengan id request
+                                val idFromFilter = filter?.get(0)
+                                val finalId = idFromFilter?.idRequest
+
+//                cek apakah yang di klik dengan final id sama posisi disesuaikan dengan item yang di klik
+                                if (received.id == finalId && idFromFilter?.status == "Bisa") {
+                                    val intent = Intent(
+                                        requireContext(),
+                                        ConfirmationActivity::class.java
+                                    )
+                                    intent.putExtra("data_request", received)
+                                    startActivity(intent)
+                                } else {
+//                    arahkan ke detail
+                                    val intent = Intent(
+                                        requireContext(),
+                                        RecivedDetailActivity::class.java
+                                    )
+                                    intent.putExtra("data_request", received)
+                                    startActivity(intent)
+                                }
                             }
                         }
                     }
                 }
-                }
             }
+                }
+
 }

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,11 +55,29 @@ class DetailMyRequestActivity : AppCompatActivity(),CalonPendonorClickListener {
         }
 
         binding.btnDelete.setOnClickListener {
-            lifecycleScope.launch {
-                if (request != null) {
-                    viewModels.deleteRequest(request, request.id.toString())
+
+            val builder = AlertDialog.Builder(this@DetailMyRequestActivity)
+            builder.setMessage("Are you sure you want to Delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    lifecycleScope.launch {
+                        if (request != null) {
+                            viewModels.deleteRequest(request, request.id.toString())
+                        }
+                    }
                 }
-            }
+                .setNegativeButton("No") { dialog, id ->
+                    // Dismiss the dialog
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+
+//            lifecycleScope.launch {
+//                if (request != null) {
+//                    viewModels.deleteRequest(request, request.id.toString())
+//                }
+//            }
         }
         binding.back.setOnClickListener {
             onBackPressed()
