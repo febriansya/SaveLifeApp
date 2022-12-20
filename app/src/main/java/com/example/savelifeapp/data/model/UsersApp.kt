@@ -11,7 +11,7 @@ data class UsersApp(
     val hone: String? = null,
     val address: String? = null,
     val data: String? = null,
-    val image: String? = "",
+    var image: String? = "",
     val pekerjaan:String = "",
 //    val myRequest:List<CreateRequest>
 )

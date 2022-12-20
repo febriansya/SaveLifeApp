@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveLifeApp">
         <activity
+            android:name=".ui.home.viepager.bantu.DetailBantuActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.request.viewpager.receivedRequest.SuccessDonorActivity"
             android:exported="false">
             <meta-data

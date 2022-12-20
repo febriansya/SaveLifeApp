@@ -1,4 +1,4 @@
-package com.example.savelifeapp.ui.home.viepager.bantu
+package com.example.savelifeapp.ui.search
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,45 +8,43 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.Bantu
-import com.example.savelifeapp.data.model.Kegiatan
 import com.squareup.picasso.Picasso
 
-class BantuAdapater(private val Bantu: ArrayList<Bantu> ,private val listener: DetailBantuListener
-) :
-    RecyclerView.Adapter<BantuAdapater.ListViewHolder>() {
-
+class AdapterSearch(
+    private val listBantuSearch: ArrayList<Bantu>,
+    private val listener: SearchFragment
+) : RecyclerView.Adapter<AdapterSearch.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_recived)
         var namaPasien: TextView = itemView.findViewById(R.id.tv_nama_pasien_bantu)
-        var golDarah: TextView = itemView.findViewById(R.id.tv_gol_pasien_bantu)
         var lokasiPasien: TextView = itemView.findViewById(R.id.tv_lokasi_pasien_bantu)
+        var golDarahPasien: TextView = itemView.findViewById(R.id.gol_darah_pasien)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_home_bantu, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_search_view, parent, false)
         return ListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val bantu:Bantu = Bantu[position]
-        holder.namaPasien.text = bantu.name
-        holder.golDarah.text = bantu.golDarah
-        holder.lokasiPasien.text = bantu.lokasi
-        Picasso.get().load(bantu.image).into(holder.imgPhoto)
+        val data:Bantu  = listBantuSearch[position]
+        holder.namaPasien.text = data.name
+        holder.golDarahPasien.text = data.golDarah
+        holder.lokasiPasien.text = data.lokasi
+        Picasso.get().load(data.image).into(holder.imgPhoto)
 
         holder.itemView.setOnClickListener {
-            listener.itemClicked(bantu)
+            listener.itemClicked(data)
         }
-
-//        holder.imgPhoto.setImageResource(bant)
     }
 
     override fun getItemCount(): Int {
-        return Bantu.size
+       return listBantuSearch.size
     }
 }
 
-interface DetailBantuListener {
+
+interface DetailSearchListener {
     fun itemClicked(bantu: Bantu)
 }
