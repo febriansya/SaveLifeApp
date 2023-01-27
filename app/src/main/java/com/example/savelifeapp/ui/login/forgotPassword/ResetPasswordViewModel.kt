@@ -18,12 +18,24 @@ class ResetPasswordViewModel @Inject constructor(
         get() = _forgotPassword
 
 
-    fun forgetPassword(email: String) {
+    private val _updatePassword = MutableLiveData<UiState<String>>()
+    val updatePassword: LiveData<UiState<String>>
+        get() = _updatePassword
+
+
+    fun ResetPassword(email: String) {
         _forgotPassword.value = UiState.Loading
         authRepository.forgotPassword(email) {
             _forgotPassword.value = it
         }
     }
 
+
+    fun UpdatePassword(password:String){
+        _updatePassword.value = UiState.Loading
+        authRepository.updatePassword(password){
+            _updatePassword.value = it
+        }
+    }
 
 }

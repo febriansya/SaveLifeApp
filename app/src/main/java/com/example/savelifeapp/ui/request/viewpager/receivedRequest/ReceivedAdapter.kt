@@ -1,7 +1,6 @@
 package com.example.savelifeapp.ui.request.viewpager.receivedRequest
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savelifeapp.R
-import com.example.savelifeapp.data.db.RoomAppDb
 import com.example.savelifeapp.data.model.Received
 import com.squareup.picasso.Picasso
 
@@ -28,7 +26,6 @@ class ReceivedAdapter(
     }
 
     lateinit var listener: RecylerViewClickListener
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_received, parent, false)
@@ -45,6 +42,7 @@ class ReceivedAdapter(
             listener.onItemClicked(it, Received[position])
         }
 
+        
 //        when (idReceived) {
 //            "Bisa" -> {
 //                holder.status.text = "DITERIMA"
@@ -60,6 +58,7 @@ class ReceivedAdapter(
 //            }
 //        }
     }
+
 
     override fun getItemCount(): Int {
         return Received!!.size

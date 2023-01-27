@@ -75,7 +75,6 @@ class AccountFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         mFirebaseDatabaseInstance = FirebaseFirestore.getInstance()
         storageRef = FirebaseStorage.getInstance()
-
         observer()
         binding.logout.setOnClickListener {
             viewmodel.logout()

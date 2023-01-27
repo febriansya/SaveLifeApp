@@ -44,7 +44,6 @@ class AdapterSearch(
     }
 }
 
-
 interface DetailSearchListener {
     fun itemClicked(bantu: Bantu)
 }

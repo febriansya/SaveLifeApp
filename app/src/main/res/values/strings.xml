@@ -34,19 +34,19 @@
     <string-array name="onboarding_titles">
         <item>Donate To Others</item>
         <item>Find Blood Donors</item>
-        <item>Find Blood Donors</item>
+        <item>Easy To Get Information</item>
     </string-array>
 
     <string-array name="onboarding_texxt">
         <item>Setetes Darah Kita Berarti \n Bagi mereka</item>
         <item>Temukan Lokasi Kegiatan Donor \n dan Calon Pendonor</item>
-        <item>Temukan Lokasi Kegiatan Donor \n dan Calon Pendonor</item>
+        <item>Ketahui Informasi data stok darah \n serta informasi kegitatan donor</item>
     </string-array>
 
     <array name="imageOnBoarding">
         <item>@drawable/ob1</item>
         <item>@drawable/ob2</item>
-        <item>@drawable/ob1</item>
+        <item>@drawable/ob3</item>
     </array>
 
     <string-array name="blood_type">

@@ -26,7 +26,7 @@ import com.google.firebase.firestore.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment: Fragment(), DetailBantuListener {
+class SearchFragment : Fragment(), DetailBantuListener {
     private var _binding: FragmentSearchBinding? = null
     private lateinit var list: ArrayList<Bantu>
     lateinit var searchAdapater: BantuAdapater
@@ -50,7 +50,7 @@ class SearchFragment: Fragment(), DetailBantuListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        auth  = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
         super.onViewCreated(view, savedInstanceState)
         observe()
@@ -58,11 +58,11 @@ class SearchFragment: Fragment(), DetailBantuListener {
         rvSearch.setHasFixedSize(true)
         rvSearch.layoutManager = LinearLayoutManager(requireContext())
         list = arrayListOf()
-        searchAdapater = BantuAdapater(list,this)
+        searchAdapater = BantuAdapater(list, this)
         rvSearch.adapter = searchAdapater
-        viewModel.getBantuPasien(list,searchAdapater)
+//        viewModel.getBantuPasien(list, searchAdapater)
 
-        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 //                call when press search button
                 searchData(query)
@@ -71,20 +71,24 @@ class SearchFragment: Fragment(), DetailBantuListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
 //             call when type
-                list.clear()
-                viewModel.getBantuPasien(list,searchAdapater)
+//                list.clear()
+//                viewModel.getBantuPasien(list,searchAdapater)
+                if (newText.isNullOrEmpty()) {
+                    list.clear()
+                    viewModel.getBantuPasien(list, searchAdapater)
+                }
                 return false
             }
         })
     }
 
     private fun searchData(s: String?) {
-        database.collectionGroup("MyRequest").whereEqualTo("name",s)
+        database.collectionGroup("MyRequest").whereEqualTo("name", s)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     list.clear()
                     if (error != null) {
-                       Log.d("search",error.toString())
+                        Log.d("search", error.toString())
                         return
                     }
                     for (dc: DocumentChange in value?.documentChanges!!) {
@@ -118,7 +122,7 @@ class SearchFragment: Fragment(), DetailBantuListener {
 
     override fun itemClicked(bantu: Bantu) {
         val intent = Intent(requireContext(), DetailBantuActivity::class.java)
-        intent.putExtra("data",bantu)
+        intent.putExtra("data", bantu)
         startActivity(intent)
     }
 }

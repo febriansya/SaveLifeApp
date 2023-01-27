@@ -14,7 +14,6 @@ class OnBoardingFragment : Fragment() {
 
     companion object {
         private const val ARG_POSITION = "ARG_POSITION"
-
         fun getInstance(position: Int) = OnBoardingFragment().apply {
             arguments = bundleOf(ARG_POSITION to position)
         }

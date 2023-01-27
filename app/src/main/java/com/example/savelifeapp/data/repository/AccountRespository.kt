@@ -90,4 +90,7 @@ interface AccountRespository {
         adapter: HistoryAdapter,
         result: (UiState<String>) -> Unit
     )
+
+
+
 }

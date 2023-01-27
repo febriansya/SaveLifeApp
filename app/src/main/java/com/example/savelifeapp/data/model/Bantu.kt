@@ -10,7 +10,7 @@ data class Bantu(
     val namaPengirim:String? = "",
     val name: String? = "",
     val golDarah: String? = "",
-    val lokasi: String? = "",
+    val lokasi: String? = "", 
     val keterangan: String? = "",
     val image: String? = null,
     val whatsapp: String? = null,

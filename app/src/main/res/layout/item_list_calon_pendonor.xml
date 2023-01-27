@@ -33,11 +33,12 @@
 
     <TextView
         android:id="@+id/alamat_calon_pendonor"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="Alamat Calon Pendonor"
         android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_image"
         app:layout_constraintStart_toStartOf="@+id/nama_calon_pendonor"
         app:layout_constraintTop_toBottomOf="@+id/nama_calon_pendonor" />
 

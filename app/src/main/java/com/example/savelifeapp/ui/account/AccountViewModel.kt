@@ -32,7 +32,7 @@ class AccountViewModel @Inject constructor(
     private val _updateAccount = MutableLiveData<UiState<String>>()
     val updateAccount: LiveData<UiState<String>>
         get() = _updateAccount
-
+    
     fun UpdateAccount(
         array: UsersApp
     ) {
