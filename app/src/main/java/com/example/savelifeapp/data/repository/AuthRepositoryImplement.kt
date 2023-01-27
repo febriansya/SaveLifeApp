@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
+import kotlinx.coroutines.currentCoroutineContext
 
 class AuthRepositoryImplement(
     val auth: FirebaseAuth,
@@ -117,5 +118,16 @@ class AuthRepositoryImplement(
 //                if emailnya belum terdaftar
                 result.invoke(UiState.Failure("Authentication failed, check email"))
             }
+    }
+
+    override fun updatePassword(password: String, result: (UiState<String>) -> Unit) {
+        val userCurret = auth.currentUser
+        userCurret?.updatePassword(password)?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                result.invoke(UiState.Success("Update password Success"))
+            } else {
+                result.invoke(UiState.Failure(it.exception?.message))
+            }
+        }
     }
 }

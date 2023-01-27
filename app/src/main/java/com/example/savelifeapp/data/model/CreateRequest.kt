@@ -1,6 +1,7 @@
 package com.example.savelifeapp.data.model
 
 import android.os.Parcelable
+import com.google.firebase.Timestamp
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -14,5 +15,6 @@ data class CreateRequest(
     val keterangan: String? = "",
     val image: String? = null,
     val whatsapp: String? = "",
-    val photoBukti: String? = null
+    val photoBukti: String? = null,
+    val timeStamp:Timestamp?=null
 ) : Parcelable

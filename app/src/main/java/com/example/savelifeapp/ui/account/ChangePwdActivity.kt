@@ -1,11 +1,13 @@
 package com.example.savelifeapp.ui.account
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.savelifeapp.R
 import com.example.savelifeapp.data.model.UsersApp
 import com.example.savelifeapp.databinding.ActivityChangePwdBinding
+import com.example.savelifeapp.ui.login.LoginActivity
 import com.example.savelifeapp.ui.login.forgotPassword.ResetPasswordViewModel
 import com.example.savelifeapp.utils.*
 import com.google.firebase.auth.FirebaseAuth
@@ -15,27 +17,25 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ChangePwdActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityChangePwdBinding
-    private lateinit var auth:FirebaseAuth
-    private lateinit var database:FirebaseFirestore
+    private lateinit var binding: ActivityChangePwdBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseFirestore
     private lateinit var email: String
 
     val viewmodel: ResetPasswordViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //      deklrasi get instance
-        auth  = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
 
 //        get data
-        val data = database.collection("UserApp").document(auth.currentUser?.uid.toString()).get()
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    email = it.result.getString("email").toString()
-                    binding.edtMail.setText(email.toString())
-                }
-            }
-
+//        val data = database.collection("UserApp").document(auth.currentUser?.uid.toString()).get()
+//            .addOnCompleteListener {
+//                    email = it.result.getString("email").toString()
+//                    binding.edtMail.setText(email.toString())
+//                }
+//            }
 //        binding.edtMail.setText(email)
 
         binding = ActivityChangePwdBinding.inflate(layoutInflater)
@@ -50,7 +50,7 @@ class ChangePwdActivity : AppCompatActivity() {
             }
             btnSend.setOnClickListener {
                 if (validation()) {
-                    viewmodel.forgetPassword(binding.edtMail.text.toString())
+                    viewmodel.UpdatePassword(binding.edtPassword.text.toString())
                 }
             }
         }
@@ -58,7 +58,7 @@ class ChangePwdActivity : AppCompatActivity() {
 
 
     private fun observe() {
-        viewmodel.forgotPassword.observe(this) { state ->
+        viewmodel.updatePassword.observe(this) { state ->
             when (state) {
                 is UiState.Loading -> {
                 }
@@ -67,7 +67,10 @@ class ChangePwdActivity : AppCompatActivity() {
                 }
                 is UiState.Success -> {
                     toast(state.data)
-                    onBackPressed()
+                    val intent = Intent(this@ChangePwdActivity,LoginActivity::class.java)
+                    startActivity(intent)
+                    auth.signOut()
+                    finish()
                 }
             }
         }
@@ -75,14 +78,9 @@ class ChangePwdActivity : AppCompatActivity() {
 
     fun validation(): Boolean {
         var isValid = true
-        if (binding.edtMail.text.isNullOrEmpty()) {
+        if (binding.edtPassword.text.isNullOrEmpty()) {
             isValid = false
-            toast(getString(R.string.enter_email))
-        } else {
-            if (!binding.edtMail.text.toString().isValidEmail()) {
-                isValid = false
-                toast(getString(R.string.invalid_email))
-            }
+            toast("enter password")
         }
         return isValid
     }

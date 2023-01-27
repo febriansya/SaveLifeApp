@@ -21,6 +21,7 @@ import com.example.savelifeapp.databinding.ActivityCreateRequestBinding
 import com.example.savelifeapp.ui.HomeActivity
 import com.example.savelifeapp.utils.UiState
 import com.example.savelifeapp.utils.toast
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -49,7 +50,6 @@ class CreateRequestActivity : AppCompatActivity(),
     private lateinit var goldarah: String
     private var tampungValue = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateRequestBinding.inflate(layoutInflater)
@@ -70,7 +70,6 @@ class CreateRequestActivity : AppCompatActivity(),
             OpenGallery()
         }
         getImageFromUrl()
-
     }
 
     private fun getImageFromUrl() {
@@ -123,7 +122,8 @@ class CreateRequestActivity : AppCompatActivity(),
             keterangan = binding.edtKeteranganPasien.text.toString(),
             image = image,
             whatsapp = binding.edtWa.text.toString(),
-            photoBukti = filePath.toString()
+            photoBukti = filePath.toString(),
+            timeStamp = Timestamp.now()
         )
     }
 
@@ -174,15 +174,12 @@ class CreateRequestActivity : AppCompatActivity(),
         }
         return isValid
     }
-
-
     //    ini untuk proses upload bukti foto pasien
     fun OpenGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
-
     private fun uploadImage(imgBitmap: Bitmap) {
         val baos = ByteArrayOutputStream()
         val progres = ProgressDialog(this)
@@ -197,9 +194,7 @@ class CreateRequestActivity : AppCompatActivity(),
                         it.result.let {
                             filePath = it
                             toast("photo success upload")
-
 //                            binding.imageChange.setText(filePath.toString())
-
                         }
                     }
                 }

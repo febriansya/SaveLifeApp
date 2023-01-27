@@ -156,8 +156,6 @@ class AccountRepositoryImpl @Inject constructor(
                 )
             }
     }
-
-
     //TERIMA REQUEST
     override suspend fun acceptRequest(
         calonPendonor: CalonPendonor,
@@ -281,7 +279,7 @@ class AccountRepositoryImpl @Inject constructor(
 //                    tampilakan calon pendonor berdasarkan id MyRequset
                         val calonPendonor = database.collectionGroup("CalonPendonor")
                             .whereEqualTo("idAccRequest", idRequest)
-                            .whereEqualTo("status", "Bersedia")
+                            .whereNotEqualTo("status", "Menolak")
                             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                                 override fun onEvent(
                                     value: QuerySnapshot?,
@@ -319,6 +317,7 @@ class AccountRepositoryImpl @Inject constructor(
                 val collect =
                     database.collectionGroup("MyRequest")
                         .whereEqualTo("golDarah", darahku)
+                        .whereNotEqualTo("idPengirim",currentUser)
                         .addSnapshotListener(object : EventListener<QuerySnapshot> {
                             override fun onEvent(
                                 value: QuerySnapshot?,

@@ -38,7 +38,6 @@ fun Fragment.toast(msg: String?) {
 fun Activity.toast(msg: String?){
     Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
 }
-
 fun ChipGroup.addChip(
     text: String,
     isTouchTargeSize: Boolean = false,
@@ -58,7 +57,6 @@ fun ChipGroup.addChip(
     }
     addView(chip)
 }
-
 fun Context.createDialog(layout: Int, cancelable: Boolean): Dialog {
     val dialog = Dialog(this, android.R.style.Theme_Dialog)
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

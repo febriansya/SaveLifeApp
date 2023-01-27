@@ -25,7 +25,7 @@ class ResetPasswordActivity : AppCompatActivity() {
         observe()
         binding.button.setOnClickListener {
             if (validation()) {
-                viewmodel.forgetPassword(binding.edtEmailReset.text.toString())
+                viewmodel.ResetPassword(binding.edtEmailReset.text.toString())
             }
         }
     }
